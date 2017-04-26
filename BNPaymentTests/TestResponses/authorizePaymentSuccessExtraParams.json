@@ -1,0 +1,18 @@
+{
+    "amount":100,
+    "captures":[
+    
+    ],
+    "operations":[
+                  "Cancel",
+                  "Capture"
+                  ],
+    "merchant":"T000000000",
+    "comment":"Testing festing",
+    "state":"Authorized",
+    "payment":"1804289383",
+    "operationInProgress":false,
+    "currency":"DKK",
+    "region":"emea_0",
+    "extraParams":"extraParam"
+}

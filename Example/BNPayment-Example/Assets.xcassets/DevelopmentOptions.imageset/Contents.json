@@ -1,0 +1,27 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "Administrative Tools_ffffff_50.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Administrative Tools_ffffff_25.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Administrative Tools_ffffff_50.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Administrative Tools_ffffff_75.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

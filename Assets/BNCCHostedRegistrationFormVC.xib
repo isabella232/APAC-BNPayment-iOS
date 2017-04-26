@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BNCCHostedRegistrationFormVC">
+            <connections>
+                <outlet property="activityIndicator" destination="eyX-8w-xJq" id="d2x-fK-uk9"/>
+                <outlet property="contentView" destination="GPY-I9-yz9" id="apO-PN-rXl"/>
+                <outlet property="contentViewBottomMargin" destination="Ioq-vT-GHg" id="HgF-hk-Hiq"/>
+                <outlet property="footerContainerView" destination="ujS-PQ-hFT" id="jB4-eb-QWF"/>
+                <outlet property="footerHeight" destination="gZv-ps-mkp" id="g9p-lL-XE7"/>
+                <outlet property="headerContainerView" destination="Ppx-GN-fNh" id="LG6-Bf-EFY"/>
+                <outlet property="headerHeight" destination="Mb3-ej-h7M" id="Ofq-Vd-Ct2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webviewContainerView" destination="Oxf-MY-Q0p" id="Sfc-S8-X0E"/>
+                <outlet property="webviewHeight" destination="ubC-cf-OSs" id="uet-VK-tc8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPY-I9-yz9">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="eyX-8w-xJq">
+                            <rect key="frame" x="290" y="290" width="20" height="20"/>
+                        </activityIndicatorView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ppx-GN-fNh">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Mb3-ej-h7M"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oxf-MY-Q0p">
+                            <rect key="frame" x="0.0" y="50" width="600" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="ubC-cf-OSs"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujS-PQ-hFT">
+                            <rect key="frame" x="0.0" y="100" width="600" height="0.0"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="gZv-ps-mkp"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Oxf-MY-Q0p" firstAttribute="top" secondItem="Ppx-GN-fNh" secondAttribute="bottom" id="5eI-Ig-Rbk"/>
+                        <constraint firstItem="Oxf-MY-Q0p" firstAttribute="width" secondItem="GPY-I9-yz9" secondAttribute="width" id="6fY-z4-7KE"/>
+                        <constraint firstAttribute="bottom" secondItem="ujS-PQ-hFT" secondAttribute="bottom" id="Dsa-aW-ev9"/>
+                        <constraint firstAttribute="trailing" secondItem="Ppx-GN-fNh" secondAttribute="trailing" id="Fx3-6a-42K"/>
+                        <constraint firstItem="ujS-PQ-hFT" firstAttribute="width" secondItem="GPY-I9-yz9" secondAttribute="width" id="KyO-3b-U4s"/>
+                        <constraint firstItem="ujS-PQ-hFT" firstAttribute="top" secondItem="Oxf-MY-Q0p" secondAttribute="bottom" id="X2L-FY-IZF"/>
+                        <constraint firstItem="eyX-8w-xJq" firstAttribute="centerX" secondItem="GPY-I9-yz9" secondAttribute="centerX" id="aSD-Ow-gLg"/>
+                        <constraint firstItem="Ppx-GN-fNh" firstAttribute="width" secondItem="GPY-I9-yz9" secondAttribute="width" id="dXS-lf-nGd"/>
+                        <constraint firstItem="Ppx-GN-fNh" firstAttribute="leading" secondItem="GPY-I9-yz9" secondAttribute="leading" id="ec3-sr-F0N"/>
+                        <constraint firstItem="Ppx-GN-fNh" firstAttribute="leading" secondItem="Oxf-MY-Q0p" secondAttribute="leading" id="hCA-3L-1B8"/>
+                        <constraint firstItem="eyX-8w-xJq" firstAttribute="centerY" secondItem="GPY-I9-yz9" secondAttribute="centerY" id="kS7-uE-siQ"/>
+                        <constraint firstItem="Ppx-GN-fNh" firstAttribute="leading" secondItem="ujS-PQ-hFT" secondAttribute="leading" id="l4I-pp-nrI"/>
+                        <constraint firstItem="Ppx-GN-fNh" firstAttribute="top" secondItem="GPY-I9-yz9" secondAttribute="top" id="mQI-KZ-f3S"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="GPY-I9-yz9" secondAttribute="bottom" id="Ioq-vT-GHg"/>
+                <constraint firstItem="GPY-I9-yz9" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="RCc-lv-pBY"/>
+                <constraint firstItem="GPY-I9-yz9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kMX-dg-Cje"/>
+                <constraint firstItem="GPY-I9-yz9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="um1-AQ-p0E"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

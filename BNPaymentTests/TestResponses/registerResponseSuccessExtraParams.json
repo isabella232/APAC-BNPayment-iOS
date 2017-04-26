@@ -1,0 +1,6 @@
+{
+    "shared_secret": "sharedSecret",
+    "uuid": "uuid",
+    "extra1": "extra1",
+    "extra2": 2
+}
