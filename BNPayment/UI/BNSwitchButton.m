@@ -1,5 +1,5 @@
 //
-//  BNPaymentResponse.m
+//  BNSwitchButton.m
 //  Copyright (c) 2016 Bambora ( http://bambora.com/ )
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,27 +20,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "BNPaymentResponse.h"
+#import "BNCreditCardNumberTextField.h"
+#import "UIColor+BNColors.h"
+#import "UITextField+BNCreditCard.h"
+#import "UIImage+BNUtils.h"
 
-@implementation BNPaymentResponse
+@interface BNSwitchButton : UISwitch;
 
-+ (NSDictionary *)JSONMappingDictionary {
-    return @{
-             @"region" : @"region",
-             @"merchant" : @"merchant",
-             @"payment" : @"payment",
-             @"state" : @"state",
-             @"currency" : @"currency",
-             @"amount" : @"amount",
-             @"comment" : @"comment",
-             @"captures" : @"captures",
-             @"receipt" : @"receipt",
-             @"creditCardToken" : @"creditCardToken",
-             @"cardHolderName" : @"cardHolderName",
-             @"truncatedCard" : @"truncatedCard",
-             @"cardType" : @"cardType",
-             
-             };
+
+@end
+
+@implementation BNSwitchButton
+
+#pragma mark - init methods
+- (instancetype)init {
+    self = [super init];
+    if(self)
+    {
+        self.backgroundColor = [UIColor whiteColor];
+        self.onTintColor = [UIColor BNPurpleColor];
+    }
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    NSLog(@"Draw rect");
 }
 
 @end

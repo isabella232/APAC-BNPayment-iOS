@@ -21,6 +21,7 @@
 //  THE SOFTWARE.
 
 #import "BNBaseModel.h"
+#import "BNCreditCard.h"
 
 @interface BNPaymentParams : BNBaseModel
 
@@ -29,11 +30,20 @@
 @property (nonatomic, strong) NSNumber *amount;
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *comment; // Optional
+@property (nonatomic, strong) NSString *paymentValidation; // Optional
 
 // Optional dictionary which is passed to backend. Should contain Json serializable data
-- (NSDictionary *) paymentJsonData;
+- (NSDictionary *) cardJsonData;
+- (void) setCardJsonData:(NSDictionary*) data;
+
+// Optional dictionary, specific to ApplePay,and submit single payment at the moment.
+// which is passed to the backend. Should contain Json serializable data
+- (NSDictionary*) paymentJsonData;
 - (void) setPaymentJsonData:(NSDictionary*) data;
 
+
+-(void)SetCreditCardJsonData: (BNCreditCard*) creditCard
+             isTokenRequired: (BOOL) isTokenRequired;
 
 + (BNPaymentParams *)paymentParamsWithId:(NSString *)identifier
                                 currency:(NSString *)currency
@@ -41,5 +51,15 @@
                                    token:(NSString *)token
                                  comment:(NSString *)comment;
 
+
++ (BNPaymentParams *)paymentParamsWithCreditCard:(NSString *)identifier
+                                        currency:(NSString *)currency
+                                          amount:(NSNumber *)amount
+                                         comment:(NSString *)comment
+                                      creditCard:(BNCreditCard*)creditCard
+                                 isTokenRequired: (BOOL) isTokenRequired;
+
+
 + (BNPaymentParams *)mockObject;
+
 @end

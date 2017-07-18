@@ -26,6 +26,7 @@
 
 @interface BNRegisterCCParams : BNBaseModel
 
+
 - (instancetype)initWithCreditCard:(BNCreditCard *)creditCard;
 
 // [[oz]]

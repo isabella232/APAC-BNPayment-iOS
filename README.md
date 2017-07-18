@@ -22,4 +22,4 @@ We welcome questions and feedback - you can reach us by sending an e-mail to [se
 
 ## License
 
-`Mobile Payment` is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
+`Native Payment` is available under the MIT license. See the [LICENSE](LICENSE) file for more info.

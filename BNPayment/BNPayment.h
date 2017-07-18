@@ -48,7 +48,6 @@ FOUNDATION_EXPORT const unsigned char BNPaymentVersionString[];
 #import <BNPayment/BNCCHostedFormParams.h>
 #import <BNPayment/BNCreditCard.h>
 #import <BNPayment/BNPaymentParams.h>
-#import <BNPayment/BNApplePayPaymentParams.h>
 #import <BNPayment/BNPaymentResponse.h>
 #import <BNPayment/EPAYAction.h>
 #import <BNPayment/EPAYHostedFormStateChange.h>
@@ -80,3 +79,4 @@ FOUNDATION_EXPORT const unsigned char BNPaymentVersionString[];
 #import <BNPayment/BNLoaderButton.h>
 #import <BNPayment/NSError+BNError.h>
 #import <BNPayment/BNErrorResponse.h>
+#import <BNPayment/BNTouchIDValidation.h>

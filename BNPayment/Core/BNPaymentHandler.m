@@ -20,6 +20,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+
 #import "BNPaymentHandler.h"
 #import "BNPaymentEndpoint.h"
 #import "BNApplePayPaymentEndpoint.h"
@@ -33,6 +34,10 @@
 #import "BNCertManager.h"
 #import "BNPaymentResponse.h"
 
+#define kDefaultPaymentValidation @"none"
+#define kApplePayPaymentValidation @"applepay"
+#define kAppleTouchIdPaymentValidation @"appletouchid";
+
 static NSString *const TokenizedCreditCardCacheName = @"tokenizedCreditCardCacheName";
 static NSString *const SharedSecretKeychainKey = @"sharedSecret";
 static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
@@ -45,6 +50,7 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
 @property (nonatomic, assign) BOOL debug;
 @property (nonatomic, assign) NSString *baseUrl;
 @property (nonatomic, strong) BNHTTPClient *httpClient;
+@property (nonatomic) BNExtraPaymentValidationBlock extraPaymentValidationBlock;
 
 @end
 
@@ -119,6 +125,7 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
     if ([cachedCards isKindOfClass:[NSArray class]]) {
         self.tokenizedCreditCards = [cachedCards mutableCopy];
     }
+    self.extraPaymentValidationBlock =  nil;
 }
 
 - (BNHTTPClient *)getHttpClient {
@@ -168,26 +175,50 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
     return dataTask;
 }
 
-- (NSURLSessionDataTask *)makePaymentWithParams:(BNPaymentParams *)paymentParams
-                                         result:(BNPaymentBlock) result {
-    NSURLSessionDataTask *dataTask = [BNPaymentEndpoint authorizePaymentWithParams:paymentParams
-                                                                        completion:^(BNPaymentResponse *paymentResponse,
-                                                                                     NSError *error) {
-        result(paymentResponse ? BNPaymentSuccess : BNPaymentFailure, error);
-    }];
-
-    return dataTask;
+//Temporally keep this old method until product owner get feedback from client.
+- (NSURLSessionDataTask *)makePaymentExtWithParams:(BNPaymentParams *)paymentParams
+                          requirePaymentValidation:(BOOL)requirePaymentValidation
+                                            result:(BNPaymentExtBlock) result {
+    if (requirePaymentValidation && self.extraPaymentValidationBlock != nil ){
+        paymentParams.paymentValidation = kAppleTouchIdPaymentValidation;
+        if([self isTouchIdCheckValid: result]==false){
+            return nil;
+        }
+    } else {
+        paymentParams.paymentValidation = kDefaultPaymentValidation;
+    }
+    return [self _submitSinglePaymentToken:paymentParams  result:result];
 }
 
-- (NSURLSessionDataTask *)makePaymentExtWithParams:(BNPaymentParams *)paymentParams
+- (NSURLSessionDataTask *)submitSinglePaymentToken:(BNPaymentParams *)paymentParams
+                          requirePaymentValidation:(BOOL)requirePaymentValidation
                                             result:(BNPaymentExtBlock) result {
+    if (requirePaymentValidation && self.extraPaymentValidationBlock != nil ){
+        paymentParams.paymentValidation = kAppleTouchIdPaymentValidation;
+        if([self isTouchIdCheckValid: result]==false){
+            return nil;
+        }
+    } else {
+        paymentParams.paymentValidation = kDefaultPaymentValidation;
+    }
+    return [self _submitSinglePaymentToken:paymentParams  result:result];
+}
+
+
+
+
+- (NSURLSessionDataTask *)_submitSinglePaymentToken:(BNPaymentParams *)paymentParams
+                                             result:(BNPaymentExtBlock) result
+{
     NSURLSessionDataTask *dataTask = [BNPaymentEndpoint authorizePaymentWithParams:paymentParams
-                                                                        completion:^(BNPaymentResponse *paymentResponse,
-                                                                                     NSError *error) {
+                                                                        completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
+                                                                            //success
                                                                             if (paymentResponse && paymentResponse.receipt){
                                                                                 NSDictionary<NSString*,NSString*> * r = @{@"receipt":paymentResponse.receipt};
                                                                                 result(r, BNPaymentSuccess, error);
-                                                                            } else {
+                                                                            }
+                                                                            //fail
+                                                                            else {
                                                                                 result(nil, paymentResponse ? BNPaymentSuccess : BNPaymentFailure, error);
                                                                             }
                                                                         }];
@@ -196,12 +227,80 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
 }
 
 
-- (NSURLSessionDataTask *)makeApplePayPaymentWithParams:(BNApplePayPaymentParams *)paymentParams
-                                                 result:(BNApplePayPaymentBlock) result {
+
+- (NSURLSessionDataTask *)submitSinglePaymentCard:(BNPaymentParams *)paymentParams
+                          requirePaymentValidation:(BOOL)requirePaymentValidation           	
+                                  requireSaveCard: (BOOL)requireSaveCard
+                                        completion:(BNSinglePaymentExtBlock) completion {
+    if (requirePaymentValidation && self.extraPaymentValidationBlock != nil ){
+        paymentParams.paymentValidation = kAppleTouchIdPaymentValidation;
+        if([self isSinglePaymentTouchIdCheckValid: completion]==false){
+            return nil;
+        }
+    } else {
+        paymentParams.paymentValidation = kDefaultPaymentValidation;
+    }
+    
+    
+    
+    NSURLSessionDataTask *dataTask = [self _submitSinglePaymentCard:paymentParams  requireSaveCard:requireSaveCard result:^(NSDictionary<NSString*, NSString*> * response,BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result,NSError *error){
+        if(authorizedCreditCard)
+        {
+            [self saveAuthorizedCreditCard:authorizedCreditCard];
+        }
+        completion(response, authorizedCreditCard, result, error);
+    }];
+    
+    return dataTask;
+}
+
+
+- (NSURLSessionDataTask *)_submitSinglePaymentCard:(BNPaymentParams *)paymentParams
+                                            requireSaveCard: (BOOL)requireSaveCard
+                                             result:(BNSinglePaymentExtBlock) result
+{
+    NSURLSessionDataTask *dataTask = [BNPaymentEndpoint authorizePaymentWithParams:paymentParams
+                                                                        completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
+                                                                            //success
+                                                                            if (paymentResponse && paymentResponse.receipt){
+                                                                                NSDictionary<NSString*,NSString*> * r = @{@"receipt":paymentResponse.receipt};
+                                                                                if(requireSaveCard)
+                                                                                {
+                                                                                    BNAuthorizedCreditCard *authorizedCard = [BNAuthorizedCreditCard alloc];
+                                                                                    authorizedCard.creditCardNumber = paymentResponse.truncatedCard;
+                                                                                    authorizedCard.creditCardToken = paymentResponse.creditCardToken;
+                                                                                    authorizedCard.creditCardType = paymentResponse.cardType;
+                                                                                    authorizedCard.creditCardHolder = paymentResponse.cardHolderName;
+                                                                                    result(r, authorizedCard, BNPaymentSuccess, error);
+                                                                                }
+                                                                                else{
+                                                                                    result(r, nil, BNPaymentSuccess, error);
+                                                                                }
+                                                                            }
+                                                                            //fail
+                                                                            else {
+                                                                                result(nil, nil, paymentResponse ? BNPaymentSuccess : BNPaymentFailure, error);
+                                                                            }
+                                                                        }];
+    
+    return dataTask;
+}
+
+
+
+
+
+- (NSURLSessionDataTask *)submitSinglePaymentApplePay:(BNPaymentParams *)paymentParams
+                                                 result:(BNPaymentExtBlock) result {
+    paymentParams.paymentValidation = kApplePayPaymentValidation;
     NSURLSessionDataTask *dataTask = [BNApplePayPaymentEndpoint authorizePaymentWithParams:paymentParams
-                                                                                completion:^(BNPaymentResponse *paymentResponse,
-                                                                                             NSError *error) {
-                                                                                    result(paymentResponse ? BNPaymentSuccess : BNPaymentFailure, error);
+                                                                                completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
+                                                                                    if (paymentResponse && paymentResponse.receipt){
+                                                                                        NSDictionary<NSString*,NSString*> * r = @{@"receipt":paymentResponse.receipt};
+                                                                                        result(r, BNPaymentSuccess, error);
+                                                                                    } else {
+                                                                                        result(nil, paymentResponse ? BNPaymentSuccess : BNPaymentFailure, error);
+                                                                                    }
                                                                                 }];
     
     return dataTask;
@@ -226,6 +325,33 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
         [[BNCacheManager sharedCache] saveObject:self.tokenizedCreditCards
                                         withName:TokenizedCreditCardCacheName];
     }
+}
+
+-(void) registerExtraPaymentValidationHook:(BNExtraPaymentValidationBlock) hook
+{
+    self.extraPaymentValidationBlock = hook;
+}
+
+-(BOOL)isTouchIdCheckValid: (BNPaymentExtBlock) result{
+    __block NSError* authError = nil;
+    dispatch_sync( dispatch_get_global_queue(0, 0), ^{
+        authError = self.extraPaymentValidationBlock(); });
+    if (authError != nil){
+        result(nil, BNPaymentNotAuthorized, authError);
+        return false;
+    }
+    return true;
+}
+
+-(BOOL)isSinglePaymentTouchIdCheckValid: (BNSinglePaymentExtBlock) result{
+    __block NSError* authError = nil;
+    dispatch_sync( dispatch_get_global_queue(0, 0), ^{
+        authError = self.extraPaymentValidationBlock(); });
+    if (authError != nil){
+        result(nil,nil, BNPaymentNotAuthorized, authError);
+        return false;
+    }
+    return true;
 }
 
 @end

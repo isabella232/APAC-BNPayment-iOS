@@ -31,9 +31,9 @@ const NSInteger BNRegisterCCParamsKeyLength = 16;
 
 @interface BNRegisterCCParams ()
 
-@property (nonatomic, strong) BNCreditCard *cardDetails;
-@property (nonatomic, strong) NSArray<BNEncryptedSessionKey *> *encryptedSessionKeys;
-@property (nonatomic, strong) NSString *binNumber;
+@property  BNCreditCard *cardDetails;
+@property  NSArray<BNEncryptedSessionKey *> *encryptedSessionKeys;
+@property  NSString *binNumber;
 
 @end
 
@@ -79,6 +79,9 @@ const NSInteger BNRegisterCCParamsKeyLength = 16;
     
     self.encryptedSessionKeys = encryptedSessionKeys;
 }
+
+
+
 
 //[[oz]]
 - (NSDictionary *)JSONDictionary {

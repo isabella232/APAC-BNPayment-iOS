@@ -46,6 +46,7 @@ NSString *const EncryptionCertificatesCacheName = @"EncryptionCertificatesCacheN
 - (instancetype)init {
     self = [super init];
     if(self) {
+        _encryptionCertificates = nil;
         _encryptionCertificates = [self getEncryptionCertificates];
         
         if(!_encryptionCertificates) {
@@ -73,7 +74,6 @@ NSString *const EncryptionCertificatesCacheName = @"EncryptionCertificatesCacheN
 }
 
 - (BOOL)shouldUpdateCertificates {
-    
     if(!_encryptionCertificates || _encryptionCertificates.count == 0) {
         return YES;
     }

@@ -1,5 +1,5 @@
-            //
-//  BNCreditCardRegistrationVC.m
+//
+//  BNSubmitSinglePaymentVC.m
 //  Copyright (c) 2016 Bambora ( http://bambora.com/ )
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,7 +20,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "BNCreditCardRegistrationVC.h"
+#import "BNSubmitSinglePaymentCardVC.h"
 #import "BNBaseTextField.h"
 #import "BNCreditCardNumberTextField.h"
 #import "BNCreditCardExpiryTextField.h"
@@ -28,16 +28,19 @@
 #import "UIColor+BNColors.h"
 #import "UITextField+BNCreditCard.h"
 #import "BNLoaderButton.h"
+#import "BNSwitchButton.h"
 
-NSInteger const TextFieldHeight = 50;
-NSInteger const ButtonHeight = 50;
-NSInteger const Padding = 15;
-NSInteger const TitleHeight = 30;
+NSInteger const SinglePaymentTextFieldHeight = 50;
+NSInteger const SinglePaymentButtonHeight = 50;
+NSInteger const SinglePaymentPadding = 15;
+NSInteger const SinglePaymentTitleHeight = 30;
+NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
-@interface BNCreditCardRegistrationVC ()
+@interface BNSubmitSinglePaymentCardVC ()
 
 @property (nonatomic, strong) UIScrollView *formScrollView;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *saveCardLabel;
 
 
 @property (nonatomic, strong) BNCreditCardHolderTextField *cardHolderTextField;
@@ -45,15 +48,21 @@ NSInteger const TitleHeight = 30;
 @property (nonatomic, strong) BNCreditCardExpiryTextField *cardExpiryTextField;
 @property (nonatomic, strong) BNBaseTextField *cardCVCTextField;
 
+@property (nonatomic, strong) BNSwitchButton *switchSaveCardButton;
 @property (nonatomic, strong) BNLoaderButton *submitButton;
+
+
 
 @end
 
-@implementation BNCreditCardRegistrationVC
+@implementation BNSubmitSinglePaymentCardVC
+
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -61,9 +70,24 @@ NSInteger const TitleHeight = 30;
     [self.cardHolderTextField becomeFirstResponder];
 }
 
+- (BOOL) IsViewValid {
+ 
+    if(_paymentParams &&
+       _paymentParams.amount &&
+       _paymentParams.amount>0)
+    {
+        return true;
+    }
+    return false;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self layoutCreditCardForm];
+    if([self IsViewValid])
+    {
+        [super viewWillAppear:animated];
+        [self layoutCreditCardForm];
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -80,7 +104,7 @@ NSInteger const TitleHeight = 30;
     }];
     
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
+    
 }
 
 - (void)layoutCreditCardForm {
@@ -88,38 +112,47 @@ NSInteger const TitleHeight = 30;
     
     self.formScrollView.frame = viewRect;
     
-    self.titleLabel.frame = CGRectMake(Padding,
-                                       Padding*2,
-                                       CGRectGetWidth(viewRect)-2*Padding,
-                                       TitleHeight);
+    self.titleLabel.frame = CGRectMake(SinglePaymentPadding,
+                                       SinglePaymentPadding*2,
+                                       CGRectGetWidth(viewRect)-2*SinglePaymentPadding,
+                                       SinglePaymentTitleHeight);
     
-    NSInteger inputWidth = floorf(CGRectGetWidth(viewRect)-2*Padding);
+    NSInteger inputWidth = floorf(CGRectGetWidth(viewRect)-2*SinglePaymentPadding);
     inputWidth -= inputWidth % 2;
     
-    self.cardHolderTextField.frame = CGRectMake(Padding,
+    self.cardHolderTextField.frame = CGRectMake(SinglePaymentPadding,
                                                 CGRectGetMaxY(self.titleLabel.frame),
                                                 inputWidth,
-                                                TextFieldHeight);
+                                                SinglePaymentTextFieldHeight);
     
-    self.cardNumberTextField.frame = CGRectMake(Padding,
+    self.cardNumberTextField.frame = CGRectMake(SinglePaymentPadding,
                                                 CGRectGetMaxY(self.cardHolderTextField.frame)-1,
                                                 inputWidth,
-                                                TextFieldHeight);
+                                                SinglePaymentTextFieldHeight);
     
-    self.cardExpiryTextField.frame = CGRectMake(Padding,
+    self.cardExpiryTextField.frame = CGRectMake(SinglePaymentPadding,
                                                 CGRectGetMaxY(self.cardNumberTextField.frame)-1,
                                                 ceilf((inputWidth)/2.f),
-                                                TextFieldHeight);
+                                                SinglePaymentTextFieldHeight);
     
     self.cardCVCTextField.frame = CGRectMake(CGRectGetMaxX(self.cardExpiryTextField.frame)-1,
-                                                CGRectGetMaxY(self.cardNumberTextField.frame)-1,
-                                                ceilf((inputWidth)/2.f)+1,
-                                                TextFieldHeight);
+                                             CGRectGetMaxY(self.cardNumberTextField.frame)-1,
+                                             ceilf((inputWidth)/2.f)+1,
+                                             SinglePaymentTextFieldHeight);
+    
+    self.saveCardLabel.frame = CGRectMake(SinglePaymentPadding,
+                                       CGRectGetMaxY(self.cardExpiryTextField.frame)+6,
+                                       SinglePaymentSaveCardLabelWidth,
+                                       SinglePaymentTitleHeight);
+    
+    self.switchSaveCardButton.frame = CGRectMake(CGRectGetMaxX(self.saveCardLabel.frame)+1,
+                                             CGRectGetMaxY(self.cardExpiryTextField.frame)+6,
+                                             0, 0);
     
     self.submitButton.frame = CGRectMake(0,
-                                         CGRectGetHeight(self.formScrollView.frame)-ButtonHeight,
+                                         CGRectGetHeight(self.formScrollView.frame)-SinglePaymentButtonHeight,
                                          CGRectGetWidth(viewRect),
-                                         ButtonHeight);
+                                         SinglePaymentButtonHeight);
 }
 
 - (void)setupCreditCardForm {
@@ -138,11 +171,11 @@ NSInteger const TitleHeight = 30;
     // .* = .{0,} = match any char zero or more times
     self.cardHolderTextField.inputRegex = @".{0,}";
     self.cardHolderTextField.validRegex = @".{0,}";
-
+    
     [self.cardHolderTextField applyAlphaNumericalStyle];
     [self.cardHolderTextField addTarget:self action:@selector(validateFields) forControlEvents:UIControlEventEditingChanged];
     [self.formScrollView addSubview:self.cardHolderTextField];
-
+    
     
     self.cardNumberTextField = [[BNCreditCardNumberTextField alloc] init];
     self.cardNumberTextField.placeholder = NSLocalizedString(@"5555 5555 5555 5555", @"Placeholder");
@@ -164,12 +197,25 @@ NSInteger const TitleHeight = 30;
     [self.cardCVCTextField addTarget:self action:@selector(validateFields) forControlEvents:UIControlEventEditingChanged];
     [self.formScrollView addSubview:self.cardCVCTextField];
     
+    
+    
+    self.saveCardLabel = [[UILabel alloc] init];
+    self.saveCardLabel.text = NSLocalizedString(@"SAVE CARD", @"Save card");
+    self.saveCardLabel.textColor = [UIColor BNTextColor];
+    self.saveCardLabel.font = [UIFont systemFontOfSize:12.f weight:UIFontWeightMedium];
+    [self.formScrollView addSubview:self.saveCardLabel];
+    
+    
+    self.switchSaveCardButton = [[BNSwitchButton alloc] init];
+    [self.switchSaveCardButton addTarget:self action:@selector(validateFields) forControlEvents:UIControlEventEditingChanged];
+    [self.formScrollView addSubview:self.switchSaveCardButton];
+    
     self.submitButton = [BNLoaderButton new];
     [self.submitButton setBackgroundColor:[UIColor BNPurpleColor]];
-    [self.submitButton setTitle:NSLocalizedString(@"Save card", @"") forState:UIControlStateNormal];
+    [self.submitButton setTitle:NSLocalizedString(@"Pay", @"") forState:UIControlStateNormal];
     [self.submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.submitButton addTarget:self
-                          action:@selector(submitCreditCardInformation:)
+                          action:@selector(submitSinglePaymentCardInformation:)
                 forControlEvents:UIControlEventTouchUpInside];
     self.submitButton.enabled = NO;
     self.submitButton.alpha = .5f;
@@ -177,7 +223,7 @@ NSInteger const TitleHeight = 30;
 }
 
 - (void)showAlertViewWithTitle:(NSString*)title message:(NSString*)message {
-
+    
     NSString *closeButtonTitle = NSLocalizedString(@"OK", nil);
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message
                                                        delegate:nil
@@ -186,8 +232,7 @@ NSInteger const TitleHeight = 30;
     [alertView show];
 }
 
-- (void)submitCreditCardInformation:(UIButton *)sender {
- 
+- (void)submitSinglePaymentCardInformation:(UIButton *)sender {
     BNCreditCard *creditCard = [BNCreditCard new];
     creditCard.holderName = [self.cardHolderTextField getCardHolderName];
     creditCard.cardNumber = [self.cardNumberTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -195,16 +240,18 @@ NSInteger const TitleHeight = 30;
     creditCard.expYear = [self.cardExpiryTextField getExpiryYear];
     creditCard.cvv = self.cardCVCTextField.text;
     
-    BNRegisterCCParams *params = [[BNRegisterCCParams alloc] initWithCreditCard:creditCard];
-    
+    BOOL isSaveCard = self.switchSaveCardButton.isOn? true: false;
+    [self.paymentParams SetCreditCardJsonData:creditCard isTokenRequired:isSaveCard];
     [self.submitButton setLoading:YES];
-    
-    [[BNPaymentHandler sharedInstance] registerCreditCard:params completion:^(BNAuthorizedCreditCard *card, NSError *error) {
-        if(self.completionBlock && card) {
-            self.completionBlock(BNCCRegCompletionDone, card);
+    [[BNPaymentHandler sharedInstance] submitSinglePaymentCard :self.paymentParams
+                                              requirePaymentValidation:self.isRequirePaymentAuthorization
+                                              requireSaveCard:isSaveCard
+                                              completion: ^(NSDictionary<NSString*, NSString*> * response,BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result,NSError *error){
+        if(self.completionBlock && result) {
+            self.completionBlock(response, authorizedCreditCard, result, error);
         }
         else {
-            NSString *title = NSLocalizedString(@"Card registration failed", nil);
+            NSString *title = NSLocalizedString(@"Payment failed", nil);
             NSString *detail = [BNHTTPResponseSerializer extractErrorDetail:error];
             NSString *m = [NSString stringWithFormat:@"%@\nPlease try again", detail];
             NSString *message = NSLocalizedString(m, nil);
@@ -240,11 +287,11 @@ NSInteger const TitleHeight = 30;
     
     CGFloat kbHeight = kbSize.height;
     CGFloat viewHeight = CGRectGetHeight(self.view.frame);
-    CGFloat height = visible ? viewHeight-kbHeight + ButtonHeight : viewHeight;
-
+    CGFloat height = visible ? viewHeight-kbHeight + SinglePaymentButtonHeight : viewHeight;
+    
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        int a = height-ButtonHeight;
-        int b = CGRectGetMaxY(self.cardCVCTextField.frame)+Padding;
+        int a = height-SinglePaymentButtonHeight;
+        int b = CGRectGetMaxY(self.cardCVCTextField.frame)+SinglePaymentPadding;
         [self.submitButton setYoffset:MAX(a,b)];
         [self.formScrollView setHeight:height];
     } completion:^(BOOL finished) {

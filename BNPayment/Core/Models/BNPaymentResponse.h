@@ -33,5 +33,10 @@
 @property (nonatomic, strong) NSString *comment;
 @property (nonatomic, strong) NSArray *captures;
 @property (nonatomic, strong) NSString *receipt;
+@property (nonatomic, strong) NSString *cardType;
+@property (nonatomic, strong) NSString *cardHolderName;
+@property (nonatomic, strong) NSString *creditCardToken;
+@property (nonatomic, strong) NSString *truncatedCard;
+
 
 @end

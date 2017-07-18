@@ -1,1 +1,3 @@
-- Needs card holder validation
+- Needs better card holder validation
+- Need to document the new api for touch id
+- Validate JSON rewgistration and paymet

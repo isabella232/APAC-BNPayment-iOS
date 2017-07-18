@@ -15,6 +15,9 @@
 		5DAABF4D1CB69B8100CEDB91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF4B1CB69B8100CEDB91 /* Main.storyboard */; };
 		5DAABF4F1CB69B8100CEDB91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF4E1CB69B8100CEDB91 /* Assets.xcassets */; };
 		5DAABF521CB69B8100CEDB91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF501CB69B8100CEDB91 /* LaunchScreen.storyboard */; };
+		EA6365D31EDFE8AD00553EC7 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6365D21EDFE8AD00553EC7 /* DeveloperViewController.swift */; };
+		F861587F1EB16107007EFE17 /* registrationData.json in Resources */ = {isa = PBXBuildFile; fileRef = F861587E1EB16107007EFE17 /* registrationData.json */; };
+		F86158811EB16305007EFE17 /* paymentData.json in Resources */ = {isa = PBXBuildFile; fileRef = F86158801EB16305007EFE17 /* paymentData.json */; };
 		F87893F91EB02A480049E354 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F87893F81EB02A480049E354 /* AppSettings.m */; };
 		F8A9E3CE1E8B2DA000081251 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A9E3CD1E8B2DA000081251 /* PassKit.framework */; };
 		F8C7D7761E88B34900FC7362 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7D7751E88B34900FC7362 /* ProductsViewController.swift */; };
@@ -22,7 +25,7 @@
 		F8C7D78F1E89B10800FC7362 /* CardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7D78E1E89B10800FC7362 /* CardsTableViewCell.swift */; };
 		F8D0A2711E8C6B4300FD49B1 /* BNColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0A2701E8C6B4300FD49B1 /* BNColor.swift */; };
 		F8D0A2741E8C745800FD49B1 /* MyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0A2731E8C745800FD49B1 /* MyDetailsViewController.swift */; };
-		F8D0A2761E8C746C00FD49B1 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0A2751E8C746C00FD49B1 /* DeveloperViewController.swift */; };
+		F8D0A2761E8C746C00FD49B1 /* CustomDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0A2751E8C746C00FD49B1 /* CustomDataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +52,9 @@
 		5DAABF4E1CB69B8100CEDB91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DAABF511CB69B8100CEDB91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DAABF531CB69B8100CEDB91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA6365D21EDFE8AD00553EC7 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
+		F861587E1EB16107007EFE17 /* registrationData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = registrationData.json; sourceTree = "<group>"; };
+		F86158801EB16305007EFE17 /* paymentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = paymentData.json; sourceTree = "<group>"; };
 		F87893F71EB02A480049E354 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		F87893F81EB02A480049E354 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
 		F8A9E3CC1E8B266800081251 /* BNPayment-Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BNPayment-Example.entitlements"; sourceTree = "<group>"; };
@@ -59,7 +65,7 @@
 		F8C7D78E1E89B10800FC7362 /* CardsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsTableViewCell.swift; sourceTree = "<group>"; };
 		F8D0A2701E8C6B4300FD49B1 /* BNColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNColor.swift; sourceTree = "<group>"; };
 		F8D0A2731E8C745800FD49B1 /* MyDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDetailsViewController.swift; sourceTree = "<group>"; };
-		F8D0A2751E8C746C00FD49B1 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
+		F8D0A2751E8C746C00FD49B1 /* CustomDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataViewController.swift; sourceTree = "<group>"; };
 		F8FD69161E92F84F00121C68 /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +104,8 @@
 		5DAABF411CB69B8100CEDB91 /* BNPayment-Example */ = {
 			isa = PBXGroup;
 			children = (
+				F86158801EB16305007EFE17 /* paymentData.json */,
+				F861587E1EB16107007EFE17 /* registrationData.json */,
 				F8D0A2781E8C78D400FD49B1 /* Common */,
 				F8D0A2771E8C78C700FD49B1 /* Cells */,
 				F8D0A2721E8C743600FD49B1 /* View Controllers */,
@@ -140,7 +148,8 @@
 				F8D0A2731E8C745800FD49B1 /* MyDetailsViewController.swift */,
 				F8C7D7751E88B34900FC7362 /* ProductsViewController.swift */,
 				F8C7D7771E88C3E100FC7362 /* CardsViewController.swift */,
-				F8D0A2751E8C746C00FD49B1 /* DeveloperViewController.swift */,
+				F8D0A2751E8C746C00FD49B1 /* CustomDataViewController.swift */,
+				EA6365D21EDFE8AD00553EC7 /* DeveloperViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -227,7 +236,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DAABF521CB69B8100CEDB91 /* LaunchScreen.storyboard in Resources */,
+				F86158811EB16305007EFE17 /* paymentData.json in Resources */,
 				5DAABF4F1CB69B8100CEDB91 /* Assets.xcassets in Resources */,
+				F861587F1EB16107007EFE17 /* registrationData.json in Resources */,
 				5DAABF4D1CB69B8100CEDB91 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,11 +250,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8D0A2761E8C746C00FD49B1 /* DeveloperViewController.swift in Sources */,
+				F8D0A2761E8C746C00FD49B1 /* CustomDataViewController.swift in Sources */,
 				5DAABF471CB69B8100CEDB91 /* AppDelegate.m in Sources */,
 				F87893F91EB02A480049E354 /* AppSettings.m in Sources */,
 				F8D0A2741E8C745800FD49B1 /* MyDetailsViewController.swift in Sources */,
 				F8D0A2711E8C6B4300FD49B1 /* BNColor.swift in Sources */,
+				EA6365D31EDFE8AD00553EC7 /* DeveloperViewController.swift in Sources */,
 				F8C7D7781E88C3E100FC7362 /* CardsViewController.swift in Sources */,
 				F8C7D7761E88B34900FC7362 /* ProductsViewController.swift in Sources */,
 				5DAABF441CB69B8100CEDB91 /* main.m in Sources */,
@@ -315,6 +327,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
