@@ -1,5 +1,5 @@
 //
-//  BNPaymentResponse.m
+//  BNSubmitSinglePaymentWithCardVC.h
 //  Copyright (c) 2016 Bambora ( http://bambora.com/ )
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,27 +20,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "BNPaymentResponse.h"
+#import "BNEnums.h"
+#import "BNPaymentParams.h"
+#import "BNPaymentBaseVC.h"
 
-@implementation BNPaymentResponse
+@class BNCreditCard;
+@class BNAuthorizedCreditCard;
 
-+ (NSDictionary *)JSONMappingDictionary {
-    return @{
-             @"region" : @"region",
-             @"merchant" : @"merchant",
-             @"payment" : @"payment",
-             @"state" : @"state",
-             @"currency" : @"currency",
-             @"amount" : @"amount",
-             @"comment" : @"comment",
-             @"captures" : @"captures",
-             @"receipt" : @"receipt",
-             @"creditCardToken" : @"creditCardToken",
-             @"cardHolderName" : @"cardHolderName",
-             @"truncatedCard" : @"truncatedCard",
-             @"cardType" : @"cardType",
-             
-             };
-}
+/**
+ *  A block indicating whether or not the `BNSubmitSinglePaymentVC` is done
+ *
+ *  @param success The status of the operation
+ */
+typedef void(^BNSubmitSinglePaymentFormCompletion)(NSDictionary<NSString*, NSString*> * response, BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result, NSError *error);
+
+@interface BNSubmitSinglePaymentCardVC : BNPaymentBaseVC
+
+//payment params allows sdk user passed in amount, currency etc for the payment.
+@property (nonatomic, strong) BNPaymentParams *paymentParams;
+
+@property (nonatomic) BOOL isRequirePaymentAuthorization;
+
+
+@property (nonatomic, copy) BNSubmitSinglePaymentFormCompletion completionBlock;
 
 @end
+

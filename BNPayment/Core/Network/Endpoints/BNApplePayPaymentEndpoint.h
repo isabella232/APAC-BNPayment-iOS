@@ -21,21 +21,12 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BNPaymentEndpoint.h"
 
 @class BNPaymentHandler;
 @class BNPaymentResponse;
-@class BNApplePayPaymentParams;
+@class BNPaymentParams;
 
-/**
- *  A block object to be executed when an Apple Pay payment operation has completed.
- *  The block returns a `BNPaymentResponse` representing the payment that is authorized.
- *  `NSError` representing the error received. Error is nil if operation is successful.
- *
- *  @param paymentResponse  `BNPaymentResponse` is the response.
- *  @param error            `NSError` error.
- */
-
-typedef void (^BNApplePayPaymentRequestBlock)(BNPaymentResponse *paymentResponse, NSError *error);
 
 /**
  `BNApplePayPaymentEndpoint` is a subclass of `BNBaseEndpoint`
@@ -46,12 +37,12 @@ typedef void (^BNApplePayPaymentRequestBlock)(BNPaymentResponse *paymentResponse
 /**
  *  A method for processing an Apple Pay payment.
  *
- *  @param params            `BNApplePayPaymentParams` representing the payment to be authorized.
+ *  @param params            `BNPaymentParams` representing the payment to be authorized.
  *  @param completion        `BNPaymentRequestBlock` excecuted when the operation is completed.
  *
  *  @return `NSURLSessionDataTask`
  */
-+ (NSURLSessionDataTask *)authorizePaymentWithParams:(BNApplePayPaymentParams *)params
-                                          completion:(BNApplePayPaymentRequestBlock)completion;
++ (NSURLSessionDataTask *)authorizePaymentWithParams:(BNPaymentParams *)params
+                                          completion:(BNPaymentRequestBlock)completion;
 
 @end

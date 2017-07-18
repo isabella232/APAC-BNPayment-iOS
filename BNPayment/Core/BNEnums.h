@@ -31,6 +31,7 @@ typedef enum BNPaymentResult : NSUInteger {
     BNPaymentNotAuthorized             /** Not authorized to make Payment */
 } BNPaymentResult;
 
+
 /**
  *  `BNCCRegCompletion` represents the reason of the CC registraion completion.
  */
@@ -38,3 +39,5 @@ typedef enum : NSUInteger {
     BNCCRegCompletionDone,
     BNCCRegCompletionCancelled,
 } BNCCRegCompletion;
+
+

@@ -21,10 +21,16 @@
 //  THE SOFTWARE.
 
 #import "BNPaymentParams.h"
+#import "BNCrypto.h"
+#import "BNCertManager.h"
+#import "BNEncryptionCertificate.h"
+#import "BNEncryptedSessionKey.h"
 
+const NSInteger BNPaymentCCParamsKeyLength = 16;
 
 @interface BNPaymentParams () {
     NSDictionary* _paymentJsonData;
+    NSDictionary* _cardJsonData;
 }
 @end
 
@@ -33,6 +39,7 @@
 
 + (NSDictionary *)JSONMappingDictionary {
     return @{
+             @"paymentValidation" : @"paymentValidation",
              @"paymentIdentifier" : @"paymentIdentifier",
              @"currency" : @"currency",
              @"amount" : @"amount",
@@ -45,7 +52,8 @@
                                 currency:(NSString *)currency
                                   amount:(NSNumber *)amount
                                    token:(NSString *)token
-                                 comment:(NSString *)comment {
+                                 comment:(NSString *)comment
+{
     BNPaymentParams *params = [BNPaymentParams new];
     
     params.paymentIdentifier = identifier;
@@ -53,7 +61,27 @@
     params.amount = amount;
     params.token = token;
     params.comment = comment;
+    params.paymentValidation = @"none";
     
+    return params;
+}
+
+
++ (BNPaymentParams *)paymentParamsWithCreditCard:(NSString *)identifier
+                                currency:(NSString*)currency
+                                  amount:(NSNumber*)amount
+                                 comment:(NSString*)comment
+                              creditCard:(BNCreditCard*)creditCard
+                         isTokenRequired:(BOOL)isTokenRequired
+{
+    BNPaymentParams *params = [BNPaymentParams new];
+    
+    params.paymentIdentifier = identifier;
+    params.currency = currency;
+    params.amount = amount;
+    params.comment = comment;
+    params.paymentValidation = @"none";
+    [params SetCreditCardJsonData:creditCard isTokenRequired: isTokenRequired];
     return params;
 }
 
@@ -76,8 +104,39 @@
         dict = mdict;
     }
     
+    if (self.cardJsonData != nil){
+        NSMutableDictionary *mdict = [NSMutableDictionary dictionaryWithDictionary:dict];
+        [mdict setObject:self.cardJsonData forKey:@"cardJsonData"];
+        dict = mdict;
+    }
+    
     return dict;
 }
+
+- (void)SetCreditCardJsonData: (BNCreditCard*) creditCard
+              isTokenRequired: (BOOL) isTokenRequired{
+    NSData *sessionKey = [BNCrypto generateRandomKey:BNPaymentCCParamsKeyLength];
+    creditCard = [creditCard encryptedCreditCardWithSessionKey:sessionKey];
+    NSArray *encryptionCertificates = [[BNCertManager sharedInstance] getEncryptionCertificates];
+    NSString *encryptedSessionKey;
+    for(BNEncryptionCertificate *cert in encryptionCertificates) {
+        if([cert isKindOfClass:[BNEncryptionCertificate class]] && cert.base64Representation) {
+            encryptedSessionKey = [cert encryptSessionKey:sessionKey];
+            break;
+        }
+    }
+    NSDictionary *jsonCardInfo = @{
+                                   @"cardholderName": creditCard.holderName,
+                                   @"cardNumber":creditCard.cardNumber,
+                                   @"expiryMonth":creditCard.expMonth,
+                                   @"expiryYear":creditCard.expYear,
+                                   @"cvv":creditCard.cvv==nil? @"": creditCard.cvv,
+                                   @"istokenrequested": isTokenRequired? @"true":@"false",
+                                   @"sessionKey" : encryptedSessionKey
+                                   };
+    _cardJsonData = jsonCardInfo;
+}
+
 
 - (NSDictionary*) paymentJsonData
 {
@@ -86,8 +145,19 @@
 
 - (void) setPaymentJsonData:(NSDictionary*) data
 {
-    //[[oz]] TODO validate?
+    // TODO validate data is a proper JSon?
     _paymentJsonData = data;
 }
+
+- (NSDictionary*) cardJsonData
+{
+    return _cardJsonData;
+}
+
+- (void) setCardJsonData:(NSDictionary*) data
+{
+      _cardJsonData = data;
+}
+
 
 @end

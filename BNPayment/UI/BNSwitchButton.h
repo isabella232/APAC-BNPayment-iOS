@@ -1,5 +1,6 @@
 //
-//  BNPaymentResponse.m
+//  BNSwitchButton.h
+//
 //  Copyright (c) 2016 Bambora ( http://bambora.com/ )
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,27 +21,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "BNPaymentResponse.h"
+#import <UIKit/UIKit.h>
 
-@implementation BNPaymentResponse
+@interface BNSwitchButton : UISwitch
 
-+ (NSDictionary *)JSONMappingDictionary {
-    return @{
-             @"region" : @"region",
-             @"merchant" : @"merchant",
-             @"payment" : @"payment",
-             @"state" : @"state",
-             @"currency" : @"currency",
-             @"amount" : @"amount",
-             @"comment" : @"comment",
-             @"captures" : @"captures",
-             @"receipt" : @"receipt",
-             @"creditCardToken" : @"creditCardToken",
-             @"cardHolderName" : @"cardHolderName",
-             @"truncatedCard" : @"truncatedCard",
-             @"cardType" : @"cardType",
-             
-             };
-}
+
+@property (nonatomic) BOOL *isDefaultSwitchOn;
+@property (nonatomic) BOOL *isSwitchOn;
+
+
+- (void)changeSwitch: (id)sender;
 
 @end

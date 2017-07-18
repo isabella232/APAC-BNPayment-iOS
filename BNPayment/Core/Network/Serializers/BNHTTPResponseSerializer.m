@@ -143,4 +143,25 @@ NSString * const BNResponseSerializationErrorDataString = @"com.bambora.error.se
     return YES;
 }
 
++(NSString*) extractErrorDetail:(NSError*) error
+{
+    NSDictionary* userInfo = error.userInfo;
+    if(userInfo != nil && [userInfo isKindOfClass:[NSDictionary class]]){
+        NSString* jsonText = [userInfo objectForKey:BNResponseSerializationErrorDataString];
+        if (jsonText != nil) {
+            NSData *data = [jsonText dataUsingEncoding:NSUTF8StringEncoding];
+            
+            if (data && [data length] > 0) {
+                id json = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:kNilOptions error:nil];
+                if (json != nil){
+                    NSString *details = [json objectForKey:@"detail"];
+                    return details;
+                }
+            }
+        }
+    }
+    return @"";
+}
+
 @end

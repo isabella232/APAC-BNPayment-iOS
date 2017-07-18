@@ -58,8 +58,7 @@
     NSString *endpointURL = @"cardregistration/";
     NSDictionary *requestParams = [params JSONDictionary];
     
-    if([[BNCertManager sharedInstance] shouldUpdateCertificates]) {
-        NSURLSessionDataTask *dataTask = [BNCreditCardEndpoint encryptionCertificatesWithCompletion:^(NSArray<BNEncryptionCertificate *> *encryptionCertificates, NSError *error) {
+    NSURLSessionDataTask *dataTask = [BNCreditCardEndpoint encryptionCertificatesWithCompletion:^(NSArray<BNEncryptionCertificate *> *encryptionCertificates, NSError *error) {
             [httpClient POST:endpointURL parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
                 NSError *error;
                 BNAuthorizedCreditCard *response = [[BNAuthorizedCreditCard alloc] initWithJSONDictionary:responseObject
@@ -68,21 +67,9 @@
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 completion(nil, error);
             }];
-        }];
-        
-        return dataTask;
-    }
-    
-    NSURLSessionDataTask *dataTask = [httpClient POST:endpointURL parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSError *error;
-        BNAuthorizedCreditCard *response = [[BNAuthorizedCreditCard alloc] initWithJSONDictionary:responseObject
-                                                                                  error:&error];
-        completion(response, error);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        completion(nil, error);
     }];
+    return dataTask;        
     
-    return dataTask;
 }
 
 + (NSURLSessionDataTask *)encryptionCertificatesWithCompletion:(BNEncryptionCertBlock)completion {

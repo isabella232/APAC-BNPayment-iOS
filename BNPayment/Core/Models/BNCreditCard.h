@@ -34,6 +34,7 @@
 @property (nonatomic, strong) NSString *cvv;
 @property (nonatomic, strong) NSString *holderName;
 
+
 - (BNCreditCard *)encryptedCreditCardWithSessionKey:(NSData *)sessionKey;
 
 @end

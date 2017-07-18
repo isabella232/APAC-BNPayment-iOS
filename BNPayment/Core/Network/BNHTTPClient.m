@@ -222,7 +222,6 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
         BOOL trustServer = [self.networkSecurity evaluateServerTrust:challenge.protectionSpace.serverTrust
                                                            forDomain:challenge.protectionSpace.host];
         
-       // trustServer = YES;//[[oz]] THIS IS A HACK UNTTIL AN AUSSIE CERTIFICATE IS PROVIDED IN GlobalSign.cer
         credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
         disposition = trustServer ? NSURLSessionAuthChallengeUseCredential : NSURLSessionAuthChallengeCancelAuthenticationChallenge;
     } else {

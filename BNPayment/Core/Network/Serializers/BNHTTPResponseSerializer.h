@@ -22,6 +22,8 @@
 
 @import Foundation;
 
+extern NSString * const BNResponseSerializationErrorDataString;
+
 @interface BNHTTPResponseSerializer : NSObject
 
 /**
@@ -37,5 +39,15 @@
 - (id)responseObjectForResponse:(NSURLResponse *)response
                            data:(NSData *)data
                           error:(NSError **)error;
+
+/**
+ *  Extract the 'Detail' property from the backend response
+ *
+ *  @param error 'NSError' returned after calling the backend
+ *
+ *  @return Human readbale error message from the backend.
+ */
++(NSString*) extractErrorDetail:(NSError*) error;
+
 
 @end

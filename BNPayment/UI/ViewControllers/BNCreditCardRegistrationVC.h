@@ -37,4 +37,5 @@ typedef void(^BNCCRegistrationFormCompletion)(BNCCRegCompletion completion, BNAu
 
 @property (nonatomic, copy) BNCCRegistrationFormCompletion completionBlock;
 
+
 @end

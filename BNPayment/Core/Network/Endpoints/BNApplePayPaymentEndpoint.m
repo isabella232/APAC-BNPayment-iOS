@@ -21,15 +21,16 @@
 //  THE SOFTWARE.
 
 #import "BNApplePayPaymentEndpoint.h"
-#import "BNApplePayPaymentParams.h"
+#import "BNPaymentEndpoint.h"
+#import "BNPaymentParams.h"
 #import "BNPaymentResponse.h"
 #import "BNPaymentHandler.h"
 #import "BNHTTPClient.h"
 
 @implementation BNApplePayPaymentEndpoint
 
-+ (NSURLSessionDataTask *)authorizePaymentWithParams:(BNApplePayPaymentParams *)params
-                                          completion:(BNApplePayPaymentRequestBlock) completion {
++ (NSURLSessionDataTask *)authorizePaymentWithParams:(BNPaymentParams *)params
+                                          completion:(BNPaymentRequestBlock) completion {
     BNHTTPClient *httpClient = [[BNPaymentHandler sharedInstance] getHttpClient];
     
     NSString *endPointUrl = [NSString stringWithFormat:@"applepaypayments/%@/applepaypayments/", params.paymentIdentifier];

@@ -12,6 +12,8 @@
 @interface AppSettings ()
 @property (nonatomic) NSInteger runMode;
 @property (nonatomic) NSInteger numberOfCardsSaved;
+@property (nonatomic, strong) NSString *merchantGuid;
+
 @end
 
 #define kRunModeUndefined 0
@@ -56,6 +58,10 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
 - (instancetype)init {
     self = [super init];
     
+    if (self != nil){
+        //
+    }
+    
     return self;
 }
 
@@ -99,9 +105,9 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
 }
 
     
-- (void)setTouchIDMode:(BOOL)touchIDMode {
+- (void)setTouchIDMode:(BOOL)newTouchIDMode  newRunMode:(NSInteger) newRunMode{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setBool:touchIDMode forKey:TouchIDModeKey];
+    [userDefault setBool:newTouchIDMode forKey:TouchIDModeKey];
 }
 
 - (BOOL)touchIDMode {
@@ -120,9 +126,9 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
     return [userDefault boolForKey:HPPModeKey];
 }
 
-- (void)setVelocityMode:(BOOL)velocityMode {
+- (void)setVelocityMode:(BOOL)newVelocityMode newRunMode:(NSInteger) newRunMode {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setBool:velocityMode forKey:velocityModeKey];
+    [userDefault setBool:newVelocityMode forKey:velocityModeKey];
     [userDefault synchronize];
 }
 
@@ -249,6 +255,49 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
 }
 
 
+- (NSString *)getCurrentRunModeMerchantGuid {
+    if (_merchantGuid == nil){
+        NSInteger runMode = [self getRunMode];
+        _merchantGuid = [self getMerchantGuid: runMode];
+    }
+    if (_merchantGuid == nil){
+        _merchantGuid = @"";
+    }
+    return _merchantGuid;
+}
+
+- (NSString *)getMerchantGuid: (NSInteger) runModeParam  {
+      NSString* currentRunningModeMerchantGuidKey = [self getRunModeMerchantGuidKey: runModeParam];
+      return [[NSUserDefaults standardUserDefaults] valueForKey: currentRunningModeMerchantGuidKey];
+}
+
+
+
+
+
+- (NSString *)getRunModeMerchantGuidKey : (NSInteger) runModeParam{
+    
+    NSNumber* runMode= [NSNumber numberWithInt:runModeParam];
+    NSDictionary<NSNumber*,NSString*> *runModeMerchantGuidKey = @{
+                                                       @(1):@"MerchantGuid-Dev",
+                                                       @(2):@"MerchantGuid-Uat",
+                                                       @(3):@"MerchantGuid-Prod"};
+    NSString* merchantGuidKey = runModeMerchantGuidKey[runMode];
+    return merchantGuidKey;
+}
+
+- (void) setRunModeMerchantGuid:(NSInteger) newRunMode  newMerchantGuid:(NSString*) newMerchantGuid {
+    if (newRunMode <= kRunModeProd && newRunMode >= kRunModeDev){
+        NSString* merchantGuidKey = [self getRunModeMerchantGuidKey: newRunMode] ;
+        [[NSUserDefaults standardUserDefaults] setValue: newMerchantGuid forKey: merchantGuidKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        _merchantGuid = newMerchantGuid;
+    }
+}
+
+
+
+
 - (NSString *)getTestUrl {
     return @"";
 }
@@ -265,6 +314,16 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
     return @"";
 }
 
+- (NSString *)getCompileDate {
+    return [NSString stringWithUTF8String:__DATE__];
+}
+
+- (NSString *)getCompileTime {
+    return [NSString stringWithUTF8String:__TIME__];
+}
+
+
+
 - (BNAuthorizedCreditCard *)selectedCard {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSInteger selectedIndex = [userDefault integerForKey:FavoriteCardKey];
@@ -277,31 +336,63 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
     return nil;
 }
 
+
+-(NSDictionary*) readJsonFromResource:(NSString*) resourceName
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:resourceName ofType:@"json"];
+    NSError *deserializingError;
+    NSURL *localFileURL = [NSURL fileURLWithPath:filePath];
+    NSData *contentOfLocalFile = [NSData dataWithContentsOfURL:localFileURL];
+    id object = [NSJSONSerialization JSONObjectWithData:contentOfLocalFile
+                                                options:kNilOptions
+                                                  error:&deserializingError];
     
-- (BNPaymentParams *) createMockPaymentParameters{
+    return object;
+}
+
+
+-(NSDictionary*) retrieveJsonDataforKey:(NSString*)key
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString* jsonText = [userDefault stringForKey:key];
+    if (jsonText != nil || [jsonText length]>0 ){
+        
+        NSData *data = [jsonText dataUsingEncoding:NSUTF8StringEncoding];
+        id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        return json;
+    } else {
     
-    BNPaymentParams *mockObject = [BNPaymentParams new];
-    mockObject.paymentIdentifier = [NSString stringWithFormat:@"%u", arc4random_uniform(INT_MAX)];
-    mockObject.currency = @"AUD";
-    NSDictionary * data = @{
-                            @"Username": @"bn-secure.rest.api.dev",
-                            @"Password": @"MobileIsGr8",
-                            @"TokenisationAlgorithmId": @2,
-                            @"CustomerStorageNumber": @"",
-                            @"AccountNumber": @"2345678",
-                            @"MerchantNumber": @"",
-                            @"CustNumber": @"58748579",
-                            @"TrnType": @1,
-                            @"CustRef" : @"test-ud-002",
-                            @"UserDefined": @{
-                                    @"reference1": @"abc123"
-                                    }
-                            };
+        NSDictionary* data = [self readJsonFromResource:key];
+        return data;
+    }
+    return nil;
+}
+
+-(void) persistJsonDataRegistration:(NSString*) s forKey:(NSString*)key
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:s forKey:key];
+    [userDefault synchronize];
+}
+
+
+- (BNPaymentParams *) createMockPaymentParameters:(NSNumber*) amount comment:(NSString*) comment token:(NSString*) token{
+    NSString* paymentIdentifier = [NSString stringWithFormat:@"%u", arc4random_uniform(INT_MAX)];
+    BNPaymentParams *mockObject = [BNPaymentParams paymentParamsWithId:paymentIdentifier currency:@"AUD" amount:amount token:token comment:comment];
+
+    NSDictionary* data = [self retrieveJsonDataforKey:kPaymentData];
+    [mockObject setPaymentJsonData: data];
     
     
-    mockObject.amount = @100;
-    mockObject.token = @"58133813560350721";
-    mockObject.comment = @"Mocked comment";
+    return mockObject;
+}
+
+- (BNPaymentParams *) createMockSinglePaymentParameters:(NSNumber*) amount comment:(NSString*) comment{
+    NSString* paymentIdentifier = [NSString stringWithFormat:@"%u", arc4random_uniform(INT_MAX)];
+    BNPaymentParams *mockObject = [BNPaymentParams paymentParamsWithId:paymentIdentifier currency:@"AUD" amount:amount token:@"" comment:comment];
+    
+    NSDictionary* data = [self retrieveJsonDataforKey:kPaymentData];
     [mockObject setPaymentJsonData: data];
     
     

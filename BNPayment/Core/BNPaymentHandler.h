@@ -22,6 +22,7 @@
 
 #import "BNEnums.h"
 #import "BNCreditCardEndpoint.h"
+#import "BNPaymentResponse.h"
 
 @import Foundation;
 
@@ -30,33 +31,38 @@
 @class BNAuthorizedCreditCard;
 @class BNRegisterCCParams;
 @class BNPaymentParams;
-@class BNApplePayPaymentParams;
 @class BNHTTPClient;
     
+
+
 /**
- *  A block object to be executed when a payment operation has completed.
- *  The block returns an enum representing the result of the Payment operation.
+ *  A block object to be executed when an extra payment payment is required
+ * Currently, the only valid option is TouchID
  *
- *  @param result `BNPaymentResult`.
  */
-typedef void (^BNPaymentBlock) (BNPaymentResult result, NSError *error);
+typedef NSError* (^BNExtraPaymentValidationBlock) ();
+
 
 /**
  *  A block object to be executed when a payment operation has completed.
  *  The block returns an enum representing the result of the Payment operation.
- * If success, 'response' return backend provided information like 'receipt' number
+ *  If success, 'response' return backend provided information like 'receipt' number
  *
  *  @param result `BNPaymentResult`.
  */
 typedef void (^BNPaymentExtBlock) (NSDictionary<NSString*, NSString*> * response, BNPaymentResult result, NSError *error);
 
+
 /**
- *  A block object to be executed when a apple pay payment operation has completed.
+ *  A block object to be executed when a single payment operation has completed.
  *  The block returns an enum representing the result of the Payment operation.
- *
- *  @param result `BNPaymentResult`.
+ *  If success, 'response' return backend provided information like 'receipt' number
+ *     also the payment response response.
+ *  @param result `BNSinglePaymentExtBlock`.
  */
-typedef void (^BNApplePayPaymentBlock) (BNPaymentResult result, NSError *error);
+typedef void (^BNSinglePaymentExtBlock) (NSDictionary<NSString*, NSString*> * response, BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result, NSError *error);
+
+
 
 /**
  *  A block object to be executed when a credit card registration operation has completed.
@@ -165,43 +171,92 @@ typedef void (^BNCreditCardRegistrationUrlBlock)(NSString *url, NSError *error);
                                                         completion:(BNCreditCardRegistrationUrlBlock) block;
 
 /**
- *  Make Payment
+ *  Make Payment Ext (old method)
  *
  *  @param paymentParams `BNPaymentParams` params to the request.
  *  @param identifier    `NSString` prepresenting the payment identidier.
+ *  @param requirePaymentValidation If set and if the SDK's extra validation hook is set
+ *                        then call the extra validation code before proceeding with payment.
  *  @param result The block to be executed when Payment operation is finished.
  *
  *  @return `NSURLSessionDataTask`
- */
-- (NSURLSessionDataTask *)makePaymentWithParams:(BNPaymentParams *)paymentParams
-                                         result:(BNPaymentBlock) result;
-
-
-//[[]]c remove makePaymentWithParams?
-/**
- *  Make Payment Ext
  *
- *  @param paymentParams `BNPaymentParams` params to the request.
- *  @param identifier    `NSString` prepresenting the payment identidier.
- *  @param result The block to be executed when Payment operation is finished.
+ *  Note: 
+ *  It is not enough to set the 'requirePaymentValidation' parameter to YES for 'Touch ID dialog' to appear.
+ *  You need also to enable the SDK for Touch ID validation (see [BNTouchIDValidation enable])
  *
- *  @return `NSURLSessionDataTask`
  */
 - (NSURLSessionDataTask *)makePaymentExtWithParams:(BNPaymentParams *)paymentParams
+                          requirePaymentValidation:(BOOL)requirePaymentValidation
                                             result:(BNPaymentExtBlock) result;
 
 
+
 /**
- *  Make Apple Pay Payment
+ *  Submit Single Payment With Token
  *
- *  @param paymentParams `BNApplePayPaymentParams` params to the request.
+ *  @param paymentParams `BNPaymentParams` params to the request.
+ *  @param identifier    `NSString` prepresenting the payment identidier.
+ *  @param requirePaymentValidation If set and if the SDK's extra validation hook is set
+ *                        then call the extra validation code before proceeding with payment.
+ *  @param result The block to be executed when Payment operation is finished.
+ *
+ *  @return `NSURLSessionDataTask`
+ *
+ *  Note:
+ *  It is not enough to set the 'requirePaymentValidation' parameter to YES for 'Touch ID dialog' to appear.
+ *  You need also to enable the SDK for Touch ID validation (see [BNTouchIDValidation enable])
+ *
+ */
+- (NSURLSessionDataTask *)submitSinglePaymentToken:(BNPaymentParams *)paymentParams
+                          requirePaymentValidation:(BOOL)requirePaymentValidation
+                                            result:(BNPaymentExtBlock) result;
+
+
+
+
+
+
+/**
+ *  Submit Single Payment With Card
+ *
+ *  @param paymentParams `BNPaymentParams` params to the request.
+ *  @param identifier    `NSString` prepresenting the payment identidier.
+ *  @param requirePaymentValidation If set and if the SDK's extra validation hook is set
+ *                        then call the extra validation code before proceeding with payment.
+ *  @param requireSaveCard If set, save the credit card on the device.
+ *  @param result The block to be executed when Payment operation is finished.
+ *
+ *  @return `NSURLSessionDataTask`
+ *
+ *  Note:
+ *  It is not enough to set the 'requirePaymentValidation' parameter to YES for 'Touch ID dialog' to appear.
+ *  You need also to enable the SDK for Touch ID validation (see [BNTouchIDValidation enable])
+ *  
+ */
+- (NSURLSessionDataTask *)submitSinglePaymentCard:(BNPaymentParams *)paymentParams
+                          requirePaymentValidation:(BOOL)requirePaymentValidation
+                                         requireSaveCard: (BOOL) requireSaveCard
+                                            completion:(BNSinglePaymentExtBlock) completion;
+
+
+
+/**
+ *  Submit Single Payment With ApplePay
+ *
+ *  @param paymentParams `BNPaymentParams` params to the request.
+ *                        NOTE: Apple Pay and normal payment use the same param structure
  *  @param identifier    `NSString` prepresenting the payment identidier.
  *  @param result The block to be executed when Payment operation is finished.
  *
  *  @return `NSURLSessionDataTask`
  */
-- (NSURLSessionDataTask *)makeApplePayPaymentWithParams:(BNApplePayPaymentParams *)paymentParams
-                                                 result:(BNApplePayPaymentBlock) result;
+- (NSURLSessionDataTask *)submitSinglePaymentApplePay:(BNPaymentParams *)paymentParams
+                                                 result:(BNPaymentExtBlock) result;
+
+
+
+
 
 /**
  *  Register a credit card in order to retrieve an authorized card used for payments.
@@ -234,5 +289,12 @@ typedef void (^BNCreditCardRegistrationUrlBlock)(NSString *url, NSError *error);
  *  @param tokenizedCreditCard The authorized card to remove.
  */
 - (void)removeAuthorizedCreditCard:(BNAuthorizedCreditCard *)authorizedCreditCard;
+
+/**
+ *  A method for registering extra payment validation
+ *
+ *  @param hook This block will be executed before each payment
+ */
+-(void) registerExtraPaymentValidationHook:(BNExtraPaymentValidationBlock) hook;
 
 @end

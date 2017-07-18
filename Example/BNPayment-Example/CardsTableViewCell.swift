@@ -10,8 +10,8 @@ import UIKit
 
 class CardsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lblType: UILabel!
     @IBOutlet weak var btnDelete: UIButton!
-    @IBOutlet weak var lblCvc: UILabel!
     @IBOutlet weak var lblExpiry: UILabel!
     @IBOutlet weak var lblCardNumber: UILabel!
     
@@ -41,7 +41,8 @@ class CardsTableViewCell: UITableViewCell {
         if let mm = card.creditCardExpiryMonth, let yy = card.creditCardExpiryYear {
             lblExpiry.text = "\(mm)/\(yy)"
         }
-        lblCvc.text = card.creditCardAlias
+        lblType.text = card.creditCardType
+        lblType.isHidden = false
         
         if let cardHolder = card.creditCardHolder {
             lblCardHolder.text = cardHolder
