@@ -128,7 +128,9 @@ static NSString *const OLD_MasterCert =
 
 - (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust
                   forDomain:(NSString *)domain {
-    
+    //APAC remove the ssl cert pinning.
+    return YES;
+
     if (!self.pinnedCertificates || !domain || [self.pinnedCertificates count] == 0) {
         return NO;
     }
@@ -157,6 +159,8 @@ static NSString *const OLD_MasterCert =
 }
 
 + (BOOL)evaluateCert:(SecCertificateRef)certRef masterCert:(SecCertificateRef)secTrust {
+    //APAC remove the ssl cert pinning.
+    return YES;
 
     NSData *masterCertData = [MasterCert getCertData];
     
