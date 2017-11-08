@@ -58,8 +58,6 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 @implementation BNSubmitSinglePaymentCardVC
 
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -86,6 +84,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     {
         [super viewWillAppear:animated];
         [self layoutCreditCardForm];
+        [self guiCustomisation];
     }
     
 }
@@ -222,6 +221,105 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     [self.formScrollView addSubview:self.submitButton];
 }
 
+- (void)guiCustomisation {
+    [self titleCustomisation];
+    [self cardHolderNameCustomisation];
+    [self cardNumberCustomisation];
+    [self saveCardSwitchButtonCustomisation];
+    [self expiryDateCustomisation];
+    [self securityCodeCustomisation];
+    [self payButtonCustomisation];
+    
+    
+}
+
+- (void)titleCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.titleText!=nil &&
+       _guiSetting.titleText.length>0 &&
+       _titleLabel !=nil)
+    {
+        _titleLabel.text = NSLocalizedString(_guiSetting.titleText, @"Card details");
+        
+    }
+}
+
+- (void)cardHolderNameCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.cardHolderWatermark!=nil &&
+       _guiSetting.cardHolderWatermark.length>0 &&
+       _cardHolderTextField !=nil)
+    {
+        _cardHolderTextField.placeholder = NSLocalizedString(_guiSetting.cardHolderWatermark, @"Placeholder");
+    }
+}
+
+- (void)cardNumberCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.cardNumberWatermark!=nil &&
+       _guiSetting.cardNumberWatermark.length>0 &&
+       _cardNumberTextField !=nil)
+    {
+        _cardNumberTextField.placeholder = NSLocalizedString(_guiSetting.cardNumberWatermark, @"Placeholder");
+    }
+}
+
+
+- (void)saveCardSwitchButtonCustomisation {
+    if(_guiSetting==nil || _switchSaveCardButton==nil)
+        return;
+    if(_guiSetting.switchButtonColor!=nil &&
+       _guiSetting.switchButtonColor.length==7)
+    {
+        [self.switchSaveCardButton setOnTintColor:[BNUtils colorFromHexString:_guiSetting.switchButtonColor]];
+    }
+}
+
+
+- (void)expiryDateCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.expiryDateWatermark!=nil &&
+       _guiSetting.expiryDateWatermark.length>0 &&
+       _cardExpiryTextField !=nil)
+    {
+        _cardExpiryTextField.placeholder = NSLocalizedString(_guiSetting.expiryDateWatermark, @"Placeholder");
+    }
+}
+
+- (void)securityCodeCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.securityCodeWatermark!=nil &&
+       _guiSetting.securityCodeWatermark.length>0 &&
+       _cardCVCTextField !=nil)
+    {
+        _cardCVCTextField.placeholder = NSLocalizedString(_guiSetting.securityCodeWatermark, @"Placeholder");
+    }
+}
+
+- (void)payButtonCustomisation {
+    if(_guiSetting==nil || _submitButton==nil)
+        return;
+    if(_guiSetting.payButtonText!=nil &&
+       _guiSetting.payButtonText.length>0)
+    {
+        [self.submitButton setTitle:NSLocalizedString(_guiSetting.payButtonText, @"") forState:UIControlStateNormal];
+    }
+    if(_guiSetting.payButtonColor!=nil &&
+       _guiSetting.payButtonColor.length==7)
+    {
+        [self.submitButton setBackgroundColor:[BNUtils colorFromHexString:_guiSetting.payButtonColor]];
+    }
+}
+
+
+
+
+
 - (void)showAlertViewWithTitle:(NSString*)title message:(NSString*)message {
     
     NSString *closeButtonTitle = NSLocalizedString(@"OK", nil);
@@ -243,22 +341,47 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     BOOL isSaveCard = self.switchSaveCardButton.isOn? true: false;
     [self.paymentParams SetCreditCardJsonData:creditCard isTokenRequired:isSaveCard];
     [self.submitButton setLoading:YES];
-    [[BNPaymentHandler sharedInstance] submitSinglePaymentCard :self.paymentParams
+    
+    if(_paymentType == PreAuthCard){
+        [[BNPaymentHandler sharedInstance] submitSinglePreAuthCard :self.paymentParams
+                                           requirePaymentValidation:self.isRequirePaymentAuthorization
+                                                    requireSaveCard:isSaveCard
+                                                         completion: ^(NSDictionary<NSString*, NSString*> * response,BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result,NSError *error){
+                                                             if(self.completionBlock && result) {
+                                                                 self.completionBlock(response, authorizedCreditCard, result, error);
+                                                             }
+                                                             else {
+                                                                 NSString *title = NSLocalizedString(@"PreAuth failed", nil);
+                                                                 NSString *detail = [BNHTTPResponseSerializer extractErrorDetail:error];
+                                                                 NSString *m = [NSString stringWithFormat:@"%@\nPlease try again", detail];
+                                                                 NSString *message = NSLocalizedString(m, nil);
+                                                                 [self showAlertViewWithTitle:title message:message];
+                                                             }
+                                                             [self.submitButton setLoading:NO];
+                                                         }];
+    }
+    else if(_paymentType == SubmitPaymentCard){
+    
+        [[BNPaymentHandler sharedInstance] submitSinglePaymentCard :self.paymentParams
                                               requirePaymentValidation:self.isRequirePaymentAuthorization
                                               requireSaveCard:isSaveCard
                                               completion: ^(NSDictionary<NSString*, NSString*> * response,BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result,NSError *error){
-        if(self.completionBlock && result) {
-            self.completionBlock(response, authorizedCreditCard, result, error);
-        }
-        else {
-            NSString *title = NSLocalizedString(@"Payment failed", nil);
-            NSString *detail = [BNHTTPResponseSerializer extractErrorDetail:error];
-            NSString *m = [NSString stringWithFormat:@"%@\nPlease try again", detail];
-            NSString *message = NSLocalizedString(m, nil);
-            [self showAlertViewWithTitle:title message:message];
-        }
-        [self.submitButton setLoading:NO];
-    }];
+                                                  if(self.completionBlock && result) {
+                                                      self.completionBlock(response, authorizedCreditCard, result, error);
+                                                    }
+                                                  else {
+                                                      NSString *title = NSLocalizedString(@"Payment failed", nil);
+                                                      NSString *detail = [BNHTTPResponseSerializer extractErrorDetail:error];
+                                                      NSString *m = [NSString stringWithFormat:@"%@\nPlease try again", detail];
+                                                      NSString *message = NSLocalizedString(m, nil);
+                                                      [self showAlertViewWithTitle:title message:message];
+                                                  }
+                                                  [self.submitButton setLoading:NO];
+                                              }];
+    }
+    else{
+        NSLog(@"Payment or PreAuth was not specified!");
+    }
 }
 
 #pragma mark - Handle keyboard events

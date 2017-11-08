@@ -23,7 +23,7 @@ class CardsViewController: UIViewController {
     // Used in one-time payment
     private var tmpCard:BNAuthorizedCreditCard?
     let notificationName = Notification.Name("refreshCards")
-   
+    
     
     // MARK: - Life cycle
     
@@ -103,6 +103,8 @@ class CardsViewController: UIViewController {
     
     public func addCard() {
         let vc = BNCreditCardRegistrationVC()
+        let guiSetting = AppSettings.sharedInstance().getCardRegistrationGuiSetting();
+        vc.guiSetting = guiSetting;
         vc.completionBlock = self.completeCardRegistrationBlock;
         
         if let nav = self.navigationController {
@@ -141,6 +143,25 @@ class CardsViewController: UIViewController {
     }
     
    
+    @IBAction func btnAddCardPreAuth(_ sender: Any) {
+        
+        stopUI()
+        
+        let vc = BNSubmitSinglePaymentCardVC()
+        let guiSetting = AppSettings.sharedInstance().getSubmitSinglePaymentGuiSetting();
+        vc.guiSetting = guiSetting;
+        vc.paymentType = PreAuthCard;
+        vc.isRequirePaymentAuthorization = AppSettings.sharedInstance().touchIDMode
+        let paymentParams:BNPaymentParams = AppSettings.sharedInstance().createMockPaymentParameters(amount, comment:"This is a test preAuth!", token:"");
+        
+        vc.paymentParams = paymentParams;
+        vc.completionBlock = self.completeNonRecurringPaymentBlock;
+        
+        if let nav = self.navigationController {
+            nav.pushViewController(vc, animated: true)
+        }
+    }
+    
     
     // MARK: - actions
     @IBAction func btnNonRecurringPaymentAction(_ sender: Any) {
@@ -148,6 +169,9 @@ class CardsViewController: UIViewController {
         stopUI()
         
         let vc = BNSubmitSinglePaymentCardVC()
+        let guiSetting = AppSettings.sharedInstance().getSubmitSinglePaymentGuiSetting();
+        vc.guiSetting = guiSetting;
+        vc.paymentType = SubmitPaymentCard;
         vc.isRequirePaymentAuthorization = AppSettings.sharedInstance().touchIDMode
         let paymentParams:BNPaymentParams = AppSettings.sharedInstance().createMockPaymentParameters(amount, comment:comment, token:"");
         
@@ -159,6 +183,8 @@ class CardsViewController: UIViewController {
         }
     }
     
+    
+    
     private func completeNonRecurringPaymentBlock(response:[String:String]?, authorizedCreditCard:BNAuthorizedCreditCard?,  result:BNPaymentResult, error :Error?) ->Void
     {
         if let nav = self.navigationController {
@@ -167,7 +193,8 @@ class CardsViewController: UIViewController {
         
         tableView.reloadData()
         
-        self.displayStatus(response: response, result:result , error:error);
+        self.displayStatus(response: response, result:result ,
+                           paymentType:SubmitPaymentCard, error:error);
         return
         
         
@@ -199,9 +226,11 @@ class CardsViewController: UIViewController {
     }
 
     
-    private func buildErrorMessage( paymentIsNotAuthorised: Bool , error:Error?) -> String
+    private func buildErrorMessage( paymentIsNotAuthorised: Bool ,paymentType: PaymentType, error:Error?) -> String
     {
-        var message =  paymentIsNotAuthorised ? "" : "The payment did not succeed: "
+        let paymentTypeText = BNPaymentType.getDisplayText(by: paymentType);
+        
+        var message =  paymentIsNotAuthorised ? "" : "The "+paymentTypeText!+" did not succeed: "
         if let error = error {
             if !paymentIsNotAuthorised {
                 message = message + error.localizedDescription
@@ -228,17 +257,19 @@ class CardsViewController: UIViewController {
     }
     
     
-    fileprivate func displayStatus(response: [String:String]?, result:BNPaymentResult , error:Error?)
+    public func displayStatus(response: [String:String]?, result:BNPaymentResult ,
+                                         paymentType:PaymentType, error:Error?)
     {
+        
         let success = (result == BNPaymentSuccess)
         let paymentNotAuthorised = (result == BNPaymentNotAuthorized)
-        
-        let title = success ? "Success" : (paymentNotAuthorised ? "Payment Not Authorised" : "Failure")
+        let paymentTypeText = BNPaymentType.getDisplayText(by: paymentType);
+        let title = success ? "Success" : (paymentNotAuthorised ? (paymentTypeText!+" Not Authorised") : "Failure")
         var receipt = "?"
         if let response = response, let r = response["receipt"] {
             receipt = r
         }
-        let message = success ? "The payment succeeded. Receipt:\(receipt)" : (paymentNotAuthorised ? buildAuthorisationErrorMessage(error: error) : BNHTTPResponseSerializer.buildBackendErrorMessage(error:error)
+        let message = success ? "The "+paymentTypeText!+" succeeded. Receipt:\(receipt)" : (paymentNotAuthorised ? buildAuthorisationErrorMessage(error: error) : BNHTTPResponseSerializer.buildBackendErrorMessage(error:error)
         )
         notifyUser(title, message: message)
     }
@@ -272,20 +303,22 @@ extension CardsViewController: UITableViewDelegate
         if let authorizedCards = BNPaymentHandler.sharedInstance().authorizedCards()  {
             
             let card =  authorizedCards[ indexPath.row]
-            makePaymentWithCard(card: card)
+            submitPaymentToken(card: card)
         }
     }
     
-    private func makePaymentWithCard(card: BNAuthorizedCreditCard)
+    private func submitPaymentToken(card: BNAuthorizedCreditCard)
     {
+        
         let params:BNPaymentParams = AppSettings.sharedInstance().createMockPaymentParameters(amount, comment:comment, token:card.creditCardToken)
-       
+        
         stopUI()
         BNPaymentHandler.sharedInstance().makePaymentExt(with: params, requirePaymentValidation:AppSettings.sharedInstance().touchIDMode){
             (response: [String:String]?, result:BNPaymentResult , error:Error?) -> Void in
             
             self.startUI()
-            self.displayStatus(response: response, result:result , error:error)
+            self.displayStatus(response: response, result:result ,
+                               paymentType:SubmitPaymentToken, error:error)
         }
     }
 }
@@ -310,9 +343,11 @@ extension CardsViewController: UITableViewDataSource
             as! CardsTableViewCell
  
         if let authorizedCards = BNPaymentHandler.sharedInstance().authorizedCards()  {
- 
+            
             let card =  authorizedCards[ indexPath.row]
-            cell.configure(card: card)
+            let params:BNPaymentParams = AppSettings.sharedInstance().createMockPaymentParameters(amount, comment:comment, token:card.creditCardToken)
+            
+            cell.configure(card: card, paymentParam: params)
 
         }
 

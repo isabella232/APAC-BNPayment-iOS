@@ -8,11 +8,17 @@
 
 #import "AppSettings.h"
 #import <BNPayment/BNPayment.h>
+#import <BNPayment/BNSubmitSinglePaymentCardGuiSetting.h>
+#import <BNPayment/BNCardRegistrationGuiSetting.h>
+
 
 @interface AppSettings ()
 @property (nonatomic) NSInteger runMode;
 @property (nonatomic) NSInteger numberOfCardsSaved;
 @property (nonatomic, strong) NSString *merchantGuid;
+@property (nonatomic, strong) BNSubmitSinglePaymentCardGuiSetting *submitSinglePaymentCardGuiSetting;
+@property (nonatomic, strong) BNCardRegistrationGuiSetting *cardRegistrationGuiSetting;
+
 
 @end
 
@@ -293,6 +299,75 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
         [[NSUserDefaults standardUserDefaults] synchronize];
         _merchantGuid = newMerchantGuid;
     }
+}
+
+
+- (BNCardRegistrationGuiSetting* )getCardRegistrationGuiSetting{
+    if(_cardRegistrationGuiSetting==nil)
+    {
+        _cardRegistrationGuiSetting = [[BNCardRegistrationGuiSetting alloc] init];
+        _cardRegistrationGuiSetting.titleText =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationTitleText]];
+        _cardRegistrationGuiSetting.cardHolderWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationCardHolderWatermark]];
+        _cardRegistrationGuiSetting.cardNumberWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationCardNumberWatermark]];
+        _cardRegistrationGuiSetting.expiryDateWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationExpiryDateWatermark]];
+        _cardRegistrationGuiSetting.securityCodeWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationSecurityCodeWatermark]];
+        _cardRegistrationGuiSetting.registrationButtonColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationButtonColor]];
+        _cardRegistrationGuiSetting.registerButtonText =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationButtonText]];
+    }
+    return _cardRegistrationGuiSetting;
+}
+
+- (BNSubmitSinglePaymentCardGuiSetting* )getSubmitSinglePaymentGuiSetting{
+    if(_submitSinglePaymentCardGuiSetting==nil)
+    {
+        _submitSinglePaymentCardGuiSetting = [[BNSubmitSinglePaymentCardGuiSetting alloc] init];
+        _submitSinglePaymentCardGuiSetting.titleText =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payTitleText]];
+        _submitSinglePaymentCardGuiSetting.cardHolderWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payCardHolderWatermark]];
+        _submitSinglePaymentCardGuiSetting.cardNumberWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payCardNumberWatermark]];
+        _submitSinglePaymentCardGuiSetting.expiryDateWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payExpiryDateWatermark]];
+        _submitSinglePaymentCardGuiSetting.securityCodeWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:paySecurityCodeWatermark]];
+        _submitSinglePaymentCardGuiSetting.switchButtonColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:switchButtonColor]];
+        _submitSinglePaymentCardGuiSetting.payButtonColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonColor]];
+        _submitSinglePaymentCardGuiSetting.payButtonText =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonText]];
+        
+    }
+    return _submitSinglePaymentCardGuiSetting;
+}
+
+
+
+
+
+//Set CardRegistrationGuiSetting to the NSUserDefaults, and catch as class property.
+- (void) setCardRegistrationGuiSetting:(BNCardRegistrationGuiSetting*) guiSetting{
+    if(guiSetting==nil)
+        return;
+   
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.titleText forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationTitleText]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.cardHolderWatermark forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationCardHolderWatermark]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.cardNumberWatermark forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationCardNumberWatermark]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.expiryDateWatermark forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationExpiryDateWatermark]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.securityCodeWatermark forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationSecurityCodeWatermark]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.registerButtonText forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationButtonText]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.registrationButtonColor forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationButtonColor]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    _cardRegistrationGuiSetting = guiSetting;
+}
+
+//Set setSubmitSinglePaymentCardGuiSetting to the NSUserDefaults, and catch as class property.
+- (void) setSubmitSinglePaymentCardGuiSetting:(BNSubmitSinglePaymentCardGuiSetting*) guiSetting{
+    if(guiSetting==nil)
+        return;
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.titleText forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payTitleText]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.cardHolderWatermark forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payCardHolderWatermark]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.cardNumberWatermark forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payCardNumberWatermark]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.expiryDateWatermark forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payExpiryDateWatermark]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.securityCodeWatermark forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:paySecurityCodeWatermark]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.payButtonText forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonText]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.payButtonColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonColor]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.switchButtonColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:switchButtonColor]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    _submitSinglePaymentCardGuiSetting = guiSetting;
 }
 
 

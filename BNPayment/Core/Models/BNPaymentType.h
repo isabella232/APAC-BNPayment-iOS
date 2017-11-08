@@ -1,5 +1,5 @@
 //
-//  BNCreditCardRegistrationVC.h
+//  BNPaymentType.h
 //  Copyright (c) 2016 Bambora ( http://bambora.com/ )
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,25 +20,33 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "BNEnums.h"
-#import "BNPaymentBaseVC.h"
-#import "BNCardRegistrationGuiSetting.h"
-
-@class BNCreditCard;
-@class BNAuthorizedCreditCard;
+#import "BNBaseModel.h"
 
 /**
- *  A block indicating whether or not the `BNCreditCardRegistrationVC` is done
- *
- *  @param success The status of the operation
+ *  `BNCreditCard` represents a credit card from the native form.
  */
-typedef void(^BNCCRegistrationFormCompletion)(BNCCRegCompletion completion, BNAuthorizedCreditCard *card);
+@interface BNPaymentType : BNBaseModel
 
-@interface BNCreditCardRegistrationVC : BNPaymentBaseVC
 
-@property (nonatomic, strong) BNCardRegistrationGuiSetting *guiSetting;
 
-@property (nonatomic, copy) BNCCRegistrationFormCompletion completionBlock;
+typedef enum {SubmitPaymentCard, SubmitPaymentToken, PreAuthCard, PreAuthToken} PaymentType;
+
+@property (nonatomic) PaymentType PaymentType;
+
+//Mapping between frontend payment type and backend transaction type ID.
+@property (nonatomic, strong) NSDictionary *PaymentTypeMappingDictionary;
+
+//Mapping between frontend payment type and the display text.
+@property (nonatomic, strong) NSDictionary *PaymentTypeDisplayDictionary;
+
+//http request body, transaction type id's property key.
++(NSString *) TransactionTypeKey;
+
+//Get transaction type id by payment type.
++(NSString *)GetTransactionTypeIdByType:(PaymentType)paymentType;
+
+//Get payment type display text by payment type.
++(NSString *)GetDisplayTextByType:(PaymentType)paymentType;
 
 
 @end

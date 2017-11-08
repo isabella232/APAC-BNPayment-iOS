@@ -94,14 +94,18 @@ NSString *const EncryptionCertificatesCacheName = @"EncryptionCertificatesCacheN
     for (NSString *path in rootPaths) {
         NSError *error;
         NSString *certString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-        NSData *certificateData = [certString getCertData];
-
-        BNEncryptionCertificate *cert = [BNEncryptionCertificate new];
-        cert.base64Representation = [certificateData base64EncodedStringWithOptions:0];
-        cert.fingerprint = [[BNUtils sha1:certificateData] uppercaseString];
         
-        if([cert isTrusted]) {
-            [certificates addObject:cert];            
+        //Added if condition to not try reading the certificate in case of an error.
+        if(!error){
+            NSData *certificateData = [certString getCertData];
+
+            BNEncryptionCertificate *cert = [BNEncryptionCertificate new];
+            cert.base64Representation = [certificateData base64EncodedStringWithOptions:0];
+            cert.fingerprint = [[BNUtils sha1:certificateData] uppercaseString];
+        
+            if([cert isTrusted]) {
+                [certificates addObject:cert];
+            }
         }
     }
     

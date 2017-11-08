@@ -25,11 +25,24 @@
 #import "BNPaymentResponse.h"
 #import "BNPaymentHandler.h"
 #import "BNHTTPClient.h"
+#import "BNPaymentType.h"
+
 
 @implementation BNPaymentEndpoint
 
 + (NSURLSessionDataTask *)authorizePaymentWithParams:(BNPaymentParams *)params
+                                         paymentType:(PaymentType) paymentType
                                           completion:(BNPaymentRequestBlock) completion {
+    //set transation type.
+    NSString* transactionTypeId = [BNPaymentType GetTransactionTypeIdByType: paymentType];
+    NSString* transactionTypeIdKeyName = [BNPaymentType TransactionTypeKey];
+    NSDictionary* paymentJsonData = params.paymentJsonData;
+    NSMutableDictionary *paymentJsonDataDict = [NSMutableDictionary dictionaryWithDictionary:paymentJsonData];
+    
+    [paymentJsonDataDict setValue: transactionTypeId forKey:transactionTypeIdKeyName];
+    paymentJsonData = paymentJsonDataDict;
+    [params setPaymentJsonData:paymentJsonData];
+    
     BNHTTPClient *httpClient = [[BNPaymentHandler sharedInstance] getHttpClient];
     
     NSString *endPointUrl = [NSString stringWithFormat:@"payments/%@/card_token/", params.paymentIdentifier];
