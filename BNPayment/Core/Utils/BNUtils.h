@@ -21,6 +21,7 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef void (^HashGenerationBlock) (NSString *hash);
 
@@ -38,5 +39,7 @@ typedef void (^HashGenerationBlock) (NSString *hash);
                      key:(NSString *)key;
 
 + (NSString *)sha1:(NSData *)data;
+
++ (UIColor *)colorFromHexString:(NSString *)hexString;
 
 @end

@@ -21,7 +21,26 @@ class DeveloperViewController: UIViewController {
     @IBOutlet weak var rdVelocity: UISwitch!
     @IBOutlet weak var lbVersion: UILabel!
     
+    //registration form customisation.
+    @IBOutlet weak var txtRegistrationFormTitle: UITextField!
+    @IBOutlet weak var txtRegistrationCardHolderName: UITextField!
+    @IBOutlet weak var txtRegistrationCardNumber: UITextField!
+    @IBOutlet weak var txtRegistrationExpiryDate: UITextField!
+    @IBOutlet weak var txtRegistrationSecurityCode: UITextField!
+    @IBOutlet weak var txtRegistrationButtonColor: UITextField!
+    @IBOutlet weak var txtRegistrationButtonText: UITextField!
+    
+    //submit single card payment form customisation.
+    @IBOutlet weak var txtPaymentFormTitle: UITextField!
+    @IBOutlet weak var txtPaymentCardHolderName: UITextField!
+    @IBOutlet weak var txtPaymentCardNumber: UITextField!
+    @IBOutlet weak var txtPaymentExpiryDate: UITextField!
+    @IBOutlet weak var txtPaymentSecurityCode: UITextField!
+    @IBOutlet weak var txtPaymentButtonColor: UITextField!
+    @IBOutlet weak var txtPaymentButtonText: UITextField!
+    @IBOutlet weak var txtPaymentSwitchButtonColor: UITextField!
    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //load current mode.
@@ -41,6 +60,11 @@ class DeveloperViewController: UIViewController {
         let build = dictionary["CFBundleVersion"] as! String;
         
         lbVersion.text = "Version \(version)(\(build)) \(AppSettings.sharedInstance().getCompileDate())";
+        
+        //init customisation settings.
+        initCardRegistrationGuiSetting()
+        initSubmitSinglePaymentSetting()
+        
     }
     
     @IBAction func btnSaveClick(_ sender: UIButton) {
@@ -78,6 +102,79 @@ class DeveloperViewController: UIViewController {
         
         
     }
+    
+    
+    @IBAction func btnSaveGuiCustomisation(_ sender: UIButton) {
+        //Card registration customisation.
+        saveCardRegistrationGuiCustomisation()
+        //Submit single card payment customisation.
+        saveSubmitSinglePaymentCustomisation()
+        let alertTitle: String = "Gui Customisation Updated."
+        let alertMessage: String = "Gui customisation updated.\nPlease go to the form to check the change"
+        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        //Okay action.
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            
+        })
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: { _ in })
+        
+    }
+    
+    func saveCardRegistrationGuiCustomisation()
+    {
+        let cardRegistrationGuiSetting: BNCardRegistrationGuiSetting = BNCardRegistrationGuiSetting()
+        cardRegistrationGuiSetting.titleText = txtRegistrationFormTitle.text
+        cardRegistrationGuiSetting.cardHolderWatermark = txtRegistrationCardHolderName.text
+        cardRegistrationGuiSetting.cardNumberWatermark = txtRegistrationCardNumber.text
+        cardRegistrationGuiSetting.expiryDateWatermark = txtRegistrationExpiryDate.text
+        cardRegistrationGuiSetting.securityCodeWatermark = txtRegistrationSecurityCode.text
+        cardRegistrationGuiSetting.registrationButtonColor = txtRegistrationButtonColor.text
+        cardRegistrationGuiSetting.registerButtonText = txtRegistrationButtonText.text
+        AppSettings.sharedInstance().setCardRegistrationGuiSetting(cardRegistrationGuiSetting)
+    }
+
+    func saveSubmitSinglePaymentCustomisation()
+    {
+        let submitSinglePaymentCardGuiSetting: BNSubmitSinglePaymentCardGuiSetting = BNSubmitSinglePaymentCardGuiSetting()
+        submitSinglePaymentCardGuiSetting.titleText = txtPaymentFormTitle.text
+        submitSinglePaymentCardGuiSetting.cardHolderWatermark = txtPaymentCardHolderName.text
+        submitSinglePaymentCardGuiSetting.cardNumberWatermark = txtPaymentCardNumber.text
+        submitSinglePaymentCardGuiSetting.expiryDateWatermark = txtPaymentExpiryDate.text
+        submitSinglePaymentCardGuiSetting.payButtonColor = txtPaymentButtonColor.text
+        submitSinglePaymentCardGuiSetting.payButtonText = txtPaymentButtonText.text
+        submitSinglePaymentCardGuiSetting.securityCodeWatermark = txtPaymentSecurityCode.text
+        submitSinglePaymentCardGuiSetting.switchButtonColor = txtPaymentSwitchButtonColor.text
+        AppSettings.sharedInstance().setSubmitSinglePaymentCardGuiSetting(submitSinglePaymentCardGuiSetting)
+    }
+    
+    
+    func initCardRegistrationGuiSetting()
+    {
+        let cardRegistrationGuiSetting = AppSettings.sharedInstance().getCardRegistrationGuiSetting()
+        txtRegistrationFormTitle.text = cardRegistrationGuiSetting?.titleText;
+        txtRegistrationCardHolderName.text = cardRegistrationGuiSetting?.cardHolderWatermark
+        txtRegistrationCardNumber.text = cardRegistrationGuiSetting?.cardNumberWatermark
+        txtRegistrationExpiryDate.text = cardRegistrationGuiSetting?.expiryDateWatermark
+        txtRegistrationSecurityCode.text = cardRegistrationGuiSetting?.securityCodeWatermark
+        txtRegistrationButtonColor.text = cardRegistrationGuiSetting?.registrationButtonColor
+        txtRegistrationButtonText.text = cardRegistrationGuiSetting?.registerButtonText
+    }
+    
+    func initSubmitSinglePaymentSetting()
+    {
+        let submitSinglePaymentCardGuiSetting = AppSettings.sharedInstance().getSubmitSinglePaymentGuiSetting()
+        txtPaymentFormTitle.text = submitSinglePaymentCardGuiSetting?.titleText
+        txtPaymentCardHolderName.text = submitSinglePaymentCardGuiSetting?.cardHolderWatermark
+        txtPaymentCardNumber.text = submitSinglePaymentCardGuiSetting?.cardNumberWatermark
+        txtPaymentExpiryDate.text = submitSinglePaymentCardGuiSetting?.expiryDateWatermark
+        txtPaymentButtonColor.text = submitSinglePaymentCardGuiSetting?.payButtonColor
+        txtPaymentButtonText.text = submitSinglePaymentCardGuiSetting?.payButtonText
+        txtPaymentSecurityCode.text = submitSinglePaymentCardGuiSetting?.securityCodeWatermark
+        txtPaymentSwitchButtonColor.text = submitSinglePaymentCardGuiSetting?.switchButtonColor
+    }
+    
+    
     
     @IBAction func sgRunModeChange(_ sender: UISegmentedControl) {
         if (sender as? UISegmentedControl) == segRunMode {

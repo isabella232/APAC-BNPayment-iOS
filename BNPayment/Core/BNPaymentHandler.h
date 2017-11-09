@@ -214,14 +214,30 @@ typedef void (^BNCreditCardRegistrationUrlBlock)(NSString *url, NSError *error);
 
 
 
-
-
+/**
+ *  Submit PreAuth With Token
+ *
+ *  @param paymentParams `BNPaymentParams` params to the request.
+ *  @param requirePaymentValidation If set and if the SDK's extra validation hook is set
+ *                        then call the extra validation code before proceeding with payment.
+ *  @param result The block to be executed when Payment operation is finished.
+ *
+ *  @return `BNPaymentExtBlock`
+ *
+ *  Note:
+ *  It is not enough to set the 'requirePaymentValidation' parameter to YES for 'Touch ID dialog' to appear.
+ *  You need also to enable the SDK for Touch ID validation (see [BNTouchIDValidation enable])
+ *
+ */
+- (NSURLSessionDataTask *)submitPreAuthToken:(BNPaymentParams *)paymentParams
+                    requirePaymentValidation:(BOOL)requirePaymentValidation
+                                      result:(BNPaymentExtBlock) result;
 
 /**
  *  Submit Single Payment With Card
  *
  *  @param paymentParams `BNPaymentParams` params to the request.
- *  @param identifier    `NSString` prepresenting the payment identidier.
+ *  @param identifier    `NSString` representing the payment identidier.
  *  @param requirePaymentValidation If set and if the SDK's extra validation hook is set
  *                        then call the extra validation code before proceeding with payment.
  *  @param requireSaveCard If set, save the credit card on the device.
@@ -238,6 +254,29 @@ typedef void (^BNCreditCardRegistrationUrlBlock)(NSString *url, NSError *error);
                           requirePaymentValidation:(BOOL)requirePaymentValidation
                                          requireSaveCard: (BOOL) requireSaveCard
                                             completion:(BNSinglePaymentExtBlock) completion;
+
+/**
+ *  Submit Single PreAuth With Card
+ *
+ *  @param paymentParams `BNPaymentParams` params to the request.
+ *  @param identifier    `NSString` representing the payment identidier.
+ *  @param requirePaymentValidation If set and if the SDK's extra validation hook is set
+ *                        then call the extra validation code before proceeding with payment.
+ *  @param requireSaveCard If set, save the credit card on the device.
+ *  @param result The block to be executed when Payment operation is finished.
+ *
+ *  @return `NSURLSessionDataTask`
+ *
+ *  Note:
+ *  It is not enough to set the 'requirePaymentValidation' parameter to YES for 'Touch ID dialog' to appear.
+ *  You need also to enable the SDK for Touch ID validation (see [BNTouchIDValidation enable])
+ *
+ */
+- (NSURLSessionDataTask *)submitSinglePreAuthCard:(BNPaymentParams *)paymentParams
+                         requirePaymentValidation:(BOOL)requirePaymentValidation
+                                  requireSaveCard: (BOOL) requireSaveCard
+                                       completion:(BNSinglePaymentExtBlock) completion;
+
 
 
 

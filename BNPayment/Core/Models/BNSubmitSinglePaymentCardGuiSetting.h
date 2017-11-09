@@ -1,5 +1,5 @@
 //
-//  BNCreditCardRegistrationVC.h
+//  BNErrorResponse.h
 //  Copyright (c) 2016 Bambora ( http://bambora.com/ )
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,25 +20,39 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "BNEnums.h"
-#import "BNPaymentBaseVC.h"
-#import "BNCardRegistrationGuiSetting.h"
+#import "BNBaseModel.h"
 
-@class BNCreditCard;
-@class BNAuthorizedCreditCard;
+@interface BNSubmitSinglePaymentCardGuiSetting : BNBaseModel
 
-/**
- *  A block indicating whether or not the `BNCreditCardRegistrationVC` is done
- *
- *  @param success The status of the operation
- */
-typedef void(^BNCCRegistrationFormCompletion)(BNCCRegCompletion completion, BNAuthorizedCreditCard *card);
 
-@interface BNCreditCardRegistrationVC : BNPaymentBaseVC
 
-@property (nonatomic, strong) BNCardRegistrationGuiSetting *guiSetting;
 
-@property (nonatomic, copy) BNCCRegistrationFormCompletion completionBlock;
+typedef enum
+{
+    payTitleText,
+    payCardHolderWatermark,
+    payCardNumberWatermark,
+    payExpiryDateWatermark,
+    paySecurityCodeWatermark,
+    payButtonText,
+    payButtonColor,
+    switchButtonColor
+} submitSinglePaymentCardGuiEnum;
+
+
+@property (nonatomic, strong) NSString *titleText;
+@property (nonatomic, strong) NSString *cardHolderWatermark;
+@property (nonatomic, strong) NSString *cardNumberWatermark;
+@property (nonatomic, strong) NSString *expiryDateWatermark;
+@property (nonatomic, strong) NSString *securityCodeWatermark;
+@property (nonatomic, strong) NSString *payButtonText;
+//Color Hex Code ie. #00ff00@property (nonatomic, strong) NSString *payButtonColor;
+@property (nonatomic, strong) NSString *switchButtonColor;
+@property (nonatomic, strong) NSString *payButtonColor;
+
++(NSString *)GetGuiKey:(submitSinglePaymentCardGuiEnum)guiEnum;
 
 
 @end
+
+

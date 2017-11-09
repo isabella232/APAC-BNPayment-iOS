@@ -23,6 +23,8 @@
 #import "BNEnums.h"
 #import "BNPaymentParams.h"
 #import "BNPaymentBaseVC.h"
+#import "BNSubmitSinglePaymentCardGuiSetting.h"
+#import "BNPaymentType.h"
 
 @class BNCreditCard;
 @class BNAuthorizedCreditCard;
@@ -39,10 +41,15 @@ typedef void(^BNSubmitSinglePaymentFormCompletion)(NSDictionary<NSString*, NSStr
 //payment params allows sdk user passed in amount, currency etc for the payment.
 @property (nonatomic, strong) BNPaymentParams *paymentParams;
 
+
+@property (nonatomic, strong) BNSubmitSinglePaymentCardGuiSetting *guiSetting;
+
 @property (nonatomic) BOOL isRequirePaymentAuthorization;
 
 
 @property (nonatomic, copy) BNSubmitSinglePaymentFormCompletion completionBlock;
+
+@property (nonatomic) PaymentType paymentType;
 
 @end
 

@@ -64,6 +64,7 @@ NSInteger const TitleHeight = 30;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self layoutCreditCardForm];
+    [self guiCustomisation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -175,6 +176,91 @@ NSInteger const TitleHeight = 30;
     self.submitButton.alpha = .5f;
     [self.formScrollView addSubview:self.submitButton];
 }
+
+- (void)guiCustomisation {
+    [self titleCustomisation];
+    [self cardHolderNameCustomisation];
+    [self cardNumberCustomisation];
+    [self expiryDateCustomisation];
+    [self securityCodeCustomisation];
+    [self securityCodeCustomisation];
+    [self registerButtonCustomisation];
+}
+
+- (void)titleCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.titleText!=nil &&
+       _guiSetting.titleText.length>0 &&
+       _titleLabel !=nil)
+    {
+       _titleLabel.text = NSLocalizedString(_guiSetting.titleText, @"Card details");
+
+    }
+}
+
+- (void)cardHolderNameCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.cardHolderWatermark!=nil &&
+       _guiSetting.cardHolderWatermark.length>0 &&
+       _cardHolderTextField !=nil)
+    {
+        _cardHolderTextField.placeholder = NSLocalizedString(_guiSetting.cardHolderWatermark, @"Placeholder");
+    }
+}
+
+- (void)cardNumberCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.cardNumberWatermark!=nil &&
+       _guiSetting.cardNumberWatermark.length>0 &&
+       _cardNumberTextField !=nil)
+    {
+        _cardNumberTextField.placeholder = NSLocalizedString(_guiSetting.cardNumberWatermark, @"Placeholder");
+    }
+}
+
+- (void)expiryDateCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.expiryDateWatermark!=nil &&
+       _guiSetting.expiryDateWatermark.length>0 &&
+       _cardExpiryTextField !=nil)
+    {
+        _cardExpiryTextField.placeholder = NSLocalizedString(_guiSetting.expiryDateWatermark, @"Placeholder");
+    }
+}
+
+- (void)securityCodeCustomisation {
+    if(_guiSetting==nil)
+        return;
+    if(_guiSetting.securityCodeWatermark!=nil &&
+       _guiSetting.securityCodeWatermark.length>0 &&
+       _cardCVCTextField !=nil)
+    {
+        _cardCVCTextField.placeholder = NSLocalizedString(_guiSetting.securityCodeWatermark, @"Placeholder");
+    }
+}
+
+- (void)registerButtonCustomisation {
+    if(_guiSetting==nil || _submitButton==nil)
+        return;
+    if(_guiSetting.registerButtonText!=nil &&
+       _guiSetting.registerButtonText.length>0)
+    {
+        [self.submitButton setTitle:NSLocalizedString(_guiSetting.registerButtonText, @"") forState:UIControlStateNormal];
+    }
+    if(_guiSetting.registrationButtonColor!=nil &&
+       _guiSetting.registrationButtonColor.length==7)
+    {
+        [self.submitButton setBackgroundColor:[BNUtils colorFromHexString:_guiSetting.registrationButtonColor]];
+    }
+}
+
+
+
+
 
 - (void)showAlertViewWithTitle:(NSString*)title message:(NSString*)message {
 

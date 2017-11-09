@@ -175,7 +175,13 @@
 		B2E709C61D5CA6D20010AC28 /* BNPaymentParamsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E709C51D5CA6D20010AC28 /* BNPaymentParamsTests.m */; };
 		EA13D7001ED27D290071779E /* BNSubmitSinglePaymentCardVC.h in Headers */ = {isa = PBXBuildFile; fileRef = EA13D6FF1ED27D290071779E /* BNSubmitSinglePaymentCardVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA13D7031ED27D910071779E /* BNSubmitSinglePaymentCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13D7021ED27D910071779E /* BNSubmitSinglePaymentCardVC.m */; };
+		EA40312A1F4172EB0070910B /* BNPaymentType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4031291F4172EB0070910B /* BNPaymentType.m */; };
+		EA40312E1F42D74C0070910B /* BNPaymentType.h in Headers */ = {isa = PBXBuildFile; fileRef = EA40312C1F4173AE0070910B /* BNPaymentType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA58E6591ED3C814003BA174 /* BNSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA58E6581ED3C814003BA174 /* BNSwitchButton.m */; };
+		EA5A1A6B1F53AE5D0014012E /* BNCardRegistrationGuiSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5A1A6A1F53AE5D0014012E /* BNCardRegistrationGuiSetting.m */; };
+		EA5A1A6C1F565E920014012E /* BNCardRegistrationGuiSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5A1A681F53AE3A0014012E /* BNCardRegistrationGuiSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA5A1A6E1F5792C30014012E /* BNSubmitSinglePaymentCardGuiSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5A1A6D1F5792C30014012E /* BNSubmitSinglePaymentCardGuiSetting.m */; };
+		EA5A1A701F579FCF0014012E /* BNSubmitSinglePaymentCardGuiSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5A1A6F1F5792F70014012E /* BNSubmitSinglePaymentCardGuiSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8B6ECE61E89FC84000D4297 /* GlobalSign.cer in Resources */ = {isa = PBXBuildFile; fileRef = F8B6ECE51E89FC84000D4297 /* GlobalSign.cer */; };
 		F8D1B5121E92AA1200F723CC /* BNCreditCardHolderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D1B5111E92AA1200F723CC /* BNCreditCardHolderTextField.m */; };
 		F8D1B5151E92AA2500F723CC /* BNCreditCardHolderTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = F8D1B5141E92AA2500F723CC /* BNCreditCardHolderTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -395,8 +401,14 @@
 		B2E709C51D5CA6D20010AC28 /* BNPaymentParamsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNPaymentParamsTests.m; sourceTree = "<group>"; };
 		EA13D6FF1ED27D290071779E /* BNSubmitSinglePaymentCardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSubmitSinglePaymentCardVC.h; sourceTree = "<group>"; };
 		EA13D7021ED27D910071779E /* BNSubmitSinglePaymentCardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSubmitSinglePaymentCardVC.m; sourceTree = "<group>"; };
+		EA4031291F4172EB0070910B /* BNPaymentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNPaymentType.m; sourceTree = "<group>"; };
+		EA40312C1F4173AE0070910B /* BNPaymentType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNPaymentType.h; sourceTree = "<group>"; };
 		EA58E6561ED3C7E6003BA174 /* BNSwitchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNSwitchButton.h; sourceTree = "<group>"; };
 		EA58E6581ED3C814003BA174 /* BNSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSwitchButton.m; sourceTree = "<group>"; };
+		EA5A1A681F53AE3A0014012E /* BNCardRegistrationGuiSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNCardRegistrationGuiSetting.h; sourceTree = "<group>"; };
+		EA5A1A6A1F53AE5D0014012E /* BNCardRegistrationGuiSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCardRegistrationGuiSetting.m; sourceTree = "<group>"; };
+		EA5A1A6D1F5792C30014012E /* BNSubmitSinglePaymentCardGuiSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSubmitSinglePaymentCardGuiSetting.m; sourceTree = "<group>"; };
+		EA5A1A6F1F5792F70014012E /* BNSubmitSinglePaymentCardGuiSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNSubmitSinglePaymentCardGuiSetting.h; sourceTree = "<group>"; };
 		F8B6ECE51E89FC84000D4297 /* GlobalSign.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = GlobalSign.cer; sourceTree = "<group>"; };
 		F8D1B5111E92AA1200F723CC /* BNCreditCardHolderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCreditCardHolderTextField.m; sourceTree = "<group>"; };
 		F8D1B5141E92AA2500F723CC /* BNCreditCardHolderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCreditCardHolderTextField.h; sourceTree = "<group>"; };
@@ -507,6 +519,12 @@
 				5D5BB78D1CE4CCFD00E6BD40 /* BNEncryptedSessionKey.m */,
 				5D258C801D35349A00498DEC /* BNErrorResponse.h */,
 				5D258C811D35349A00498DEC /* BNErrorResponse.m */,
+				EA40312C1F4173AE0070910B /* BNPaymentType.h */,
+				EA4031291F4172EB0070910B /* BNPaymentType.m */,
+				EA5A1A681F53AE3A0014012E /* BNCardRegistrationGuiSetting.h */,
+				EA5A1A6A1F53AE5D0014012E /* BNCardRegistrationGuiSetting.m */,
+				EA5A1A6D1F5792C30014012E /* BNSubmitSinglePaymentCardGuiSetting.m */,
+				EA5A1A6F1F5792F70014012E /* BNSubmitSinglePaymentCardGuiSetting.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -947,7 +965,10 @@
 				5DA20C391CF32CCF007B2361 /* BNCreditCardNumberTextField.h in Headers */,
 				5D9021381D2149DA00B4BEAC /* BNLoaderButton.h in Headers */,
 				5D3165251D099DB000B6F915 /* BNPayment.h in Headers */,
+				EA40312E1F42D74C0070910B /* BNPaymentType.h in Headers */,
 				5D69A5F41CE0D00200A573EE /* UIView+BNUtils.h in Headers */,
+				EA5A1A6C1F565E920014012E /* BNCardRegistrationGuiSetting.h in Headers */,
+				EA5A1A701F579FCF0014012E /* BNSubmitSinglePaymentCardGuiSetting.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1142,7 @@
 				5DA20C3A1CF32CCF007B2361 /* BNCreditCardNumberTextField.m in Sources */,
 				5D69A5DD1CE0D00200A573EE /* EPAYMessage.m in Sources */,
 				5DA20C321CF3231A007B2361 /* BNBaseTextField.m in Sources */,
+				EA5A1A6E1F5792C30014012E /* BNSubmitSinglePaymentCardGuiSetting.m in Sources */,
 				5D69A5D31CE0D00200A573EE /* BNPaymentParams.m in Sources */,
 				747B4A451E9DDB0D00B0FB24 /* BNApplePayPaymentEndpoint.m in Sources */,
 				5D69A6B71CE0DBC600A573EE /* BNKeyUtils.m in Sources */,
@@ -1141,6 +1163,7 @@
 				5DA20C461CF42FD1007B2361 /* BNCreditCardExpiryTextField.m in Sources */,
 				5D69A5F51CE0D00200A573EE /* UIView+BNUtils.m in Sources */,
 				5D5BB78F1CE4CCFD00E6BD40 /* BNEncryptedSessionKey.m in Sources */,
+				EA5A1A6B1F53AE5D0014012E /* BNCardRegistrationGuiSetting.m in Sources */,
 				EA58E6591ED3C814003BA174 /* BNSwitchButton.m in Sources */,
 				5D69A5CF1CE0D00200A573EE /* BNCCHostedFormParams.m in Sources */,
 				5DA20C2D1CEEEE8C007B2361 /* BNCertUtils.m in Sources */,
@@ -1150,6 +1173,7 @@
 				5D69A5F11CE0D00200A573EE /* BNUtils.m in Sources */,
 				5D69A5FB1CE0D00200A573EE /* BNCCHostedRegistrationFormVC.m in Sources */,
 				5D69A6A91CE0DB9D00A573EE /* BNRegisterCCParams.m in Sources */,
+				EA40312A1F4172EB0070910B /* BNPaymentType.m in Sources */,
 				5D69A5BF1CE0D00200A573EE /* NSString+BNStringUtils.m in Sources */,
 				5D258C831D35349A00498DEC /* BNErrorResponse.m in Sources */,
 				5D69A5BD1CE0D00200A573EE /* NSString+BNLogUtils.m in Sources */,

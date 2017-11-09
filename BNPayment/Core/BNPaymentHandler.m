@@ -179,19 +179,37 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
 - (NSURLSessionDataTask *)makePaymentExtWithParams:(BNPaymentParams *)paymentParams
                           requirePaymentValidation:(BOOL)requirePaymentValidation
                                             result:(BNPaymentExtBlock) result {
-    if (requirePaymentValidation && self.extraPaymentValidationBlock != nil ){
-        paymentParams.paymentValidation = kAppleTouchIdPaymentValidation;
-        if([self isTouchIdCheckValid: result]==false){
-            return nil;
-        }
-    } else {
-        paymentParams.paymentValidation = kDefaultPaymentValidation;
-    }
-    return [self _submitSinglePaymentToken:paymentParams  result:result];
-}
+    return [self submitTokenPayment:paymentParams
+           requirePaymentValidation:requirePaymentValidation
+                        paymentType:SubmitPaymentToken
+                             result:result];}
 
+//APAC submit single payment token.
 - (NSURLSessionDataTask *)submitSinglePaymentToken:(BNPaymentParams *)paymentParams
                           requirePaymentValidation:(BOOL)requirePaymentValidation
+                                            result:(BNPaymentExtBlock) result {
+    return [self submitTokenPayment:paymentParams
+                 requirePaymentValidation:requirePaymentValidation
+                              paymentType:SubmitPaymentToken
+                              result:result];
+}
+
+//APAC submit pre-auth token.
+- (NSURLSessionDataTask *)submitPreAuthToken:(BNPaymentParams *)paymentParams
+                    requirePaymentValidation:(BOOL)requirePaymentValidation
+                                      result:(BNPaymentExtBlock) result {
+    return [self submitTokenPayment:paymentParams
+           requirePaymentValidation:requirePaymentValidation
+                        paymentType:PreAuthToken
+                             result:result];
+}
+
+
+
+//APAC submit token payment, (submitPaymentToken, submitPreAuthToken)
+- (NSURLSessionDataTask *)submitTokenPayment:(BNPaymentParams *)paymentParams
+                          requirePaymentValidation:(BOOL)requirePaymentValidation
+                                 paymentType:(PaymentType)paymentType
                                             result:(BNPaymentExtBlock) result {
     if (requirePaymentValidation && self.extraPaymentValidationBlock != nil ){
         paymentParams.paymentValidation = kAppleTouchIdPaymentValidation;
@@ -201,16 +219,20 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
     } else {
         paymentParams.paymentValidation = kDefaultPaymentValidation;
     }
-    return [self _submitSinglePaymentToken:paymentParams  result:result];
+    return [self _submitTokenPayment:paymentParams
+                               paymentType:paymentType
+                                    result:result];
 }
 
 
 
 
-- (NSURLSessionDataTask *)_submitSinglePaymentToken:(BNPaymentParams *)paymentParams
+- (NSURLSessionDataTask *)_submitTokenPayment:(BNPaymentParams *)paymentParams
+                                  paymentType:(PaymentType)paymentType
                                              result:(BNPaymentExtBlock) result
 {
     NSURLSessionDataTask *dataTask = [BNPaymentEndpoint authorizePaymentWithParams:paymentParams
+                                                                       paymentType: paymentType
                                                                         completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
                                                                             //success
                                                                             if (paymentResponse && paymentResponse.receipt){
@@ -228,6 +250,33 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
 
 
 
+- (NSURLSessionDataTask *)submitSinglePreAuthCard:(BNPaymentParams *)paymentParams
+                         requirePaymentValidation:(BOOL)requirePaymentValidation
+                                  requireSaveCard: (BOOL)requireSaveCard
+                                       completion:(BNSinglePaymentExtBlock) completion {
+    if (requirePaymentValidation && self.extraPaymentValidationBlock != nil ){
+        paymentParams.paymentValidation = kAppleTouchIdPaymentValidation;
+        if([self isSinglePaymentTouchIdCheckValid: completion]==false){
+            return nil;
+        }
+    } else {
+        paymentParams.paymentValidation = kDefaultPaymentValidation;
+    }
+    
+    
+    
+    NSURLSessionDataTask *dataTask = [self _submitSinglePaymentCard:paymentParams  requireSaveCard:requireSaveCard paymentType: PreAuthCard result:^(NSDictionary<NSString*, NSString*> * response,BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result,NSError *error){
+        if(authorizedCreditCard)
+        {
+            [self saveAuthorizedCreditCard:authorizedCreditCard];
+        }
+        completion(response, authorizedCreditCard, result, error);
+    }];
+    
+    return dataTask;
+}
+
+
 - (NSURLSessionDataTask *)submitSinglePaymentCard:(BNPaymentParams *)paymentParams
                           requirePaymentValidation:(BOOL)requirePaymentValidation           	
                                   requireSaveCard: (BOOL)requireSaveCard
@@ -243,7 +292,7 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
     
     
     
-    NSURLSessionDataTask *dataTask = [self _submitSinglePaymentCard:paymentParams  requireSaveCard:requireSaveCard result:^(NSDictionary<NSString*, NSString*> * response,BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result,NSError *error){
+    NSURLSessionDataTask *dataTask = [self _submitSinglePaymentCard:paymentParams  requireSaveCard:requireSaveCard paymentType: SubmitPaymentCard result:^(NSDictionary<NSString*, NSString*> * response,BNAuthorizedCreditCard *authorizedCreditCard, BNPaymentResult result,NSError *error){
         if(authorizedCreditCard)
         {
             [self saveAuthorizedCreditCard:authorizedCreditCard];
@@ -257,9 +306,11 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
 
 - (NSURLSessionDataTask *)_submitSinglePaymentCard:(BNPaymentParams *)paymentParams
                                             requireSaveCard: (BOOL)requireSaveCard
+                                            paymentType: (PaymentType)paymentType
                                              result:(BNSinglePaymentExtBlock) result
 {
     NSURLSessionDataTask *dataTask = [BNPaymentEndpoint authorizePaymentWithParams:paymentParams
+                                                                       paymentType: paymentType
                                                                         completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
                                                                             //success
                                                                             if (paymentResponse && paymentResponse.receipt){

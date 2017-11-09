@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import <BNPayment/BNSubmitSinglePaymentCardGuiSetting.h>
+#import <BNPayment/BNCardRegistrationGuiSetting.h>
 #import <UIKit/UIKit.h>
 
 @class BNAuthorizedCreditCard;
@@ -42,8 +45,12 @@
 - (void) setRunMode:(NSInteger) runMode;
 - (void) setRunModeMerchantGuid:(NSInteger) newRunMode  newMerchantGuid:(NSString*) newMerchantGuid;
 
+- (void) setCardRegistrationGuiSetting:(BNCardRegistrationGuiSetting*) guiSetting;
+- (void) setSubmitSinglePaymentCardGuiSetting:(BNSubmitSinglePaymentCardGuiSetting*) guiSetting;
 
 
+- (BNCardRegistrationGuiSetting* )getCardRegistrationGuiSetting;
+- (BNSubmitSinglePaymentCardGuiSetting* )getSubmitSinglePaymentGuiSetting;
 
 - (NSInteger) getRunMode;
 - (NSString *)getRunModeUrl;

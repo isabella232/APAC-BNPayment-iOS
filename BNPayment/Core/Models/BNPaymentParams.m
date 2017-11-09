@@ -25,6 +25,7 @@
 #import "BNCertManager.h"
 #import "BNEncryptionCertificate.h"
 #import "BNEncryptedSessionKey.h"
+#import "BNPaymentType.h"
 
 const NSInteger BNPaymentCCParamsKeyLength = 16;
 
@@ -145,9 +146,9 @@ const NSInteger BNPaymentCCParamsKeyLength = 16;
 
 - (void) setPaymentJsonData:(NSDictionary*) data
 {
-    // TODO validate data is a proper JSon?
     _paymentJsonData = data;
 }
+
 
 - (NSDictionary*) cardJsonData
 {

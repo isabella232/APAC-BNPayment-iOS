@@ -21,6 +21,7 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BNPaymentType.h"
 
 @class BNPaymentHandler;
 @class BNPaymentResponse;
@@ -52,6 +53,7 @@ typedef void (^BNPaymentRequestBlock)(BNPaymentResponse *paymentResponse, NSErro
 *  @return `NSURLSessionDataTask`
 */
 + (NSURLSessionDataTask *)authorizePaymentWithParams:(BNPaymentParams *)params
+                                         paymentType:(PaymentType) paymentType
                                           completion:(BNPaymentRequestBlock)completion;
 
 @end
