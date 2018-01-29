@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+                <script type="text/javascript">
+                    function onVisaCheckoutReady(){
+                        V.init( {
+                               apikey:"%@",
+                               externalClientId:"%@",
+                               externalProfileId:"%@",
+                               paymentRequest:{
+                               currencyCode:"%@",
+                               subtotal:"%@",
+                               total:"%@"
+                               },
+                               settings:{
+                               locale: "%@",
+                               shipping: {collectShipping:"%@"},
+                               review: {message:"%@", buttonAction:"%@"}
+                               }
+                               }
+                               );
+                               V.on("payment.success", function(payment)
+                                    {
+                                    window.webkit.messageHandlers.callBackSuccess.postMessage(JSON.stringify(payment));
+                                    });
+                              V.on("payment.cancel", function(payment)
+                                    {
+                                   window.webkit.messageHandlers.callBackCancel.postMessage(JSON.stringify(payment));
+                                    });
+                             V.on("payment.error", function(payment, error)
+                                    {
+                                   window.webkit.messageHandlers.callBackError.postMessage(JSON.stringify(error));
+                                    });
+                    }
+                </script>
+    </head>
+    <body style="background-color:white" marginleft="auto" marginright="auto" marginheight="0px">
+    <img alt="Visa Checkout" class="v-button" role="button" width="100%%" height="auto" src="%@"/>
+   <script type="text/javascript" src="%@"></script>
+    </body>
+</html>

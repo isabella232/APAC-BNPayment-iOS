@@ -55,6 +55,10 @@
         case switchButtonColor:
             guiKey = @"submitSinglePaymentSwitchButtonColor";
             break;
+        case loadingBarColor:
+            guiKey = @"loadingBarColor";
+            break;
+            
         default:
             [NSException raise:NSGenericException format:@"Unexpected submitSinglePaymentCardGuiEnum."];
     }

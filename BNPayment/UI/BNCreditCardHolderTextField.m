@@ -40,6 +40,7 @@
     
     if(self) {
         self.delegate = self;
+        
     }
     
     return self;
@@ -94,5 +95,15 @@ replacementString:(NSString *)string {
     
     return YES;
 }
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self resignFirstResponder];
+    return YES;
+}
+
+
+
+
 
 @end

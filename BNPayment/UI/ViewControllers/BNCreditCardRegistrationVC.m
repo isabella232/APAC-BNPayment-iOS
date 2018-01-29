@@ -58,7 +58,7 @@ NSInteger const TitleHeight = 30;
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupCreditCardForm];
-    [self.cardHolderTextField becomeFirstResponder];
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,8 +89,14 @@ NSInteger const TitleHeight = 30;
     
     self.formScrollView.frame = viewRect;
     
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard)];
+    [self.formScrollView addGestureRecognizer:panGestureRecognizer];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard)];
+    [self.formScrollView addGestureRecognizer:tapGestureRecognizer];
+    
     self.titleLabel.frame = CGRectMake(Padding,
-                                       Padding*2,
+                                       Padding,
                                        CGRectGetWidth(viewRect)-2*Padding,
                                        TitleHeight);
     
@@ -98,12 +104,12 @@ NSInteger const TitleHeight = 30;
     inputWidth -= inputWidth % 2;
     
     self.cardHolderTextField.frame = CGRectMake(Padding,
-                                                CGRectGetMaxY(self.titleLabel.frame),
+                                                CGRectGetMaxY(self.titleLabel.frame)+5,
                                                 inputWidth,
                                                 TextFieldHeight);
     
     self.cardNumberTextField.frame = CGRectMake(Padding,
-                                                CGRectGetMaxY(self.cardHolderTextField.frame)-1,
+                                    CGRectGetMaxY(self.cardHolderTextField.frame)-1,
                                                 inputWidth,
                                                 TextFieldHeight);
     
@@ -117,8 +123,7 @@ NSInteger const TitleHeight = 30;
                                                 ceilf((inputWidth)/2.f)+1,
                                                 TextFieldHeight);
     
-    self.submitButton.frame = CGRectMake(0,
-                                         CGRectGetHeight(self.formScrollView.frame)-ButtonHeight,
+    self.submitButton.frame =   CGRectMake(0,CGRectGetMaxY(self.cardCVCTextField.frame)+30,
                                          CGRectGetWidth(viewRect),
                                          ButtonHeight);
 }
@@ -302,41 +307,41 @@ NSInteger const TitleHeight = 30;
 
 #pragma mark - Handle keyboard events
 
-- (void)onKeyboardWillHide:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    if (userInfo) {
-        CGSize kbSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        CGFloat animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        
-        [self animateKeyboardVisible:NO kbSize:kbSize duration:animationDuration];
-    }
-}
-
-- (void)onKeyboardWillShow:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    if (userInfo) {
-        CGSize kbSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        CGFloat animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        
-        [self animateKeyboardVisible:YES kbSize:kbSize duration:animationDuration];
-    }
-}
-
-- (void)animateKeyboardVisible:(BOOL)visible kbSize:(CGSize)kbSize duration:(CGFloat)duration {
-    
-    CGFloat kbHeight = kbSize.height;
-    CGFloat viewHeight = CGRectGetHeight(self.view.frame);
-    CGFloat height = visible ? viewHeight-kbHeight + ButtonHeight : viewHeight;
-
-    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        int a = height-ButtonHeight;
-        int b = CGRectGetMaxY(self.cardCVCTextField.frame)+Padding;
-        [self.submitButton setYoffset:MAX(a,b)];
-        [self.formScrollView setHeight:height];
-    } completion:^(BOOL finished) {
-        [self.formScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.submitButton.frame))];
-    }];
-}
+//- (void)onKeyboardWillHide:(NSNotification *)notification {
+//    NSDictionary *userInfo = notification.userInfo;
+//    if (userInfo) {
+//        CGSize kbSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//        CGFloat animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//
+//        [self animateKeyboardVisible:NO kbSize:kbSize duration:animationDuration];
+//    }
+//}
+//
+//- (void)onKeyboardWillShow:(NSNotification *)notification {
+//    NSDictionary *userInfo = notification.userInfo;
+//    if (userInfo) {
+//        CGSize kbSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//        CGFloat animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//
+//        [self animateKeyboardVisible:YES kbSize:kbSize duration:animationDuration];
+//    }
+//}
+//
+//- (void)animateKeyboardVisible:(BOOL)visible kbSize:(CGSize)kbSize duration:(CGFloat)duration {
+//
+//    CGFloat kbHeight = kbSize.height;
+//    CGFloat viewHeight = CGRectGetHeight(self.view.frame);
+//    CGFloat height = visible ? viewHeight-kbHeight + ButtonHeight : viewHeight;
+//
+//    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//        int a = height-ButtonHeight;
+//        int b = CGRectGetMaxY(self.cardCVCTextField.frame)+Padding;
+//        [self.submitButton setYoffset:MAX(a,b)];
+//        [self.formScrollView setHeight:height];
+//    } completion:^(BOOL finished) {
+//        [self.formScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.submitButton.frame))];
+//    }];
+//}
 
 - (void)validateFields {
     BOOL validCardNumber = [self.cardNumberTextField validCardNumber];
@@ -357,6 +362,14 @@ NSInteger const TitleHeight = 30;
         self.submitButton.enabled = NO;
         self.submitButton.alpha = 0.5f;
     }
+}
+
+- (void)resignKeyboard
+{
+    [self.cardHolderTextField resignFirstResponder];
+    [self.cardNumberTextField resignFirstResponder];
+    [self.cardExpiryTextField resignFirstResponder];
+    [self.cardCVCTextField resignFirstResponder];
 }
 
 @end

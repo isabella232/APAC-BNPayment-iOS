@@ -13,6 +13,7 @@ import UIKit
 
 class DeveloperViewController: UIViewController {
     
+    @IBOutlet weak var settingView: UIScrollView!
     
     @IBOutlet weak var segRunMode: UISegmentedControl!
     @IBOutlet weak var txtMerchantGuid: UITextField!
@@ -39,7 +40,11 @@ class DeveloperViewController: UIViewController {
     @IBOutlet weak var txtPaymentButtonColor: UITextField!
     @IBOutlet weak var txtPaymentButtonText: UITextField!
     @IBOutlet weak var txtPaymentSwitchButtonColor: UITextField!
-   
+    @IBOutlet weak var txtPaymentLoadingColor: UITextField!
+    
+    var clickedTextField: UITextField!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +70,69 @@ class DeveloperViewController: UIViewController {
         initCardRegistrationGuiSetting()
         initSubmitSinglePaymentSetting()
         
+        setInputDelegate()
+    }
+    
+    
+    func setInputDelegate(){
+        
+        txtMerchantGuid.delegate=self
+        
+        txtRegistrationFormTitle.delegate=self
+        txtRegistrationCardHolderName.delegate=self
+        txtRegistrationCardNumber.delegate=self
+        txtRegistrationExpiryDate.delegate=self
+        txtRegistrationSecurityCode.delegate=self
+        txtRegistrationButtonColor.delegate=self
+        txtRegistrationButtonText.delegate=self
+        
+        txtPaymentFormTitle.delegate=self
+        txtPaymentCardHolderName.delegate=self
+        txtPaymentCardNumber.delegate=self
+        txtPaymentExpiryDate.delegate=self
+        txtPaymentSecurityCode.delegate=self
+        txtPaymentButtonColor.delegate=self
+        txtPaymentButtonText.delegate=self
+        txtPaymentSwitchButtonColor.delegate=self
+        txtPaymentLoadingColor.delegate=self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    
+    
+    func keyboardWasShown(_ aNotification: Notification) {
+        
+        let info = aNotification.userInfo
+        let kbSize: CGSize? = (info?[UIKeyboardFrameBeginUserInfoKey] as AnyObject).cgRectValue?.size
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, (kbSize?.height)!, 0.0)
+        settingView.contentInset = contentInsets
+        settingView.scrollIndicatorInsets = contentInsets
+
+        var aRect: CGRect = view.frame
+        aRect.size.height -= (kbSize?.height)!
+        
+        if (clickedTextField != nil) && !aRect.contains(clickedTextField.frame.origin) {
+            let scrollPoint = CGPoint(x: 0.0, y: clickedTextField.frame.origin.y - (kbSize?.height)!)
+            settingView.setContentOffset(scrollPoint, animated: true)
+        }
+    }
+    
+    func keyboardWillBeHidden(_ aNotification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        settingView.contentInset = contentInsets
+        settingView.scrollIndicatorInsets = contentInsets
+    }
+    
+    func resetAccountAndMode(){
+        try? BNPaymentHandler.setup(withMerchantAccount: AppSettings.sharedInstance().getCurrentRunModeMerchantGuid(), baseUrl: AppSettings.sharedInstance().getRunModeUrl(), debug: true)
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+       settingView.contentSize = CGSize(width:self.view.frame.width,height:lbVersion.frame.maxY+30)
     }
     
     @IBAction func btnSaveClick(_ sender: UIButton) {
@@ -78,7 +146,7 @@ class DeveloperViewController: UIViewController {
             AppSettings.sharedInstance().setRunModeMerchantGuid(currentRunningMode, newMerchantGuid: txtMerchantGuid.text)
             //Alert pop up.
             let alertTitle: String = "Merchant Guid Updated."
-            let alertMessage: String = "Merchant guid updated.\nPlease restart the app for the change to take effect"
+            let alertMessage: String = "Merchant guid updated."
             let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
             //Okay action.
             let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) -> Void in
@@ -86,6 +154,7 @@ class DeveloperViewController: UIViewController {
             })
             alertController.addAction(okAction)
             present(alertController, animated: true, completion: { _ in })
+            resetAccountAndMode()
         }
         else{
             //Alert pop up.
@@ -102,6 +171,7 @@ class DeveloperViewController: UIViewController {
         
         
     }
+    
     
     
     @IBAction func btnSaveGuiCustomisation(_ sender: UIButton) {
@@ -145,7 +215,9 @@ class DeveloperViewController: UIViewController {
         submitSinglePaymentCardGuiSetting.payButtonText = txtPaymentButtonText.text
         submitSinglePaymentCardGuiSetting.securityCodeWatermark = txtPaymentSecurityCode.text
         submitSinglePaymentCardGuiSetting.switchButtonColor = txtPaymentSwitchButtonColor.text
-        AppSettings.sharedInstance().setSubmitSinglePaymentCardGuiSetting(submitSinglePaymentCardGuiSetting)
+        submitSinglePaymentCardGuiSetting.switchButtonColor = txtPaymentSwitchButtonColor.text
+        submitSinglePaymentCardGuiSetting.loadingBarColor = txtPaymentLoadingColor.text
+    AppSettings.sharedInstance().setSubmitSinglePaymentCardGuiSetting(submitSinglePaymentCardGuiSetting)
     }
     
     
@@ -172,6 +244,8 @@ class DeveloperViewController: UIViewController {
         txtPaymentButtonText.text = submitSinglePaymentCardGuiSetting?.payButtonText
         txtPaymentSecurityCode.text = submitSinglePaymentCardGuiSetting?.securityCodeWatermark
         txtPaymentSwitchButtonColor.text = submitSinglePaymentCardGuiSetting?.switchButtonColor
+        txtPaymentLoadingColor.text = submitSinglePaymentCardGuiSetting?.loadingBarColor
+        
     }
     
     
@@ -185,7 +259,7 @@ class DeveloperViewController: UIViewController {
                 
                 //Alert pop up.
                 let alertTitle: String = "Change Environment."
-                let alertMessage: String = "All your saved cards will be deleted.\nPlease restart the app for the change to take effect"
+                let alertMessage: String = "All your saved cards will be deleted."
                 let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
                 //Okay action.
                 let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) -> Void in
@@ -201,6 +275,7 @@ class DeveloperViewController: UIViewController {
                     }
                     let url2: String = AppSettings.sharedInstance().getRunModeUrl()
                     print("New url '\(url2)' <- Old url '\(url1)'")
+                    self.resetAccountAndMode()
                 })
                 //Cancel action.
                 let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
@@ -234,3 +309,22 @@ class DeveloperViewController: UIViewController {
     }
     
 };
+
+
+extension DeveloperViewController: UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
+     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
+        clickedTextField = textField
+        return true
+    }
+    
+    
+}
+
+
+
+

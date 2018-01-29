@@ -23,16 +23,20 @@
 #import "BNEnums.h"
 #import "BNCreditCardEndpoint.h"
 #import "BNPaymentResponse.h"
+#import "VisaCheckoutEndpoint.h"
+#import "VisaCheckoutLaunchParams.h"
+#import "VisaCheckoutResponse.h"
+#import "VisaCheckoutTransactionParams.h"
 
 @import Foundation;
 
-@class BNAuthorizedCreditCard;
+
 @class BNCCHostedFormParams;
 @class BNAuthorizedCreditCard;
 @class BNRegisterCCParams;
 @class BNPaymentParams;
 @class BNHTTPClient;
-    
+
 
 
 /**
@@ -295,6 +299,10 @@ typedef void (^BNCreditCardRegistrationUrlBlock)(NSString *url, NSError *error);
 
 
 
+-(NSURLSessionDataTask *)getVisaCheckoutWithCompletionHandler:(void(^)(VisaCheckoutLaunchParams* visaCheckoutLaunchParams,NSError* error))completionHandler;
+
+
+-(NSURLSessionDataTask *)processTransactionFromVisaCheckout:(VisaCheckoutTransactionParams*)visaCheckoutTransactionParams WithCompletionHandler:(void(^)(VisaCheckoutResponse* visaCheckoutResponse,NSError* error))completionHandler;
 
 
 /**
