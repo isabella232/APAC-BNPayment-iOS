@@ -1,4 +1,4 @@
-#import <BNPayment/BNPayment.h>
+#import "BNBaseModel.h"
 
 @interface VisaCheckoutLaunchParams : BNBaseModel
 

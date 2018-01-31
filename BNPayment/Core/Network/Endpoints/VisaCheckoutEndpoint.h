@@ -3,7 +3,7 @@
 #import "VisaCheckoutTransactionParams.h"
 #import "VisaCheckoutResponse.h"
 #import "VisaCheckoutLaunchParams.h"
-
+#import "BNHTTPClient.h"
 @import Foundation;
 
 @class VisaCheckoutLaunchParams;
