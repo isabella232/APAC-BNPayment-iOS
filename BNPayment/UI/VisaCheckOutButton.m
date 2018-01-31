@@ -41,7 +41,7 @@
     self.scrollView.scrollEnabled=NO;
     self.navigationDelegate = self;
 
-     NSBundle *bundle = [NSBundle bundleForClass:self.class];
+    NSBundle *bundle = [BNBundleUtils paymentLibBundle];
     NSString* path = [bundle pathForResource:@"VisaCheckOutConnector" ofType:@"html"];
     NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
 
