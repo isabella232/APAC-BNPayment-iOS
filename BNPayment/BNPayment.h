@@ -68,6 +68,7 @@ FOUNDATION_EXPORT const unsigned char BNPaymentVersionString[];
 #import "BNUser.h"
 #import "BNRegisterCCParams.h"
 #import "BNCreditCardRegistrationVC.h"
+#import "BNSubmitSinglePaymentCardVC.h"
 #import "BNBaseTextField.h"
 #import "BNCertUtils.h"
 #import "BNEncryptedSessionKey.h"
