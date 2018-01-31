@@ -164,8 +164,8 @@
 		9705A8DB200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h in Headers */ = {isa = PBXBuildFile; fileRef = 9705A8D9200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h */; };
 		9705A8DC200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m in Sources */ = {isa = PBXBuildFile; fileRef = 9705A8DA200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m */; };
 		9705A8DD200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m in Sources */ = {isa = PBXBuildFile; fileRef = 9705A8DA200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m */; };
-		9705A8E0200EFC4E004CBA5F /* VisaCheckOutConnector_iOS10.html in Resources */ = {isa = PBXBuildFile; fileRef = 9705A8DF200EFC4E004CBA5F /* VisaCheckOutConnector_iOS10.html */; };
-		9705A8E1200EFC4E004CBA5F /* VisaCheckOutConnector_iOS10.html in Resources */ = {isa = PBXBuildFile; fileRef = 9705A8DF200EFC4E004CBA5F /* VisaCheckOutConnector_iOS10.html */; };
+		971955D2202167AF005033F3 /* VisaCheckOutConnector_iOS10.html in Resources */ = {isa = PBXBuildFile; fileRef = 971955CF202167AF005033F3 /* VisaCheckOutConnector_iOS10.html */; };
+		971955D3202167AF005033F3 /* VisaCheckOutConnector.html in Resources */ = {isa = PBXBuildFile; fileRef = 971955D1202167AF005033F3 /* VisaCheckOutConnector.html */; };
 		9721608D2002D35C00644B6F /* VisaCheckoutResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9721608B2002D35C00644B6F /* VisaCheckoutResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9721608E2002D35C00644B6F /* VisaCheckoutResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9721608C2002D35C00644B6F /* VisaCheckoutResponse.m */; };
 		9721608F2002D35C00644B6F /* VisaCheckoutResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9721608C2002D35C00644B6F /* VisaCheckoutResponse.m */; };
@@ -177,8 +177,6 @@
 		976E84EE1FF46FA5001CE383 /* VisaCheckOutButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 976E84EB1FF46FA5001CE383 /* VisaCheckOutButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		976E84EF1FF46FA5001CE383 /* VisaCheckOutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 976E84EC1FF46FA5001CE383 /* VisaCheckOutButton.m */; };
 		976E84F01FF46FA5001CE383 /* VisaCheckOutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 976E84EC1FF46FA5001CE383 /* VisaCheckOutButton.m */; };
-		976E84F11FF46FA5001CE383 /* VisaCheckOutConnector.html in Resources */ = {isa = PBXBuildFile; fileRef = 976E84ED1FF46FA5001CE383 /* VisaCheckOutConnector.html */; };
-		976E84F21FF46FA5001CE383 /* VisaCheckOutConnector.html in Resources */ = {isa = PBXBuildFile; fileRef = 976E84ED1FF46FA5001CE383 /* VisaCheckOutConnector.html */; };
 		B2135C031D59DE2900D79E8D /* BNRegisterCCParamsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2135C021D59DE2900D79E8D /* BNRegisterCCParamsTests.m */; };
 		B2135C081D59E40400D79E8D /* UITextField+BNCreditCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2135C071D59E40400D79E8D /* UITextField+BNCreditCardTests.m */; };
 		B2135C0A1D5A086800D79E8D /* BNLoaderButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2135C091D5A086800D79E8D /* BNLoaderButtonTests.m */; };
@@ -411,7 +409,8 @@
 		95BACCE62002BFFD007F02B9 /* VisaCheckoutTransactionParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisaCheckoutTransactionParams.m; sourceTree = "<group>"; };
 		9705A8D9200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisaCheckOutButton_iOS10.h; sourceTree = "<group>"; };
 		9705A8DA200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisaCheckOutButton_iOS10.m; sourceTree = "<group>"; };
-		9705A8DF200EFC4E004CBA5F /* VisaCheckOutConnector_iOS10.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = VisaCheckOutConnector_iOS10.html; sourceTree = "<group>"; };
+		971955CF202167AF005033F3 /* VisaCheckOutConnector_iOS10.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = VisaCheckOutConnector_iOS10.html; path = BNPayment/UI/VisaCheckOutConnector_iOS10.html; sourceTree = SOURCE_ROOT; };
+		971955D1202167AF005033F3 /* VisaCheckOutConnector.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = VisaCheckOutConnector.html; path = BNPayment/UI/VisaCheckOutConnector.html; sourceTree = SOURCE_ROOT; };
 		9721608B2002D35C00644B6F /* VisaCheckoutResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisaCheckoutResponse.h; sourceTree = "<group>"; };
 		9721608C2002D35C00644B6F /* VisaCheckoutResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisaCheckoutResponse.m; sourceTree = "<group>"; };
 		976E84DF1FF46E52001CE383 /* VisaCheckoutHybrid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VisaCheckoutHybrid.framework; sourceTree = "<group>"; };
@@ -419,7 +418,6 @@
 		976E84E71FF46F86001CE383 /* VisaCheckoutLaunchParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisaCheckoutLaunchParams.h; sourceTree = "<group>"; };
 		976E84EB1FF46FA5001CE383 /* VisaCheckOutButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisaCheckOutButton.h; sourceTree = "<group>"; };
 		976E84EC1FF46FA5001CE383 /* VisaCheckOutButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisaCheckOutButton.m; sourceTree = "<group>"; };
-		976E84ED1FF46FA5001CE383 /* VisaCheckOutConnector.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = VisaCheckOutConnector.html; sourceTree = "<group>"; };
 		B2135C021D59DE2900D79E8D /* BNRegisterCCParamsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRegisterCCParamsTests.m; sourceTree = "<group>"; };
 		B2135C071D59E40400D79E8D /* UITextField+BNCreditCardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BNCreditCardTests.m"; sourceTree = "<group>"; };
 		B2135C091D5A086800D79E8D /* BNLoaderButtonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNLoaderButtonTests.m; sourceTree = "<group>"; };
@@ -859,6 +857,8 @@
 		5D8007211CB7D99C00E29149 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				971955CF202167AF005033F3 /* VisaCheckOutConnector_iOS10.html */,
+				971955D1202167AF005033F3 /* VisaCheckOutConnector.html */,
 				F8B6ECE51E89FC84000D4297 /* GlobalSign.cer */,
 				8FC3884C1D5C636800170637 /* DinersClubLogo@2x.png */,
 				8FC3884D1D5C636800170637 /* AmexLogo@2x.png */,
@@ -875,10 +875,8 @@
 			children = (
 				976E84EB1FF46FA5001CE383 /* VisaCheckOutButton.h */,
 				976E84EC1FF46FA5001CE383 /* VisaCheckOutButton.m */,
-				976E84ED1FF46FA5001CE383 /* VisaCheckOutConnector.html */,
 				9705A8D9200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h */,
 				9705A8DA200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m */,
-				9705A8DF200EFC4E004CBA5F /* VisaCheckOutConnector_iOS10.html */,
 				5D9021361D2149DA00B4BEAC /* BNLoaderButton.h */,
 				5D9021371D2149DA00B4BEAC /* BNLoaderButton.m */,
 				EA58E6561ED3C7E6003BA174 /* BNSwitchButton.h */,
@@ -1132,15 +1130,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				971955D2202167AF005033F3 /* VisaCheckOutConnector_iOS10.html in Resources */,
 				8FC3884F1D5C636800170637 /* AmexLogo@2x.png in Resources */,
-				976E84F11FF46FA5001CE383 /* VisaCheckOutConnector.html in Resources */,
 				5D69A6131CE0D28D00A573EE /* GlobalSign.old.cer in Resources */,
-				9705A8E0200EFC4E004CBA5F /* VisaCheckOutConnector_iOS10.html in Resources */,
 				5DA20C4C1CF49AD4007B2361 /* MasterCardLogo@2x.png in Resources */,
 				5D8007301CB7D99C00E29149 /* BNCCHostedRegistrationFormVC.xib in Resources */,
 				F8B6ECE61E89FC84000D4297 /* GlobalSign.cer in Resources */,
 				8FC3884E1D5C636800170637 /* DinersClubLogo@2x.png in Resources */,
 				5DA20C4E1CF49AE4007B2361 /* VisaLogo@2x.png in Resources */,
+				971955D3202167AF005033F3 /* VisaCheckOutConnector.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,9 +1146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9705A8E1200EFC4E004CBA5F /* VisaCheckOutConnector_iOS10.html in Resources */,
 				5D7B2A291D09A3E0001A6F3D /* encryptionCertificatesSuccessExtraParams.json in Resources */,
-				976E84F21FF46FA5001CE383 /* VisaCheckOutConnector.html in Resources */,
 				5D7B2A281D09A3E0001A6F3D /* encryptionCertificatesSuccess.json in Resources */,
 				FA77A8D81DCA05C6002EB943 /* 32x32.png in Resources */,
 				5D7B2A2A1D09A3E0001A6F3D /* nativeCCSuccess.json in Resources */,
