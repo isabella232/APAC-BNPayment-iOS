@@ -1,5 +1,4 @@
 #import <UIKit/UIKit.h>
-#import <VisaCheckoutHybrid/VisaCheckoutHybrid.h>
 #import "VisaCheckoutLaunchParams.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "BNBundleUtils.h"

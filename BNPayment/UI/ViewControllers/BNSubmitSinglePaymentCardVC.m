@@ -32,6 +32,7 @@
 #import "VisaCheckOutButton.h"
 #import "VisaCheckOutButton_iOS10.h"
 #import "VisaCheckoutLaunchParams.h"
+#import <VisaCheckoutHybrid/VisaCheckoutHybrid.h>
 
 NSInteger const SinglePaymentTextFieldHeight = 50;
 NSInteger const SinglePaymentButtonHeight = 50;

@@ -1,5 +1,5 @@
 #import "VisaCheckOutButton_iOS10.h"
-
+#import <VisaCheckoutHybrid/VisaCheckoutHybrid.h>
 @interface VisaCheckOutButton_iOS10 ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;

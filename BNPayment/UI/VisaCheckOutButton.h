@@ -1,8 +1,7 @@
 #import <UIKit/UIKit.h>
-#import <VisaCheckoutHybrid/VisaCheckoutHybrid.h>
 #import "VisaCheckoutLaunchParams.h"
 #import "BNBundleUtils.h"
-
+#import <WebKit/WebKit.h>
 @protocol VisaCheckOutButtonDelegate <NSObject>
 
 -(void)VisaCheckoutSuccess:(NSDictionary *)VisaCheckoutPayment;
