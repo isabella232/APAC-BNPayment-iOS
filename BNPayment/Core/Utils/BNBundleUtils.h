@@ -24,6 +24,10 @@
 
 @interface BNBundleUtils : NSObject
 
+
++ (NSBundle *)getBundleFromCocoaPod ;
+
+
 /**
  *  Get bundle for payment sdk.
  *

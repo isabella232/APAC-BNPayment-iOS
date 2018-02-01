@@ -44,7 +44,11 @@
 
     self.delegate = self;
     
-    NSBundle *bundle = [BNBundleUtils paymentLibBundle];
+    NSBundle *bundle = [BNBundleUtils getBundleFromCocoaPod];
+    if(!bundle)
+    {
+        bundle=[BNBundleUtils paymentLibBundle];
+    }
     NSString* path = [bundle pathForResource:@"VisaCheckOutConnector_iOS10" ofType:@"html"];
     NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
     
