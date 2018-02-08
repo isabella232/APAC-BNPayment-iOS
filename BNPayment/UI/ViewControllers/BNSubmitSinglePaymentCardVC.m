@@ -33,7 +33,6 @@
 #import "VisaCheckOutButton_iOS10.h"
 #import "VisaCheckoutLaunchParams.h"
 
-
 NSInteger const SinglePaymentTextFieldHeight = 50;
 NSInteger const SinglePaymentButtonHeight = 50;
 NSInteger const SinglePaymentPadding = 15;
@@ -75,8 +74,6 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
         [self layoutCreditCardForm];
         [self setupLoading];
         [self guiCustomisation];
-      
-        
         if(NSClassFromString(@"VisaCheckoutPlugin") != nil)
         {
             [self launchVisaCheckOut];
