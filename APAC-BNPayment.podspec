@@ -15,6 +15,7 @@ Pod::Spec.new do |spec|
   spec.module_name = 'BNPayment'
   spec.header_dir = 'BNPayment'
   spec.source_files     = 'BNPayment/**/**'
+  spec.vendored_frameworks = 'Example/VisaCheckoutHybrid.framework'
   spec.resource_bundles = {
                             'BNPayment' => ['Assets/**/*.{png,bundle,xib,nib,cer,html}']
                           }
