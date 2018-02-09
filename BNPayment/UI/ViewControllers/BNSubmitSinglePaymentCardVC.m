@@ -74,7 +74,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
         [self layoutCreditCardForm];
         [self setupLoading];
         [self guiCustomisation];
-        if(NSClassFromString(@"VisaCheckoutPlugin") != nil)
+        if(self.enableVisaCheckout && NSClassFromString(@"VisaCheckoutPlugin") != nil)
         {
             [self launchVisaCheckOut];
         }

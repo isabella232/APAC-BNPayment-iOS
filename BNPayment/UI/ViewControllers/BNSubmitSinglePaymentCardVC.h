@@ -49,5 +49,7 @@ typedef void(^BNSubmitSinglePaymentFormCompletion)(NSDictionary<NSString*, NSStr
 
 @property (nonatomic) PaymentType paymentType;
 
+@property (nonatomic) BOOL enableVisaCheckout;
+
 @end
 
