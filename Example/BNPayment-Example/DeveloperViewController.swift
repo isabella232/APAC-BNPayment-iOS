@@ -21,6 +21,8 @@ class DeveloperViewController: UIViewController {
     @IBOutlet weak var rdTouchId: UISwitch!
     @IBOutlet weak var rdVelocity: UISwitch!
     @IBOutlet weak var lbVersion: UILabel!
+    @IBOutlet weak var rdVisaCheckout: UISwitch!
+    
     
     //registration form customisation.
     @IBOutlet weak var txtRegistrationFormTitle: UITextField!
@@ -57,8 +59,8 @@ class DeveloperViewController: UIViewController {
         txtMerchantGuid.text = AppSettings.sharedInstance().getCurrentRunModeMerchantGuid();
         
         rdVelocity.isOn = AppSettings.sharedInstance().velocityMode;
-        
         rdTouchId.isOn = AppSettings.sharedInstance().touchIDMode;
+        rdVisaCheckout.isOn = AppSettings.sharedInstance().getVisaCheckoutMode();
         
         let dictionary = Bundle.main.infoDictionary!;
         let version = dictionary["CFBundleShortVersionString"] as! String;
@@ -290,6 +292,12 @@ class DeveloperViewController: UIViewController {
     }
  
    
+    
+    @IBAction func rdVisaCheckoutChange(_ sender: UISwitch) {
+       AppSettings.sharedInstance().setVisaCheckoutMode(rdVisaCheckout.isOn)
+    }
+    
+    
     @IBAction func rdTouchIdChange(_ sender: Any) {
         AppSettings.sharedInstance().setTouchIDMode(rdTouchId.isOn, newRunMode: AppSettings.sharedInstance().getRunMode());
     }

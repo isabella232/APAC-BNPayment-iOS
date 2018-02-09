@@ -42,7 +42,7 @@ static NSString *const numberOfCardsSavedKey = @"numberOfCardsSaved";
 static NSString *const payOnceModeKey = @"payOnceMode";
 static NSString *const ScanVisualCuesHiddenKey = @"ScanVisualCuesHidden";
 static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
-
+static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
 
 @implementation AppSettings {
    
@@ -116,10 +116,22 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
     [userDefault setBool:newTouchIDMode forKey:TouchIDModeKey];
 }
 
-- (BOOL)touchIDMode {
+- (BOOL)getVisaCheckoutMode {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    return [userDefault boolForKey:TouchIDModeKey];
+    return [userDefault boolForKey:VisaCheckoutModeKey];
 }
+
+- (void)setVisaCheckoutMode:(BOOL)newVisaCheckoutMode{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setBool:newVisaCheckoutMode forKey:VisaCheckoutModeKey];
+}
+
+- (BOOL)visaCheckoutMode {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault boolForKey:VisaCheckoutModeKey];
+}
+
+
 
 - (void)setHPPMode:(BOOL)hppMode {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];

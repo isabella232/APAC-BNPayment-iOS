@@ -189,7 +189,7 @@ class CardsViewController: UIViewController {
         
         vc.paymentParams = paymentParams;
         vc.completionBlock = self.completeNonRecurringPaymentBlock;
-        
+        vc.enableVisaCheckout = AppSettings.sharedInstance().getVisaCheckoutMode()
         if let nav = self.navigationController {
             nav.pushViewController(vc, animated: true)
         }

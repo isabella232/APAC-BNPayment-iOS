@@ -302,13 +302,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TouchID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvM-dA-Mgq">
-                                        <rect key="frame" x="50" y="195" width="50" height="16"/>
+                                        <rect key="frame" x="40" y="195" width="50" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Velocity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjE-he-Hob">
-                                        <rect key="frame" x="276" y="195" width="49" height="16"/>
+                                        <rect key="frame" x="286" y="195" width="49" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -573,11 +573,27 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visa Checkout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnH-wk-5Wi">
+                                        <rect key="frame" x="143" y="195" width="88" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptV-0Z-T74" userLabel="switchVCO">
+                                        <rect key="frame" x="163" y="217" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="rdTouchIdChange:" destination="8Lf-pI-sOv" eventType="valueChanged" id="kRP-Bv-KMr"/>
+                                            <action selector="rdVisaCheckoutChange:" destination="8Lf-pI-sOv" eventType="valueChanged" id="iZy-Vd-B6b"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="qC0-uP-Oms" firstAttribute="centerX" secondItem="3dv-uj-qa1" secondAttribute="centerX" id="055-tD-MFC"/>
                                     <constraint firstAttribute="trailing" secondItem="gtc-hb-LYP" secondAttribute="trailing" constant="15" id="0AG-ji-lmk"/>
+                                    <constraint firstItem="ptV-0Z-T74" firstAttribute="centerX" secondItem="3dv-uj-qa1" secondAttribute="centerX" id="0DI-g3-DfK"/>
                                     <constraint firstAttribute="trailing" secondItem="M2M-Lz-0We" secondAttribute="trailing" constant="15" id="1JD-eT-EWm"/>
+                                    <constraint firstItem="ptV-0Z-T74" firstAttribute="centerY" secondItem="LUv-Wn-dlt" secondAttribute="centerY" id="1hW-oM-EVR"/>
                                     <constraint firstItem="sQU-aE-Mt8" firstAttribute="centerX" secondItem="vjE-he-Hob" secondAttribute="centerX" id="2Kl-Er-WX4"/>
                                     <constraint firstAttribute="trailing" secondItem="XJ6-Y9-g6O" secondAttribute="trailing" constant="15" id="2Sr-t8-VDO"/>
                                     <constraint firstItem="9nQ-xv-XPm" firstAttribute="top" secondItem="rkc-9q-su9" secondAttribute="bottom" constant="25" id="3GC-2g-0MX"/>
@@ -608,6 +624,7 @@
                                     <constraint firstItem="crl-zY-FZV" firstAttribute="top" secondItem="Uee-TC-dnF" secondAttribute="bottom" constant="25" id="LND-rc-fPX"/>
                                     <constraint firstItem="ltV-xK-Znr" firstAttribute="leading" secondItem="3dv-uj-qa1" secondAttribute="leading" constant="15" id="Llf-PR-bsL"/>
                                     <constraint firstItem="gtc-hb-LYP" firstAttribute="centerY" secondItem="QQT-SN-0Tx" secondAttribute="centerY" id="Lly-3Q-SMM"/>
+                                    <constraint firstItem="mnH-wk-5Wi" firstAttribute="centerY" secondItem="vvM-dA-Mgq" secondAttribute="centerY" id="Lte-A3-PM8"/>
                                     <constraint firstItem="oSu-zW-wA3" firstAttribute="centerY" secondItem="Uk9-9b-rHk" secondAttribute="centerY" id="LuP-7s-hUf"/>
                                     <constraint firstItem="MlV-Mo-btE" firstAttribute="leading" secondItem="3dv-uj-qa1" secondAttribute="leading" constant="15" id="MJA-qD-6Bt"/>
                                     <constraint firstItem="DKD-rq-Dps" firstAttribute="width" secondItem="JaC-2t-wMi" secondAttribute="width" id="OSx-bS-oj5"/>
@@ -644,7 +661,7 @@
                                     <constraint firstItem="LcA-3Y-nxC" firstAttribute="centerY" secondItem="11P-SC-vt6" secondAttribute="centerY" id="fGq-dn-zDC"/>
                                     <constraint firstItem="Uee-TC-dnF" firstAttribute="leading" secondItem="3dv-uj-qa1" secondAttribute="leading" constant="15" id="gnA-pG-1nM"/>
                                     <constraint firstAttribute="trailing" secondItem="0vi-wm-FoD" secondAttribute="trailing" constant="15" id="gpt-41-8fx"/>
-                                    <constraint firstItem="vvM-dA-Mgq" firstAttribute="leading" secondItem="3dv-uj-qa1" secondAttribute="leading" constant="50" id="hAU-QS-LaY"/>
+                                    <constraint firstItem="vvM-dA-Mgq" firstAttribute="leading" secondItem="3dv-uj-qa1" secondAttribute="leading" constant="40" id="hAU-QS-LaY"/>
                                     <constraint firstAttribute="trailing" secondItem="9fj-op-gQn" secondAttribute="trailing" constant="15" id="hgJ-MM-y5V"/>
                                     <constraint firstAttribute="trailing" secondItem="G6F-c7-uy0" secondAttribute="trailing" constant="15" id="iLS-3F-df1"/>
                                     <constraint firstAttribute="trailing" secondItem="eFr-uP-fWR" secondAttribute="trailing" constant="15" id="iRN-8w-72C"/>
@@ -661,7 +678,7 @@
                                     <constraint firstItem="LcA-3Y-nxC" firstAttribute="width" secondItem="M2M-Lz-0We" secondAttribute="width" id="oO6-bp-dIJ"/>
                                     <constraint firstItem="3R1-BN-OI7" firstAttribute="centerY" secondItem="9nQ-xv-XPm" secondAttribute="centerY" id="oXV-Vt-feE"/>
                                     <constraint firstItem="0vi-wm-FoD" firstAttribute="centerY" secondItem="crl-zY-FZV" secondAttribute="centerY" id="ocC-U5-loU"/>
-                                    <constraint firstAttribute="trailing" secondItem="vjE-he-Hob" secondAttribute="trailing" constant="50" id="pCJ-LV-1wB"/>
+                                    <constraint firstAttribute="trailing" secondItem="vjE-he-Hob" secondAttribute="trailing" constant="40" id="pCJ-LV-1wB"/>
                                     <constraint firstItem="i1L-zd-DpY" firstAttribute="top" secondItem="jpE-dK-4zO" secondAttribute="bottom" constant="15" id="pFs-5a-uq4"/>
                                     <constraint firstItem="Z2C-XS-l5O" firstAttribute="centerY" secondItem="MVP-cU-Sj4" secondAttribute="centerY" id="pIR-Mu-hb1"/>
                                     <constraint firstItem="rMf-c8-oT4" firstAttribute="top" secondItem="xWs-Oz-mRn" secondAttribute="bottom" constant="25" id="q0s-Fk-LzQ"/>
@@ -692,6 +709,7 @@
                         <constraints>
                             <constraint firstItem="3dv-uj-qa1" firstAttribute="centerX" secondItem="HrX-mJ-n6F" secondAttribute="centerX" id="1RE-fK-4o8"/>
                             <constraint firstItem="0Lv-9r-jvC" firstAttribute="top" secondItem="3dv-uj-qa1" secondAttribute="bottom" id="CHv-Mv-RMg"/>
+                            <constraint firstItem="mnH-wk-5Wi" firstAttribute="centerX" secondItem="HrX-mJ-n6F" secondAttribute="centerX" id="FSx-Pe-vHJ"/>
                             <constraint firstItem="3dv-uj-qa1" firstAttribute="width" secondItem="HrX-mJ-n6F" secondAttribute="width" id="K7T-bF-9p8"/>
                             <constraint firstItem="3dv-uj-qa1" firstAttribute="top" secondItem="HrX-mJ-n6F" secondAttribute="top" constant="30" id="QC5-lA-MR8"/>
                         </constraints>
@@ -701,6 +719,7 @@
                         <outlet property="lbVersion" destination="PaC-bg-HjE" id="lCA-8p-5TE"/>
                         <outlet property="rdTouchId" destination="LUv-Wn-dlt" id="My3-8I-jR5"/>
                         <outlet property="rdVelocity" destination="sQU-aE-Mt8" id="Z2e-7a-Wxy"/>
+                        <outlet property="rdVisaCheckout" destination="ptV-0Z-T74" id="kvB-gG-naw"/>
                         <outlet property="segRunMode" destination="jpE-dK-4zO" id="abo-JU-K2Y"/>
                         <outlet property="settingView" destination="3dv-uj-qa1" id="pV5-qn-11B"/>
                         <outlet property="txtMerchantGuid" destination="ltV-xK-Znr" id="3dz-Pi-F6I"/>
