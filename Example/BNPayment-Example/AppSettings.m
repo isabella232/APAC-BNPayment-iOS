@@ -126,9 +126,9 @@ static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
     [userDefault setBool:newVisaCheckoutMode forKey:VisaCheckoutModeKey];
 }
 
-- (BOOL)visaCheckoutMode {
+- (BOOL)touchIDMode {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    return [userDefault boolForKey:VisaCheckoutModeKey];
+    return [userDefault boolForKey:TouchIDModeKey];
 }
 
 
