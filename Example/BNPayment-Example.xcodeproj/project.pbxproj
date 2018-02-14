@@ -297,6 +297,7 @@
 				5DAABF3C1CB69B8100CEDB91 /* Frameworks */,
 				5DAABF3D1CB69B8100CEDB91 /* Resources */,
 				5D7723B31CB7A21200D680FE /* CopyFiles */,
+				97494E9A20328C31000D3DB5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -363,6 +364,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		97494E9A20328C31000D3DB5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = $PROJECT_DIR/removeSimulatorArchitecturesBuildPhase.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5DAABF3B1CB69B8100CEDB91 /* Sources */ = {
