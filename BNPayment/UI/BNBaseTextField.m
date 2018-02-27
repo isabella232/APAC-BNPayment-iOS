@@ -41,6 +41,7 @@
     
     if(self) {
         self.delegate = self;
+        [self addToolBar];
     }
     
     return self;
@@ -55,6 +56,25 @@
     
     return self;
 }
+
+
+-(void)addToolBar{
+    
+    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action: @selector(doneClicked)];
+    keyboardDoneButtonView.items=@[space,doneButton];
+    self.inputAccessoryView = keyboardDoneButtonView;
+    
+}
+
+
+- (void)doneClicked
+{
+    [self resignFirstResponder];
+}
+
 
 #pragma mark - Public methods
 

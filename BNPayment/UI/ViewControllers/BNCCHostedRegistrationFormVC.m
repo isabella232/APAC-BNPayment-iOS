@@ -66,7 +66,13 @@ static int kObservingContentSizeChangesContext;
 static float AnimationDuration = 0.2f;
 
 - (instancetype)initWithHostedFormParams:(BNCCHostedFormParams *)params {
-    self = [super initWithNibName:@"BNCCHostedRegistrationFormVC" bundle:[BNBundleUtils paymentLibBundle]];
+    
+    NSBundle *bundle = [BNBundleUtils getBundleFromCocoaPod];
+    if(!bundle)
+    {
+        bundle=[BNBundleUtils paymentLibBundle];
+    }
+    self = [super initWithNibName:@"BNCCHostedRegistrationFormVC" bundle:bundle];
     
     if (self) {
         self.webviewDelegate = self;

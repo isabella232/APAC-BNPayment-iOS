@@ -15,6 +15,20 @@
 		5DAABF4D1CB69B8100CEDB91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF4B1CB69B8100CEDB91 /* Main.storyboard */; };
 		5DAABF4F1CB69B8100CEDB91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF4E1CB69B8100CEDB91 /* Assets.xcassets */; };
 		5DAABF521CB69B8100CEDB91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF501CB69B8100CEDB91 /* LaunchScreen.storyboard */; };
+		95C314D720037BBC007CFE72 /* OHHTTPStubsResponse+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314BF20037BBB007CFE72 /* OHHTTPStubsResponse+JSON.m */; };
+		95C314D820037BBC007CFE72 /* OHHTTPStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314C120037BBB007CFE72 /* OHHTTPStubs.m */; };
+		95C314D920037BBC007CFE72 /* OHPathHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314C420037BBB007CFE72 /* OHPathHelpers.m */; };
+		95C314DB20037BBC007CFE72 /* OHHTTPStubsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314C820037BBB007CFE72 /* OHHTTPStubsResponse.m */; };
+		95C314DC20037BBC007CFE72 /* OHHTTPStubs+Mocktail.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314CB20037BBB007CFE72 /* OHHTTPStubs+Mocktail.m */; };
+		95C314DD20037BBC007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314CE20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m */; };
+		95C314DE20037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314D220037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m */; };
+		95C314DF20037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314D320037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m */; };
+		95C314E020037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314D520037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m */; };
+		95C314E320040A14007CFE72 /* VisaCheckoutParams.json in Resources */ = {isa = PBXBuildFile; fileRef = 95C314E220040A14007CFE72 /* VisaCheckoutParams.json */; };
+		972160A12004475E00644B6F /* VisaCheckoutTransaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 972160A02004475E00644B6F /* VisaCheckoutTransaction.json */; };
+		972D988E1FFF4B8D00AB8635 /* MerchantID.txt in Resources */ = {isa = PBXBuildFile; fileRef = 972D988D1FFF4B8D00AB8635 /* MerchantID.txt */; };
+		976E84E41FF46E9E001CE383 /* VisaCheckoutHybrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976E84E31FF46E9E001CE383 /* VisaCheckoutHybrid.framework */; };
+		976E84E51FF46E9E001CE383 /* VisaCheckoutHybrid.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 976E84E31FF46E9E001CE383 /* VisaCheckoutHybrid.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA6365D31EDFE8AD00553EC7 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6365D21EDFE8AD00553EC7 /* DeveloperViewController.swift */; };
 		F861587F1EB16107007EFE17 /* registrationData.json in Resources */ = {isa = PBXBuildFile; fileRef = F861587E1EB16107007EFE17 /* registrationData.json */; };
 		F86158811EB16305007EFE17 /* paymentData.json in Resources */ = {isa = PBXBuildFile; fileRef = F86158801EB16305007EFE17 /* paymentData.json */; };
@@ -36,6 +50,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5D8007111CB7CED100E29149 /* BNPayment.framework in CopyFiles */,
+				976E84E51FF46E9E001CE383 /* VisaCheckoutHybrid.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +67,28 @@
 		5DAABF4E1CB69B8100CEDB91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DAABF511CB69B8100CEDB91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DAABF531CB69B8100CEDB91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95C314BF20037BBB007CFE72 /* OHHTTPStubsResponse+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubsResponse+JSON.m"; sourceTree = "<group>"; };
+		95C314C020037BBB007CFE72 /* OHHTTPStubsResponse+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubsResponse+JSON.h"; sourceTree = "<group>"; };
+		95C314C120037BBB007CFE72 /* OHHTTPStubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubs.m; sourceTree = "<group>"; };
+		95C314C220037BBB007CFE72 /* OHHTTPStubsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubsResponse.h; sourceTree = "<group>"; };
+		95C314C420037BBB007CFE72 /* OHPathHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHPathHelpers.m; sourceTree = "<group>"; };
+		95C314C520037BBB007CFE72 /* OHPathHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHPathHelpers.h; sourceTree = "<group>"; };
+		95C314C820037BBB007CFE72 /* OHHTTPStubsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubsResponse.m; sourceTree = "<group>"; };
+		95C314CA20037BBB007CFE72 /* OHHTTPStubs+Mocktail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+Mocktail.h"; sourceTree = "<group>"; };
+		95C314CB20037BBB007CFE72 /* OHHTTPStubs+Mocktail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+Mocktail.m"; sourceTree = "<group>"; };
+		95C314CD20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubsResponse+HTTPMessage.h"; sourceTree = "<group>"; };
+		95C314CE20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubsResponse+HTTPMessage.m"; sourceTree = "<group>"; };
+		95C314CF20037BBB007CFE72 /* OHHTTPStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubs.h; sourceTree = "<group>"; };
+		95C314D020037BBB007CFE72 /* Compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compatibility.h; sourceTree = "<group>"; };
+		95C314D220037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+HTTPBodyTesting.m"; sourceTree = "<group>"; };
+		95C314D320037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubsMethodSwizzling.m; sourceTree = "<group>"; };
+		95C314D420037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+HTTPBodyTesting.h"; sourceTree = "<group>"; };
+		95C314D520037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
+		95C314D620037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubsMethodSwizzling.h; sourceTree = "<group>"; };
+		95C314E220040A14007CFE72 /* VisaCheckoutParams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VisaCheckoutParams.json; sourceTree = "<group>"; };
+		972160A02004475E00644B6F /* VisaCheckoutTransaction.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VisaCheckoutTransaction.json; sourceTree = "<group>"; };
+		972D988D1FFF4B8D00AB8635 /* MerchantID.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MerchantID.txt; sourceTree = "<group>"; };
+		976E84E31FF46E9E001CE383 /* VisaCheckoutHybrid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VisaCheckoutHybrid.framework; sourceTree = "<group>"; };
 		EA6365D21EDFE8AD00553EC7 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
 		F861587E1EB16107007EFE17 /* registrationData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = registrationData.json; sourceTree = "<group>"; };
 		F86158801EB16305007EFE17 /* paymentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = paymentData.json; sourceTree = "<group>"; };
@@ -77,6 +114,7 @@
 				F8A9E3CE1E8B2DA000081251 /* PassKit.framework in Frameworks */,
 				5D7723A91CB79E6D00D680FE /* UIKit.framework in Frameworks */,
 				5D8007151CB7D1E200E29149 /* BNPayment.framework in Frameworks */,
+				976E84E41FF46E9E001CE383 /* VisaCheckoutHybrid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +142,8 @@
 		5DAABF411CB69B8100CEDB91 /* BNPayment-Example */ = {
 			isa = PBXGroup;
 			children = (
+				95C314BD20037BA3007CFE72 /* OHHTTPStubs */,
+				972D988D1FFF4B8D00AB8635 /* MerchantID.txt */,
 				F86158801EB16305007EFE17 /* paymentData.json */,
 				F861587E1EB16107007EFE17 /* registrationData.json */,
 				F8D0A2781E8C78D400FD49B1 /* Common */,
@@ -135,11 +175,87 @@
 		5DAABFEC1CB6A4F300CEDB91 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				976E84E31FF46E9E001CE383 /* VisaCheckoutHybrid.framework */,
 				F8A9E3CD1E8B2DA000081251 /* PassKit.framework */,
 				5D80070F1CB7CE6200E29149 /* BNPayment.framework */,
 				5D7723A81CB79E6D00D680FE /* UIKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95C314BD20037BA3007CFE72 /* OHHTTPStubs */ = {
+			isa = PBXGroup;
+			children = (
+				95C314E1200409E5007CFE72 /* TestData */,
+				95C314D020037BBB007CFE72 /* Compatibility.h */,
+				95C314CC20037BBB007CFE72 /* HTTPMessage */,
+				95C314BE20037BBB007CFE72 /* JSON */,
+				95C314C920037BBB007CFE72 /* Mocktail */,
+				95C314D120037BBC007CFE72 /* NSURLSession */,
+				95C314CF20037BBB007CFE72 /* OHHTTPStubs.h */,
+				95C314C120037BBB007CFE72 /* OHHTTPStubs.m */,
+				95C314C220037BBB007CFE72 /* OHHTTPStubsResponse.h */,
+				95C314C820037BBB007CFE72 /* OHHTTPStubsResponse.m */,
+				95C314C320037BBB007CFE72 /* OHPathHelpers */,
+			);
+			name = OHHTTPStubs;
+			sourceTree = "<group>";
+		};
+		95C314BE20037BBB007CFE72 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				95C314BF20037BBB007CFE72 /* OHHTTPStubsResponse+JSON.m */,
+				95C314C020037BBB007CFE72 /* OHHTTPStubsResponse+JSON.h */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		95C314C320037BBB007CFE72 /* OHPathHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				95C314C420037BBB007CFE72 /* OHPathHelpers.m */,
+				95C314C520037BBB007CFE72 /* OHPathHelpers.h */,
+			);
+			path = OHPathHelpers;
+			sourceTree = "<group>";
+		};
+		95C314C920037BBB007CFE72 /* Mocktail */ = {
+			isa = PBXGroup;
+			children = (
+				95C314CA20037BBB007CFE72 /* OHHTTPStubs+Mocktail.h */,
+				95C314CB20037BBB007CFE72 /* OHHTTPStubs+Mocktail.m */,
+			);
+			path = Mocktail;
+			sourceTree = "<group>";
+		};
+		95C314CC20037BBB007CFE72 /* HTTPMessage */ = {
+			isa = PBXGroup;
+			children = (
+				95C314CD20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.h */,
+				95C314CE20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m */,
+			);
+			path = HTTPMessage;
+			sourceTree = "<group>";
+		};
+		95C314D120037BBC007CFE72 /* NSURLSession */ = {
+			isa = PBXGroup;
+			children = (
+				95C314D220037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m */,
+				95C314D320037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m */,
+				95C314D420037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.h */,
+				95C314D520037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m */,
+				95C314D620037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.h */,
+			);
+			path = NSURLSession;
+			sourceTree = "<group>";
+		};
+		95C314E1200409E5007CFE72 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				95C314E220040A14007CFE72 /* VisaCheckoutParams.json */,
+				972160A02004475E00644B6F /* VisaCheckoutTransaction.json */,
+			);
+			path = TestData;
 			sourceTree = "<group>";
 		};
 		F8D0A2721E8C743600FD49B1 /* View Controllers */ = {
@@ -181,6 +297,7 @@
 				5DAABF3C1CB69B8100CEDB91 /* Frameworks */,
 				5DAABF3D1CB69B8100CEDB91 /* Resources */,
 				5D7723B31CB7A21200D680FE /* CopyFiles */,
+				97494E9A20328C31000D3DB5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -236,6 +353,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DAABF521CB69B8100CEDB91 /* LaunchScreen.storyboard in Resources */,
+				972D988E1FFF4B8D00AB8635 /* MerchantID.txt in Resources */,
+				95C314E320040A14007CFE72 /* VisaCheckoutParams.json in Resources */,
+				972160A12004475E00644B6F /* VisaCheckoutTransaction.json in Resources */,
 				F86158811EB16305007EFE17 /* paymentData.json in Resources */,
 				5DAABF4F1CB69B8100CEDB91 /* Assets.xcassets in Resources */,
 				F861587F1EB16107007EFE17 /* registrationData.json in Resources */,
@@ -245,19 +365,44 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		97494E9A20328C31000D3DB5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = $PROJECT_DIR/removeSimulatorArchitecturesBuildPhase.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5DAABF3B1CB69B8100CEDB91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95C314DF20037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m in Sources */,
+				95C314DB20037BBC007CFE72 /* OHHTTPStubsResponse.m in Sources */,
 				F8D0A2761E8C746C00FD49B1 /* CustomDataViewController.swift in Sources */,
 				5DAABF471CB69B8100CEDB91 /* AppDelegate.m in Sources */,
 				F87893F91EB02A480049E354 /* AppSettings.m in Sources */,
 				F8D0A2741E8C745800FD49B1 /* MyDetailsViewController.swift in Sources */,
+				95C314DD20037BBC007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m in Sources */,
+				95C314D820037BBC007CFE72 /* OHHTTPStubs.m in Sources */,
 				F8D0A2711E8C6B4300FD49B1 /* BNColor.swift in Sources */,
+				95C314DC20037BBC007CFE72 /* OHHTTPStubs+Mocktail.m in Sources */,
 				EA6365D31EDFE8AD00553EC7 /* DeveloperViewController.swift in Sources */,
+				95C314D720037BBC007CFE72 /* OHHTTPStubsResponse+JSON.m in Sources */,
 				F8C7D7781E88C3E100FC7362 /* CardsViewController.swift in Sources */,
 				F8C7D7761E88B34900FC7362 /* ProductsViewController.swift in Sources */,
+				95C314D920037BBC007CFE72 /* OHPathHelpers.m in Sources */,
+				95C314DE20037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m in Sources */,
+				95C314E020037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */,
 				5DAABF441CB69B8100CEDB91 /* main.m in Sources */,
 				F8C7D78F1E89B10800FC7362 /* CardsTableViewCell.swift in Sources */,
 			);

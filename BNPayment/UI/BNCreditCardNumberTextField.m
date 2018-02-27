@@ -93,7 +93,11 @@ NSString *dinersClubLogoImageName = @"DinersClubLogo";
 
 - (void)updateCardImage {
     UIImage *cardLogoImage = nil;
-    NSBundle *bundle = [BNBundleUtils paymentLibBundle];
+    NSBundle *bundle = [BNBundleUtils getBundleFromCocoaPod];
+    if(!bundle)
+    {
+        bundle=[BNBundleUtils paymentLibBundle];
+    }
     
     if([self isVisaCardNumber:self.text]) {
         cardLogoImage = [UIImage loadImageWithName:visaLogoImageName

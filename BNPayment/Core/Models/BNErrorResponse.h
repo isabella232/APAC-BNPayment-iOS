@@ -20,7 +20,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <BNPayment/BNPayment.h>
+#import "BNPayment.h"
 
 /**
  *  `BNErrorResponse` represents the format of the backend error responses.

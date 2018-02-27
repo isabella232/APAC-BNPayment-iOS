@@ -1,0 +1,14 @@
+{
+    "apikey": "ZW06OP7C8MA8S1NM9J79136ZKOZs_hlr-SdJPOEax5Ri9eBb4",
+    "currencyCode": "AUD",
+    "subtotal": "11.00",
+    "externalClientId": "c182d487-d94b-4907-bd74-eaa107b05ec7",
+    "externalProfileId": "IPPMerchant147942",
+    "total": "11.00",
+    "locale": "en_AU",
+    "collectShipping": "true",
+    "message" : "Click to Pay Now",
+    "buttonAction": "Pay",
+    "buttonImageUrl": "https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png",
+    "jsLibraryUrl" : "https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js"
+}

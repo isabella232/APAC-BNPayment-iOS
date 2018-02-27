@@ -29,6 +29,9 @@
 #import "UITextField+BNCreditCard.h"
 #import "BNLoaderButton.h"
 #import "BNSwitchButton.h"
+#import "VisaCheckOutButton.h"
+#import "VisaCheckOutButton_iOS10.h"
+#import "VisaCheckoutLaunchParams.h"
 
 NSInteger const SinglePaymentTextFieldHeight = 50;
 NSInteger const SinglePaymentButtonHeight = 50;
@@ -36,12 +39,11 @@ NSInteger const SinglePaymentPadding = 15;
 NSInteger const SinglePaymentTitleHeight = 30;
 NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
-@interface BNSubmitSinglePaymentCardVC ()
+@interface BNSubmitSinglePaymentCardVC () <VisaCheckOutButtonDelegate>
 
 @property (nonatomic, strong) UIScrollView *formScrollView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *saveCardLabel;
-
 
 @property (nonatomic, strong) BNCreditCardHolderTextField *cardHolderTextField;
 @property (nonatomic, strong) BNCreditCardNumberTextField *cardNumberTextField;
@@ -50,8 +52,9 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
 @property (nonatomic, strong) BNSwitchButton *switchSaveCardButton;
 @property (nonatomic, strong) BNLoaderButton *submitButton;
-
-
+@property (nonatomic, strong) VisaCheckOutButton *visaCheckOutButton;
+@property (nonatomic, strong) VisaCheckOutButton_iOS10 *visaCheckOutButton_iOS10;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -65,8 +68,48 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupCreditCardForm];
-    [self.cardHolderTextField becomeFirstResponder];
+    
+    if([self IsViewValid])
+    {
+        [self layoutCreditCardForm];
+        [self setupLoading];
+        [self guiCustomisation];
+        if(self.enableVisaCheckout && NSClassFromString(@"VisaCheckoutPlugin") != nil)
+        {
+            [self launchVisaCheckOut];
+        }
+    }
 }
+
+
+- (void)setupLoading{
+         
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.activityIndicator  setColor:[UIColor BNPurpleColor]];
+    self.activityIndicator.center = CGPointMake(CGRectGetMidX(self.view.bounds),CGRectGetMaxY(self.submitButton.frame)+25);
+    [self.view addSubview:self.activityIndicator];
+}
+
+
+- (void)launchVisaCheckOut{
+
+    [self.activityIndicator startAnimating];
+    [[BNPaymentHandler sharedInstance] getVisaCheckoutWithCompletionHandler:^(VisaCheckoutLaunchParams *visaCheckoutLaunchParams, NSError *error) {
+        [self.activityIndicator stopAnimating];
+        
+        if(visaCheckoutLaunchParams)
+        {
+            [visaCheckoutLaunchParams setAmount:self.paymentParams.amount];
+            [self setupVisaCheckOutButtonWithData:visaCheckoutLaunchParams];
+        }
+        else
+        {
+          //handle later
+        }
+    }];
+    
+}
+
 
 - (BOOL) IsViewValid {
  
@@ -79,14 +122,9 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     return false;
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
-    if([self IsViewValid])
-    {
-        [super viewWillAppear:animated];
-        [self layoutCreditCardForm];
-        [self guiCustomisation];
-    }
-    
+      [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -111,8 +149,14 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     
     self.formScrollView.frame = viewRect;
     
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard)];
+    [self.formScrollView addGestureRecognizer:panGestureRecognizer];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard)];
+    [self.formScrollView addGestureRecognizer:tapGestureRecognizer];
+    
     self.titleLabel.frame = CGRectMake(SinglePaymentPadding,
-                                       SinglePaymentPadding*2,
+                                       SinglePaymentPadding,
                                        CGRectGetWidth(viewRect)-2*SinglePaymentPadding,
                                        SinglePaymentTitleHeight);
     
@@ -120,7 +164,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     inputWidth -= inputWidth % 2;
     
     self.cardHolderTextField.frame = CGRectMake(SinglePaymentPadding,
-                                                CGRectGetMaxY(self.titleLabel.frame),
+                                                CGRectGetMaxY(self.titleLabel.frame)+5,
                                                 inputWidth,
                                                 SinglePaymentTextFieldHeight);
     
@@ -140,16 +184,15 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
                                              SinglePaymentTextFieldHeight);
     
     self.saveCardLabel.frame = CGRectMake(SinglePaymentPadding,
-                                       CGRectGetMaxY(self.cardExpiryTextField.frame)+6,
+                                       CGRectGetMaxY(self.cardExpiryTextField.frame)+10,
                                        SinglePaymentSaveCardLabelWidth,
                                        SinglePaymentTitleHeight);
     
     self.switchSaveCardButton.frame = CGRectMake(CGRectGetMaxX(self.saveCardLabel.frame)+1,
-                                             CGRectGetMaxY(self.cardExpiryTextField.frame)+6,
+                                             CGRectGetMaxY(self.cardExpiryTextField.frame)+10,
                                              0, 0);
     
-    self.submitButton.frame = CGRectMake(0,
-                                         CGRectGetHeight(self.formScrollView.frame)-SinglePaymentButtonHeight,
+    self.submitButton.frame = CGRectMake(0,CGRectGetMaxY(self.switchSaveCardButton.frame)+20,
                                          CGRectGetWidth(viewRect),
                                          SinglePaymentButtonHeight);
 }
@@ -175,7 +218,6 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     [self.cardHolderTextField addTarget:self action:@selector(validateFields) forControlEvents:UIControlEventEditingChanged];
     [self.formScrollView addSubview:self.cardHolderTextField];
     
-    
     self.cardNumberTextField = [[BNCreditCardNumberTextField alloc] init];
     self.cardNumberTextField.placeholder = NSLocalizedString(@"5555 5555 5555 5555", @"Placeholder");
     [self.cardNumberTextField applyStyle];
@@ -196,14 +238,11 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     [self.cardCVCTextField addTarget:self action:@selector(validateFields) forControlEvents:UIControlEventEditingChanged];
     [self.formScrollView addSubview:self.cardCVCTextField];
     
-    
-    
     self.saveCardLabel = [[UILabel alloc] init];
     self.saveCardLabel.text = NSLocalizedString(@"SAVE CARD", @"Save card");
     self.saveCardLabel.textColor = [UIColor BNTextColor];
     self.saveCardLabel.font = [UIFont systemFontOfSize:12.f weight:UIFontWeightMedium];
     [self.formScrollView addSubview:self.saveCardLabel];
-    
     
     self.switchSaveCardButton = [[BNSwitchButton alloc] init];
     [self.switchSaveCardButton addTarget:self action:@selector(validateFields) forControlEvents:UIControlEventEditingChanged];
@@ -229,8 +268,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     [self expiryDateCustomisation];
     [self securityCodeCustomisation];
     [self payButtonCustomisation];
-    
-    
+    [self loadingBarColorCustomisation];
 }
 
 - (void)titleCustomisation {
@@ -316,9 +354,99 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     }
 }
 
+- (void)loadingBarColorCustomisation {
+    if(_guiSetting==nil || _activityIndicator==nil)
+        return;
+    if(_guiSetting.loadingBarColor!=nil &&
+       _guiSetting.loadingBarColor.length==7)
+    {
+        [self.activityIndicator setColor:[BNUtils colorFromHexString:_guiSetting.loadingBarColor]];
+    }
+}
 
 
 
+
+
+- (void)setupVisaCheckOutButtonWithData:(VisaCheckoutLaunchParams *)visaCheckoutLaunchParams {
+    
+    CGFloat screenWidth=self.view.bounds.size.width;
+    
+    CGFloat orLabelWidth=60;
+    
+    UIView *leftLine= [[UIView alloc] initWithFrame:CGRectMake(SinglePaymentPadding,CGRectGetMaxY(self.submitButton.frame)+35,screenWidth/2-orLabelWidth/2-SinglePaymentPadding,1)];
+    leftLine.backgroundColor=[UIColor BNPurpleColor];
+    [self.formScrollView addSubview:leftLine];
+
+    UIView *rightLine= [[UIView alloc] initWithFrame:CGRectMake(screenWidth/2+orLabelWidth/2,CGRectGetMaxY(self.submitButton.frame)+35,screenWidth/2-orLabelWidth/2-SinglePaymentPadding,1)];
+    rightLine.backgroundColor=[UIColor BNPurpleColor];
+    [self.formScrollView addSubview:rightLine];
+    
+    UILabel *orLabel= [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2-orLabelWidth/2,CGRectGetMaxY(self.submitButton.frame)+20,orLabelWidth,30)];
+    [orLabel setTextColor:[UIColor BNPurpleColor]];
+    [orLabel setText:NSLocalizedString(@"OR", @"OR")];
+    orLabel.textAlignment = NSTextAlignmentCenter;
+    orLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+    [self.formScrollView addSubview:orLabel];
+    
+    
+    CGFloat visaCheckOutButtonWidth=self.cardHolderTextField.frame.size.width*0.85;
+    CGRect visaCheckOutButtonFrame=CGRectMake((screenWidth-visaCheckOutButtonWidth)/2,
+                                              CGRectGetMaxY(self.submitButton.frame)+70,visaCheckOutButtonWidth,visaCheckOutButtonWidth/4);
+    
+    
+    NSString *version = [UIDevice currentDevice].systemVersion;
+    if (version.doubleValue >= 11.0) {
+        self.visaCheckOutButton=[[VisaCheckOutButton alloc]init];
+        self.visaCheckOutButton.frame = visaCheckOutButtonFrame;
+        [self.formScrollView addSubview:self.visaCheckOutButton];
+        [self.visaCheckOutButton loadUIWithViewController:self andData:visaCheckoutLaunchParams andLoadingColor:self.activityIndicator.color];
+        self.visaCheckOutButton.resultDelegate=self;
+        
+    } else {
+        self.visaCheckOutButton_iOS10=[[VisaCheckOutButton_iOS10 alloc]init];
+        self.visaCheckOutButton_iOS10.frame = visaCheckOutButtonFrame;
+        [self.formScrollView addSubview:self.visaCheckOutButton_iOS10];
+        [self.visaCheckOutButton_iOS10 loadUIWithViewController:self andData:visaCheckoutLaunchParams andLoadingColor:self.activityIndicator.color];
+        self.visaCheckOutButton_iOS10.resultDelegate=self;
+    }
+  
+}
+
+-(void)VisaCheckoutSetupComplete{
+    // not need to handle at the moment
+}
+
+
+-(void)VisaCheckoutSuccess:(NSDictionary *)VisaCheckoutPayment{
+    
+    VisaCheckoutTransactionParams *visaCheckoutTransactionParams=[[VisaCheckoutTransactionParams alloc]init];
+    visaCheckoutTransactionParams.encPaymentData=[VisaCheckoutPayment objectForKey:@"encPaymentData"];
+    visaCheckoutTransactionParams.callid=[VisaCheckoutPayment objectForKey:@"callid"];
+    visaCheckoutTransactionParams.encKey=[VisaCheckoutPayment objectForKey:@"encKey"];
+    visaCheckoutTransactionParams.paymentJsonData=self.paymentParams.paymentJsonData;
+    
+     [self.activityIndicator startAnimating];
+    
+    [[BNPaymentHandler sharedInstance] processTransactionFromVisaCheckout:visaCheckoutTransactionParams WithCompletionHandler:^(VisaCheckoutResponse *visaCheckoutResponse, NSError *error) {
+        
+        [self.activityIndicator stopAnimating];
+        
+        if(visaCheckoutResponse && self.completionBlock)
+        {
+           self.completionBlock(@{@"receipt":visaCheckoutResponse.receipt}, nil, BNPaymentSuccess, error);
+        }
+        else
+        {
+            //handle later
+        }
+    }];
+}
+
+
+-(void)VisaCheckoutFail:(NSString *)info{
+   // handle later
+}
 
 - (void)showAlertViewWithTitle:(NSString*)title message:(NSString*)message {
     
@@ -385,42 +513,42 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 }
 
 #pragma mark - Handle keyboard events
-
-- (void)onKeyboardWillHide:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    if (userInfo) {
-        CGSize kbSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        CGFloat animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        
-        [self animateKeyboardVisible:NO kbSize:kbSize duration:animationDuration];
-    }
-}
-
-- (void)onKeyboardWillShow:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    if (userInfo) {
-        CGSize kbSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        CGFloat animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        
-        [self animateKeyboardVisible:YES kbSize:kbSize duration:animationDuration];
-    }
-}
-
-- (void)animateKeyboardVisible:(BOOL)visible kbSize:(CGSize)kbSize duration:(CGFloat)duration {
-    
-    CGFloat kbHeight = kbSize.height;
-    CGFloat viewHeight = CGRectGetHeight(self.view.frame);
-    CGFloat height = visible ? viewHeight-kbHeight + SinglePaymentButtonHeight : viewHeight;
-    
-    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        int a = height-SinglePaymentButtonHeight;
-        int b = CGRectGetMaxY(self.cardCVCTextField.frame)+SinglePaymentPadding;
-        [self.submitButton setYoffset:MAX(a,b)];
-        [self.formScrollView setHeight:height];
-    } completion:^(BOOL finished) {
-        [self.formScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.submitButton.frame))];
-    }];
-}
+//
+//- (void)onKeyboardWillHide:(NSNotification *)notification {
+//    NSDictionary *userInfo = notification.userInfo;
+//    if (userInfo) {
+//        CGSize kbSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//        CGFloat animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//        
+//        [self animateKeyboardVisible:NO kbSize:kbSize duration:animationDuration];
+//    }
+//}
+//
+//- (void)onKeyboardWillShow:(NSNotification *)notification {
+//    NSDictionary *userInfo = notification.userInfo;
+//    if (userInfo) {
+//        CGSize kbSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//        CGFloat animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//        
+//        [self animateKeyboardVisible:YES kbSize:kbSize duration:animationDuration];
+//    }
+//}
+//
+//- (void)animateKeyboardVisible:(BOOL)visible kbSize:(CGSize)kbSize duration:(CGFloat)duration {
+//    
+//    CGFloat kbHeight = kbSize.height;
+//    CGFloat viewHeight = CGRectGetHeight(self.view.frame);
+//    CGFloat height = visible ? viewHeight-kbHeight + SinglePaymentButtonHeight : viewHeight;
+//    
+//    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//        int a = height-SinglePaymentButtonHeight;
+//        int b = CGRectGetMaxY(self.cardCVCTextField.frame)+SinglePaymentPadding;
+//        [self.submitButton setYoffset:MAX(a,b)];
+//        [self.formScrollView setHeight:height];
+//    } completion:^(BOOL finished) {
+//        [self.formScrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.submitButton.frame))];
+//    }];
+//}
 
 - (void)validateFields {
     BOOL validCardNumber = [self.cardNumberTextField validCardNumber];
@@ -441,6 +569,14 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
         self.submitButton.enabled = NO;
         self.submitButton.alpha = 0.5f;
     }
+}
+
+- (void)resignKeyboard
+{
+    [self.cardHolderTextField resignFirstResponder];
+    [self.cardNumberTextField resignFirstResponder];
+    [self.cardExpiryTextField resignFirstResponder];
+    [self.cardCVCTextField resignFirstResponder];
 }
 
 @end

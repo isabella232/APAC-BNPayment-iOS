@@ -27,17 +27,26 @@ class CardsViewController: UIViewController {
     
     // MARK: - Life cycle
     
+    
+    @IBOutlet weak var addCardButton: UIBarButtonItem!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title=self.comment
+        
         let btndAddCard = UIButton(type: .custom)
         btndAddCard.setImage(UIImage(named: "addcard"), for: .normal)
-        btndAddCard.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btndAddCard.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         btndAddCard.addTarget(self, action: #selector(CardsViewController.addCard), for: .touchUpInside)
-        let item1 = UIBarButtonItem(customView: btndAddCard)
-        self.navigationItem.setRightBarButtonItems([item1], animated: true)
+        let containVew = UIView(frame:CGRect(x: 0, y: 0, width: 40, height: 40))
+        containVew.addSubview(btndAddCard)
+        addCardButton.customView=containVew
         
-        let contentInsets = UIEdgeInsets(top: -64.0, left: 0.0, bottom: 0, right: 0.0)
+        let contentInsets = UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 0.0)
         tableView.contentInset = contentInsets
         tableView.estimatedRowHeight = 200.0
         tableView.delegate = self
@@ -101,7 +110,10 @@ class CardsViewController: UIViewController {
         updateMessage()
     }
     
-    public func addCard() {
+    
+    
+       public func addCard() {
+        
         let vc = BNCreditCardRegistrationVC()
         let guiSetting = AppSettings.sharedInstance().getCardRegistrationGuiSetting();
         vc.guiSetting = guiSetting;
@@ -110,9 +122,11 @@ class CardsViewController: UIViewController {
         if let nav = self.navigationController {
             nav.pushViewController(vc, animated: true)
         }
+        
     }
     
-    // MARK : - completion blocks
+
+
     
     private func completeCardRegistrationBlock(p1:BNCCRegCompletion, card:BNAuthorizedCreditCard?) ->Void
     {
@@ -144,9 +158,7 @@ class CardsViewController: UIViewController {
     
    
     @IBAction func btnAddCardPreAuth(_ sender: Any) {
-        
-        stopUI()
-        
+
         let vc = BNSubmitSinglePaymentCardVC()
         let guiSetting = AppSettings.sharedInstance().getSubmitSinglePaymentGuiSetting();
         vc.guiSetting = guiSetting;
@@ -166,7 +178,7 @@ class CardsViewController: UIViewController {
     // MARK: - actions
     @IBAction func btnNonRecurringPaymentAction(_ sender: Any) {
         
-        stopUI()
+     //   stopUI()
         
         let vc = BNSubmitSinglePaymentCardVC()
         let guiSetting = AppSettings.sharedInstance().getSubmitSinglePaymentGuiSetting();
@@ -177,7 +189,7 @@ class CardsViewController: UIViewController {
         
         vc.paymentParams = paymentParams;
         vc.completionBlock = self.completeNonRecurringPaymentBlock;
-        
+        vc.enableVisaCheckout = AppSettings.sharedInstance().getVisaCheckoutMode()
         if let nav = self.navigationController {
             nav.pushViewController(vc, animated: true)
         }

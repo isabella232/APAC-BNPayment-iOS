@@ -22,7 +22,6 @@
 @property (nonatomic) BOOL offlineMode;
 @property (nonatomic) BOOL touchIDMode;
 
-
 @property (nonatomic) BOOL HPPMode;
 @property (nonatomic) BOOL velocityMode;
 @property (nonatomic) BOOL payOnceMode;
@@ -39,11 +38,12 @@
 - (NSInteger)donatedAmount;
 - (NSInteger)selectedCardIndex;
 
-
 - (void) setTouchIDMode:(BOOL) newTouchIDMode  newRunMode:(NSInteger) newRunMode;
 - (void) setVelocityMode:(BOOL) newVelocityMode  newRunMode:(NSInteger) newRunMode;
 - (void) setRunMode:(NSInteger) runMode;
 - (void) setRunModeMerchantGuid:(NSInteger) newRunMode  newMerchantGuid:(NSString*) newMerchantGuid;
+- (void) setVisaCheckoutMode:(BOOL) newVisaCheckoutMode;
+- (BOOL) getVisaCheckoutMode;
 
 - (void) setCardRegistrationGuiSetting:(BNCardRegistrationGuiSetting*) guiSetting;
 - (void) setSubmitSinglePaymentCardGuiSetting:(BNSubmitSinglePaymentCardGuiSetting*) guiSetting;

@@ -36,7 +36,8 @@ typedef enum
     paySecurityCodeWatermark,
     payButtonText,
     payButtonColor,
-    switchButtonColor
+    switchButtonColor,
+    loadingBarColor
 } submitSinglePaymentCardGuiEnum;
 
 
@@ -49,7 +50,7 @@ typedef enum
 //Color Hex Code ie. #00ff00@property (nonatomic, strong) NSString *payButtonColor;
 @property (nonatomic, strong) NSString *switchButtonColor;
 @property (nonatomic, strong) NSString *payButtonColor;
-
+@property (nonatomic, strong) NSString *loadingBarColor;
 +(NSString *)GetGuiKey:(submitSinglePaymentCardGuiEnum)guiEnum;
 
 

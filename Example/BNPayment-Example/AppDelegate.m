@@ -11,6 +11,9 @@
 
 #import "BNPayment_Example-Swift.h"
 #import "AppSettings.h"
+#import "OHHTTPStubs.h"
+#import "OHHTTPStubsResponse.h"
+#import "OHPathHelpers.h"
 
 @interface AppDelegate ()
 
@@ -46,7 +49,37 @@
     
     [[UISegmentedControl appearance] setTintColor:[BNColor purple]];
     
+    [self mockVisaCheckParams];
+    [self mockVisaCheckoutTransaction];
+    
     return YES;
+}
+
+
+-(void)mockVisaCheckParams{
+    
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.path isEqualToString:@"/rapi/visacheckout_params"];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSString *filePath = OHPathForFile(@"VisaCheckoutParams.json", self.class);
+        OHHTTPStubsResponse *response = [[OHHTTPStubsResponse responseWithFileAtPath:filePath statusCode:200 headers:@{@"Content-Type":@"application/json"}] responseTime:1];
+        return response;
+    }];
+    
+}
+
+
+
+-(void)mockVisaCheckoutTransaction{
+    
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.path isEqualToString:@"/rapi/visacheckout_transaction"];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSString *filePath = OHPathForFile(@"VisaCheckoutTransaction.json", self.class);
+        OHHTTPStubsResponse *response = [[OHHTTPStubsResponse responseWithFileAtPath:filePath statusCode:200 headers:@{@"Content-Type":@"application/json"}] responseTime:3];
+        return response;
+    }];
+    
 }
 
 @end

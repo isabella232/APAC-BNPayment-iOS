@@ -38,9 +38,15 @@
 #define kApplePayPaymentValidation @"applepay"
 #define kAppleTouchIdPaymentValidation @"appletouchid";
 
+
+
 static NSString *const TokenizedCreditCardCacheName = @"tokenizedCreditCardCacheName";
 static NSString *const SharedSecretKeychainKey = @"sharedSecret";
 static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
+
+static NSString *const existingMerchantAccountKey = @"BamboraMerchantAccount";
+static NSString *const existingBaseURLKey = @"BamboraBaseURL";
+
 
 @interface BNPaymentHandler ()
 
@@ -113,7 +119,30 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
     BNPaymentHandler *handler = [BNPaymentHandler sharedInstance];
     handler.merchantAccount = merchantAccount;
     [self setupCommon:baseUrl debug:debug];
+    [self checkMerchant:merchantAccount AndEnvironment:baseUrl];
     return error == nil;
+}
+
+
++ (void)checkMerchant:(NSString *)merchantAccount AndEnvironment:(NSString *)baseURL{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *existingMerchantAccount=[userDefaults objectForKey:existingMerchantAccountKey];
+    NSString *existingBaseURL=[userDefaults objectForKey:existingBaseURLKey];
+    
+    if(existingMerchantAccount==nil || existingBaseURL==nil)
+    {
+        [userDefaults setObject:merchantAccount forKey:existingMerchantAccountKey];
+        [userDefaults setObject:baseURL forKey:existingBaseURLKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else if(![existingMerchantAccount isEqualToString:merchantAccount] || ![existingBaseURL isEqualToString:baseURL])
+    {
+         [self removeAllAuthorizedCreditCards];
+         [userDefaults setObject:merchantAccount forKey:existingMerchantAccountKey];
+         [userDefaults setObject:baseURL forKey:existingBaseURLKey];
+         [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 
@@ -163,6 +192,29 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
     
     return dataTask;
 }
+
+
+-(NSURLSessionDataTask *)getVisaCheckoutWithCompletionHandler:(void(^)(VisaCheckoutLaunchParams* visaCheckoutLaunchParams,NSError* error))completionHandler{
+    
+    NSURLSessionDataTask *dataTask = [VisaCheckoutEndpoint getVisaCheckoutWithCompletionHandler:^(VisaCheckoutLaunchParams *visaCheckoutLaunchParams, NSError *error) {
+        completionHandler(visaCheckoutLaunchParams,error);
+    }];
+    return dataTask;
+}
+
+
+-(NSURLSessionDataTask *)processTransactionFromVisaCheckout:(VisaCheckoutTransactionParams*)visaCheckoutTransactionParams WithCompletionHandler:(void(^)(VisaCheckoutResponse* visaCheckoutResponse,NSError* error))completionHandler{
+    
+    
+    NSURLSessionDataTask *dataTask = [VisaCheckoutEndpoint processTransactionFromVisaCheckout:visaCheckoutTransactionParams WithCompletionHandler:^(VisaCheckoutResponse *visaCheckoutResponse, NSError *error) {
+        completionHandler(visaCheckoutResponse,error);
+    }];
+    return dataTask;
+}
+
+
+
+
 
 - (NSURLSessionDataTask *)registerCreditCard:(BNRegisterCCParams *)params
                                   completion:(BNCreditCardRegistrationBlock)completion {
@@ -377,6 +429,17 @@ static NSString *const DefaultBaseUrl = @"https://eu-native.bambora.com";
                                         withName:TokenizedCreditCardCacheName];
     }
 }
+
++(void)removeAllAuthorizedCreditCards{
+    BNPaymentHandler *handler = [BNPaymentHandler sharedInstance];
+    if (handler.tokenizedCreditCards) {
+        [handler.tokenizedCreditCards removeAllObjects];
+        [[BNCacheManager sharedCache] saveObject:handler.tokenizedCreditCards
+                                        withName:TokenizedCreditCardCacheName];
+    }
+}
+
+
 
 -(void) registerExtraPaymentValidationHook:(BNExtraPaymentValidationBlock) hook
 {

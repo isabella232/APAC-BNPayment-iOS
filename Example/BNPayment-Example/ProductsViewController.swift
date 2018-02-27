@@ -32,14 +32,25 @@ class ProductsViewController: UIViewController {
     func registerOrSelectCard(amount:NSNumber, comment:String) -> Void{
         if let _ = BNPaymentHandler.sharedInstance().authorizedCards()     {
             
-            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
-            vc.amount = amount
-            vc.comment = comment
-            if let nav = self.navigationController {
-                 nav.pushViewController(vc, animated: true)
+            let parameters:[String:Any] = ["amount":amount, "comment":comment]
+            
+             self.performSegue(withIdentifier: "toCardView", sender: parameters)
+        }
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCardView" {
+            if let cardVC = segue.destination as? CardsViewController {
+                let parameters = sender as! [String:Any]
+                cardVC.amount = parameters["amount"] as! NSNumber
+                cardVC.comment = parameters["comment"] as! String
             }
         }
     }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

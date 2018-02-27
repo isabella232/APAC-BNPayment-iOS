@@ -26,7 +26,7 @@
 #define kRunModeDev 1
 #define kRunModeUAT 2
 #define kRunModeProd 3
-#define kRunModeDefault kRunModeDev
+#define kRunModeDefault kRunModeUAT
 
 
 #define kMaxCard (20)
@@ -42,7 +42,7 @@ static NSString *const numberOfCardsSavedKey = @"numberOfCardsSaved";
 static NSString *const payOnceModeKey = @"payOnceMode";
 static NSString *const ScanVisualCuesHiddenKey = @"ScanVisualCuesHidden";
 static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
-
+static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
 
 @implementation AppSettings {
    
@@ -116,10 +116,22 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
     [userDefault setBool:newTouchIDMode forKey:TouchIDModeKey];
 }
 
+- (BOOL)getVisaCheckoutMode {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault boolForKey:VisaCheckoutModeKey];
+}
+
+- (void)setVisaCheckoutMode:(BOOL)newVisaCheckoutMode{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setBool:newVisaCheckoutMode forKey:VisaCheckoutModeKey];
+}
+
 - (BOOL)touchIDMode {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     return [userDefault boolForKey:TouchIDModeKey];
 }
+
+
 
 - (void)setHPPMode:(BOOL)hppMode {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
@@ -274,7 +286,16 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
 
 - (NSString *)getMerchantGuid: (NSInteger) runModeParam  {
       NSString* currentRunningModeMerchantGuidKey = [self getRunModeMerchantGuidKey: runModeParam];
-      return [[NSUserDefaults standardUserDefaults] valueForKey: currentRunningModeMerchantGuidKey];
+      if (runModeParam==kRunModeDefault && [[NSUserDefaults standardUserDefaults] valueForKey: currentRunningModeMerchantGuidKey]==nil)
+      {
+          NSString* path = [[NSBundle mainBundle] pathForResource:@"MerchantID" ofType:@"txt"];
+          NSString* defaultMerchantGuid = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+          return defaultMerchantGuid;
+      }
+    else
+    {
+        return [[NSUserDefaults standardUserDefaults] valueForKey: currentRunningModeMerchantGuidKey];
+    }
 }
 
 
@@ -329,6 +350,7 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
         _submitSinglePaymentCardGuiSetting.switchButtonColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:switchButtonColor]];
         _submitSinglePaymentCardGuiSetting.payButtonColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonColor]];
         _submitSinglePaymentCardGuiSetting.payButtonText =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonText]];
+        _submitSinglePaymentCardGuiSetting.loadingBarColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:loadingBarColor]];
         
     }
     return _submitSinglePaymentCardGuiSetting;
@@ -366,6 +388,7 @@ static NSString *const ScanCardHolderNameKey = @"ScanCardHolderName";
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.payButtonText forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonText]];
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.payButtonColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonColor]];
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.switchButtonColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:switchButtonColor]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.loadingBarColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:loadingBarColor]];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _submitSinglePaymentCardGuiSetting = guiSetting;
 }

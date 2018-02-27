@@ -24,6 +24,15 @@
 
 @implementation BNBundleUtils
 
+
++ (NSBundle *)getBundleFromCocoaPod {
+    NSBundle *frameworkBundle = [NSBundle bundleForClass:[BNBundleUtils class]];
+    NSURL *url=[frameworkBundle.resourceURL URLByAppendingPathComponent:@"BNPayment.bundle"];
+    NSBundle *resourceBundle = [[NSBundle alloc]initWithURL:url];
+    return resourceBundle;
+}
+
+
 + (NSBundle *)paymentLibBundle {
     NSBundle *bundle = [BNBundleUtils bundleWithName:@"BNPayment"];
     
