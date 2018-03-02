@@ -334,6 +334,16 @@ static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
         _cardRegistrationGuiSetting.securityCodeWatermark =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationSecurityCodeWatermark]];
         _cardRegistrationGuiSetting.registrationButtonColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationButtonColor]];
         _cardRegistrationGuiSetting.registerButtonText =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationButtonText]];
+        if([[[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]allKeys] containsObject:[BNCardRegistrationGuiSetting GetGuiKey:registrationCardIODisable]])
+        {
+            _cardRegistrationGuiSetting.registrationCardIODisable =[[NSUserDefaults standardUserDefaults] boolForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationCardIODisable]];
+        }
+        else
+        {
+            _cardRegistrationGuiSetting.registrationCardIODisable=NO;
+        }
+        _cardRegistrationGuiSetting.registrationCardIOColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNCardRegistrationGuiSetting GetGuiKey:registrationCardIOColor]];
+        
     }
     return _cardRegistrationGuiSetting;
 }
@@ -351,7 +361,15 @@ static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
         _submitSinglePaymentCardGuiSetting.payButtonColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonColor]];
         _submitSinglePaymentCardGuiSetting.payButtonText =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonText]];
         _submitSinglePaymentCardGuiSetting.loadingBarColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:loadingBarColor]];
-        
+        if([[[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]allKeys] containsObject:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:cardIODisable]])
+        {
+            _submitSinglePaymentCardGuiSetting.cardIODisable =[[NSUserDefaults standardUserDefaults] boolForKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:cardIODisable]];
+        }
+        else
+        {
+            _submitSinglePaymentCardGuiSetting.cardIODisable=NO;
+        }
+        _submitSinglePaymentCardGuiSetting.cardIOColor =[[NSUserDefaults standardUserDefaults] valueForKey: [BNSubmitSinglePaymentCardGuiSetting GetGuiKey:cardIOColor]];
     }
     return _submitSinglePaymentCardGuiSetting;
 }
@@ -372,6 +390,8 @@ static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.securityCodeWatermark forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationSecurityCodeWatermark]];
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.registerButtonText forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationButtonText]];
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.registrationButtonColor forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationButtonColor]];
+    [[NSUserDefaults standardUserDefaults] setBool:guiSetting.registrationCardIODisable forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationCardIODisable]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.registrationCardIOColor forKey:[BNCardRegistrationGuiSetting GetGuiKey:registrationCardIOColor]];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _cardRegistrationGuiSetting = guiSetting;
 }
@@ -389,6 +409,8 @@ static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.payButtonColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:payButtonColor]];
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.switchButtonColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:switchButtonColor]];
     [[NSUserDefaults standardUserDefaults] setValue: guiSetting.loadingBarColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:loadingBarColor]];
+    [[NSUserDefaults standardUserDefaults] setBool:guiSetting.cardIODisable forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:cardIODisable]];
+    [[NSUserDefaults standardUserDefaults] setValue: guiSetting.cardIOColor forKey:[BNSubmitSinglePaymentCardGuiSetting GetGuiKey:cardIOColor]];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _submitSinglePaymentCardGuiSetting = guiSetting;
 }
