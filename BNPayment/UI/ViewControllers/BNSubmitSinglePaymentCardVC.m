@@ -32,6 +32,8 @@
 #import "VisaCheckOutButton.h"
 #import "VisaCheckOutButton_iOS10.h"
 #import "VisaCheckoutLaunchParams.h"
+#import "CardIO.h"
+#import <AVFoundation/AVCaptureDevice.h>
 
 NSInteger const SinglePaymentTextFieldHeight = 50;
 NSInteger const SinglePaymentButtonHeight = 50;
@@ -39,7 +41,7 @@ NSInteger const SinglePaymentPadding = 15;
 NSInteger const SinglePaymentTitleHeight = 30;
 NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
-@interface BNSubmitSinglePaymentCardVC () <VisaCheckOutButtonDelegate>
+@interface BNSubmitSinglePaymentCardVC () <VisaCheckOutButtonDelegate,CardIOPaymentViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *formScrollView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -49,13 +51,15 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 @property (nonatomic, strong) BNCreditCardNumberTextField *cardNumberTextField;
 @property (nonatomic, strong) BNCreditCardExpiryTextField *cardExpiryTextField;
 @property (nonatomic, strong) BNBaseTextField *cardCVCTextField;
+@property (nonatomic, strong) UIButton *cardIOButton;
+@property (nonatomic, strong) UIColor *cardIOColor;
 
 @property (nonatomic, strong) BNSwitchButton *switchSaveCardButton;
 @property (nonatomic, strong) BNLoaderButton *submitButton;
 @property (nonatomic, strong) VisaCheckOutButton *visaCheckOutButton;
 @property (nonatomic, strong) VisaCheckOutButton_iOS10 *visaCheckOutButton_iOS10;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
-
+@property (nonatomic, strong) NSBundle *bundle;
 @end
 
 @implementation BNSubmitSinglePaymentCardVC
@@ -63,7 +67,11 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.bundle = [BNBundleUtils getBundleFromCocoaPod];
+    if(!self.bundle)
+    {
+        self.bundle=[BNBundleUtils paymentLibBundle];
+    }
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -125,6 +133,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
 - (void)viewWillAppear:(BOOL)animated {
       [super viewWillAppear:animated];
+      [CardIOUtilities preloadCardIO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -163,6 +172,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     NSInteger inputWidth = floorf(CGRectGetWidth(viewRect)-2*SinglePaymentPadding);
     inputWidth -= inputWidth % 2;
     
+    
     self.cardHolderTextField.frame = CGRectMake(SinglePaymentPadding,
                                                 CGRectGetMaxY(self.titleLabel.frame)+5,
                                                 inputWidth,
@@ -172,6 +182,11 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
                                                 CGRectGetMaxY(self.cardHolderTextField.frame)-1,
                                                 inputWidth,
                                                 SinglePaymentTextFieldHeight);
+    
+    self.cardIOButton.frame = CGRectMake(SinglePaymentPadding+inputWidth-60-SinglePaymentTextFieldHeight*0.6,
+                                                CGRectGetMinY(self.cardNumberTextField.frame)+SinglePaymentTextFieldHeight*0.2,
+                                                SinglePaymentTextFieldHeight*0.6,
+                                                SinglePaymentTextFieldHeight*0.6);
     
     self.cardExpiryTextField.frame = CGRectMake(SinglePaymentPadding,
                                                 CGRectGetMaxY(self.cardNumberTextField.frame)-1,
@@ -224,6 +239,15 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     [self.cardNumberTextField addTarget:self action:@selector(validateFields) forControlEvents:UIControlEventEditingChanged];
     [self.formScrollView addSubview:self.cardNumberTextField];
     
+    self.cardIOButton=[[UIButton alloc] init];
+    [self.cardIOButton addTarget:self
+                          action:@selector(cardIOLaunch:)
+                forControlEvents:UIControlEventTouchUpInside];
+    UIImage *cameraImage = [UIImage loadImageWithName:@"camera"
+                                           fromBundle:self.bundle];
+    [self.cardIOButton setImage:cameraImage forState:UIControlStateNormal];
+    [self.formScrollView addSubview:self.cardIOButton];
+    
     self.cardExpiryTextField = [[BNCreditCardExpiryTextField alloc] init];
     self.cardExpiryTextField.placeholder = NSLocalizedString(@"MM/YY", @"Placeholder");
     [self.cardExpiryTextField applyStyle];
@@ -269,6 +293,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     [self securityCodeCustomisation];
     [self payButtonCustomisation];
     [self loadingBarColorCustomisation];
+    [self cardIOCustomisation];
 }
 
 - (void)titleCustomisation {
@@ -364,9 +389,33 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     }
 }
 
-
-
-
+- (void)cardIOCustomisation{
+    if(_guiSetting!=nil && _cardIOButton!=nil)
+    {
+        if(!_guiSetting.cardIODisable)
+        {
+            if(_guiSetting.cardIOColor.length==7)
+            {
+                self.cardIOColor=[BNUtils colorFromHexString:_guiSetting.cardIOColor];
+            }
+            else
+            {
+                self.cardIOColor=[UIColor BNPurpleColor];
+            }
+        }
+        else
+        {
+            [_cardIOButton removeFromSuperview];
+        }
+    }
+    
+    if(_guiSetting.expiryDateWatermark!=nil &&
+       _guiSetting.expiryDateWatermark.length>0 &&
+       _cardExpiryTextField !=nil)
+    {
+        _cardExpiryTextField.placeholder = NSLocalizedString(_guiSetting.expiryDateWatermark, @"Placeholder");
+    }
+}
 
 - (void)setupVisaCheckOutButtonWithData:(VisaCheckoutLaunchParams *)visaCheckoutLaunchParams {
     
@@ -577,6 +626,79 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     [self.cardNumberTextField resignFirstResponder];
     [self.cardExpiryTextField resignFirstResponder];
     [self.cardCVCTextField resignFirstResponder];
+}
+
+- (void)cardIOLaunch:(UIButton *)sender {
+    AVAuthorizationStatus AVstatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    switch (AVstatus) {
+        case AVAuthorizationStatusAuthorized:
+            [self startCardIO];
+            break;
+        case AVAuthorizationStatusDenied:
+            [self askForCameraPermission];
+            break;
+        case AVAuthorizationStatusNotDetermined:
+            [self startCardIO];
+            break;
+        case AVAuthorizationStatusRestricted:
+            [self askForCameraPermission];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)askForCameraPermission{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:@"To scan your card, you need to enable the camera access."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                              [[UIApplication sharedApplication] openURL:url];
+                                                          }];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * action) {}];
+    [alert addAction:cancelAction];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)startCardIO{
+    CardIOPaymentViewController *scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+    [scanViewController setCollectCVV:NO];
+    [scanViewController setCollectCardholderName:NO];
+    [scanViewController setScanExpiry:YES];
+    [scanViewController setCollectExpiry:YES];
+    [scanViewController setHideCardIOLogo:YES];
+    [scanViewController setDisableManualEntryButtons:YES];
+    [scanViewController setGuideColor:self.cardIOColor];
+    [scanViewController setSuppressScannedCardImage:NO];
+    [self presentViewController:scanViewController animated:YES completion:nil];
+}
+
+- (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)scanViewController {
+    [scanViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)scanViewController {
+    [self.cardNumberTextField setText:info.cardNumber];
+    [self.cardNumberTextField sendActionsForControlEvents:UIControlEventEditingChanged];
+    [self.cardNumberTextField resignFirstResponder];
+    
+    NSString *expiryMonth=[NSString stringWithFormat:@"%@",@(info.expiryMonth)];
+    if(expiryMonth.length==1)
+    {
+        expiryMonth=[NSString stringWithFormat:@"0%@",@(info.expiryMonth)];
+    }
+    NSString *expiryYear=[[NSString stringWithFormat:@"%@", @(info.expiryYear)] substringWithRange:NSMakeRange(2,2)];
+    [self.cardExpiryTextField setText:[NSString stringWithFormat:@"%@/%@",expiryMonth,expiryYear]];
+    [self.cardExpiryTextField resignFirstResponder];
+    
+    [self validateFields];
+    [scanViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

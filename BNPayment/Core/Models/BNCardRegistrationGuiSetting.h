@@ -35,7 +35,9 @@ typedef enum
     registrationCardNumberWatermark,
     registrationExpiryDateWatermark,
     registrationSecurityCodeWatermark,
-    registrationButtonColor
+    registrationButtonColor,
+    registrationCardIODisable,
+    registrationCardIOColor
 } cardRegistrationGuiEnum;
 
 
@@ -47,7 +49,8 @@ typedef enum
 @property (nonatomic, strong) NSString *securityCodeWatermark;
 //Color Hex Code ie. #00ff00
 @property (nonatomic, strong) NSString *registrationButtonColor;
-
+@property (nonatomic) BOOL registrationCardIODisable;
+@property (nonatomic, strong) NSString *registrationCardIOColor;
 
 +(NSString *)GetGuiKey:(cardRegistrationGuiEnum)cardRegistrationGuiEnum;
 

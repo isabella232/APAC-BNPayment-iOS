@@ -32,6 +32,9 @@ class DeveloperViewController: UIViewController {
     @IBOutlet weak var txtRegistrationSecurityCode: UITextField!
     @IBOutlet weak var txtRegistrationButtonColor: UITextField!
     @IBOutlet weak var txtRegistrationButtonText: UITextField!
+    @IBOutlet weak var registrationCardIOSwitch: UISwitch!
+    @IBOutlet weak var txtRegistrationCardIOColor: UITextField!
+    
     
     //submit single card payment form customisation.
     @IBOutlet weak var txtPaymentFormTitle: UITextField!
@@ -43,6 +46,8 @@ class DeveloperViewController: UIViewController {
     @IBOutlet weak var txtPaymentButtonText: UITextField!
     @IBOutlet weak var txtPaymentSwitchButtonColor: UITextField!
     @IBOutlet weak var txtPaymentLoadingColor: UITextField!
+    @IBOutlet weak var paymentCardIOSwitch: UISwitch!
+    @IBOutlet weak var txtPaymentCardIOColor: UITextField!
     
     var clickedTextField: UITextField!
     
@@ -203,6 +208,8 @@ class DeveloperViewController: UIViewController {
         cardRegistrationGuiSetting.securityCodeWatermark = txtRegistrationSecurityCode.text
         cardRegistrationGuiSetting.registrationButtonColor = txtRegistrationButtonColor.text
         cardRegistrationGuiSetting.registerButtonText = txtRegistrationButtonText.text
+        cardRegistrationGuiSetting.registrationCardIODisable = !(registrationCardIOSwitch.isOn)
+        cardRegistrationGuiSetting.registrationCardIOColor=txtRegistrationCardIOColor.text
         AppSettings.sharedInstance().setCardRegistrationGuiSetting(cardRegistrationGuiSetting)
     }
 
@@ -219,7 +226,9 @@ class DeveloperViewController: UIViewController {
         submitSinglePaymentCardGuiSetting.switchButtonColor = txtPaymentSwitchButtonColor.text
         submitSinglePaymentCardGuiSetting.switchButtonColor = txtPaymentSwitchButtonColor.text
         submitSinglePaymentCardGuiSetting.loadingBarColor = txtPaymentLoadingColor.text
-    AppSettings.sharedInstance().setSubmitSinglePaymentCardGuiSetting(submitSinglePaymentCardGuiSetting)
+        submitSinglePaymentCardGuiSetting.cardIODisable = !(paymentCardIOSwitch.isOn)
+        submitSinglePaymentCardGuiSetting.cardIOColor=txtPaymentCardIOColor.text
+        AppSettings.sharedInstance().setSubmitSinglePaymentCardGuiSetting(submitSinglePaymentCardGuiSetting)
     }
     
     
@@ -233,6 +242,8 @@ class DeveloperViewController: UIViewController {
         txtRegistrationSecurityCode.text = cardRegistrationGuiSetting?.securityCodeWatermark
         txtRegistrationButtonColor.text = cardRegistrationGuiSetting?.registrationButtonColor
         txtRegistrationButtonText.text = cardRegistrationGuiSetting?.registerButtonText
+        registrationCardIOSwitch.setOn(!(cardRegistrationGuiSetting?.registrationCardIODisable)!, animated: true)
+        txtRegistrationCardIOColor.text = cardRegistrationGuiSetting?.registrationCardIOColor
     }
     
     func initSubmitSinglePaymentSetting()
@@ -247,7 +258,8 @@ class DeveloperViewController: UIViewController {
         txtPaymentSecurityCode.text = submitSinglePaymentCardGuiSetting?.securityCodeWatermark
         txtPaymentSwitchButtonColor.text = submitSinglePaymentCardGuiSetting?.switchButtonColor
         txtPaymentLoadingColor.text = submitSinglePaymentCardGuiSetting?.loadingBarColor
-        
+        paymentCardIOSwitch.setOn(!(submitSinglePaymentCardGuiSetting?.cardIODisable)!, animated: true)
+        txtPaymentCardIOColor.text = submitSinglePaymentCardGuiSetting?.cardIOColor
     }
     
     
