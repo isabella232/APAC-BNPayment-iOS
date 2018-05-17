@@ -88,4 +88,19 @@ static const int KEY_LENGTH = 16;
     
 }
 
+- (void)testRegistrationJsonData {
+
+    NSDictionary *correctDictionary = @{
+                                        @"cardDetails" : @"encryptedCard",
+                                        @"binNumber" : @"binNumber",
+                                        @"encryptedSessionKeys" : @"encryptedSessionKeys"
+                                        };
+    
+    [BNRegisterCCParams setRegistrationJsonData:correctDictionary];
+
+    XCTAssertEqualObjects(correctDictionary, [BNRegisterCCParams registrationJsonData], "The manually added dictionary (correctDictionary) should equal the dictionary generated through the BNRegisterCCParams class.");
+    
+     XCTAssertEqualObjects(correctDictionary, [BNRegisterCCParams JSONMappingDictionary], "The manually added dictionary (correctDictionary) should equal the dictionary generated through the BNRegisterCCParams class.");
+}
+
 @end

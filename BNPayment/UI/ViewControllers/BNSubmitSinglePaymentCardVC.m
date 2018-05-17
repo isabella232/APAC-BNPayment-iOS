@@ -60,6 +60,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 @property (nonatomic, strong) VisaCheckOutButton_iOS10 *visaCheckOutButton_iOS10;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NSBundle *bundle;
+@property (nonatomic, strong) NSString* alertContent;
 @end
 
 @implementation BNSubmitSinglePaymentCardVC
@@ -67,6 +68,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.alertContent=@"";
     self.bundle = [BNBundleUtils getBundleFromCocoaPod];
     if(!self.bundle)
     {
@@ -294,6 +296,10 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     [self payButtonCustomisation];
     [self loadingBarColorCustomisation];
     [self cardIOCustomisation];
+    if(self.alertContent.length>0)
+    {
+        [self sendAlertWithContent:self.alertContent];
+    }
 }
 
 - (void)titleCustomisation {
@@ -334,10 +340,16 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 - (void)saveCardSwitchButtonCustomisation {
     if(_guiSetting==nil || _switchSaveCardButton==nil)
         return;
-    if(_guiSetting.switchButtonColor!=nil &&
-       _guiSetting.switchButtonColor.length==7)
+    if(_guiSetting.switchButtonColor!=nil && _guiSetting.switchButtonColor.length>0)
     {
-        [self.switchSaveCardButton setOnTintColor:[BNUtils colorFromHexString:_guiSetting.switchButtonColor]];
+        if([self checkColorValueWithColor:_guiSetting.switchButtonColor])
+        {
+            [self.switchSaveCardButton setOnTintColor:[BNUtils colorFromHexString:_guiSetting.switchButtonColor]];
+        }
+        else
+        {
+            self.alertContent = [NSString stringWithFormat:@"%@\n%@",self.alertContent,@"Save Button Color is invalid!"];
+        }
     }
 }
 
@@ -372,20 +384,32 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     {
         [self.submitButton setTitle:NSLocalizedString(_guiSetting.payButtonText, @"") forState:UIControlStateNormal];
     }
-    if(_guiSetting.payButtonColor!=nil &&
-       _guiSetting.payButtonColor.length==7)
+    if(_guiSetting.payButtonColor!=nil && _guiSetting.payButtonColor.length>0)
     {
-        [self.submitButton setBackgroundColor:[BNUtils colorFromHexString:_guiSetting.payButtonColor]];
+        if([self checkColorValueWithColor:_guiSetting.payButtonColor])
+        {
+            [self.submitButton setBackgroundColor:[BNUtils colorFromHexString:_guiSetting.payButtonColor]];
+        }
+        else
+        {
+             self.alertContent = [NSString stringWithFormat:@"%@\n%@",self.alertContent,@"Submit Button Color is invalid!"];
+        }
     }
 }
 
 - (void)loadingBarColorCustomisation {
     if(_guiSetting==nil || _activityIndicator==nil)
         return;
-    if(_guiSetting.loadingBarColor!=nil &&
-       _guiSetting.loadingBarColor.length==7)
+    if(_guiSetting.loadingBarColor!=nil && _guiSetting.loadingBarColor.length>0)
     {
-        [self.activityIndicator setColor:[BNUtils colorFromHexString:_guiSetting.loadingBarColor]];
+        if([self checkColorValueWithColor:_guiSetting.loadingBarColor])
+        {
+            [self.activityIndicator setColor:[BNUtils colorFromHexString:_guiSetting.loadingBarColor]];
+        }
+        else
+        {
+            self.alertContent = [NSString stringWithFormat:@"%@\n%@",self.alertContent,@"Loading Bar Color is invalid!"];
+        }
     }
 }
 
@@ -394,14 +418,22 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     {
         if(!_guiSetting.cardIODisable)
         {
-            if(_guiSetting.cardIOColor.length==7)
+            if(_guiSetting.cardIOColor!=nil && _guiSetting.cardIOColor.length>0)
             {
-                self.cardIOColor=[BNUtils colorFromHexString:_guiSetting.cardIOColor];
+                if([self checkColorValueWithColor:_guiSetting.cardIOColor])
+                {
+                    self.cardIOColor=[BNUtils colorFromHexString:_guiSetting.cardIOColor];
+                }
+                else
+                {
+                    self.alertContent = [NSString stringWithFormat:@"%@\n%@",self.alertContent,@"CardIO Frame Color is invalid!"];
+                    self.cardIOColor=[UIColor BNPurpleColor];
+                }
             }
-            else
-            {
+            else{
                 self.cardIOColor=[UIColor BNPurpleColor];
             }
+
         }
         else
         {
@@ -415,6 +447,26 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     {
         _cardExpiryTextField.placeholder = NSLocalizedString(_guiSetting.expiryDateWatermark, @"Placeholder");
     }
+}
+
+-(void)sendAlertWithContent:(NSString *)content{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:content
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              
+                                                          }];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+-(BOOL)checkColorValueWithColor:(NSString*)color{
+    NSString *colorRegex = @"^#[A-Fa-f0-9]{6}$";
+    NSPredicate *colorTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",colorRegex];
+    return [colorTest evaluateWithObject:color];
 }
 
 - (void)setupVisaCheckOutButtonWithData:(VisaCheckoutLaunchParams *)visaCheckoutLaunchParams {
@@ -608,7 +660,7 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
         validCVC = [self.cardCVCTextField validCVC];
     }
     
-    // TODO Improve card holder validation
+
     
     // Now CVC is optional
     if(validCardNumber && validExpiry && validCVC) {

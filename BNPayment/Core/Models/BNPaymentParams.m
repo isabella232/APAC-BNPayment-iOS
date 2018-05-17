@@ -68,23 +68,23 @@ const NSInteger BNPaymentCCParamsKeyLength = 16;
 }
 
 
-+ (BNPaymentParams *)paymentParamsWithCreditCard:(NSString *)identifier
-                                currency:(NSString*)currency
-                                  amount:(NSNumber*)amount
-                                 comment:(NSString*)comment
-                              creditCard:(BNCreditCard*)creditCard
-                         isTokenRequired:(BOOL)isTokenRequired
-{
-    BNPaymentParams *params = [BNPaymentParams new];
-    
-    params.paymentIdentifier = identifier;
-    params.currency = currency;
-    params.amount = amount;
-    params.comment = comment;
-    params.paymentValidation = @"none";
-    [params SetCreditCardJsonData:creditCard isTokenRequired: isTokenRequired];
-    return params;
-}
+//+ (BNPaymentParams *)paymentParamsWithCreditCard:(NSString *)identifier
+//                                currency:(NSString*)currency
+//                                  amount:(NSNumber*)amount
+//                                 comment:(NSString*)comment
+//                              creditCard:(BNCreditCard*)creditCard
+//                         isTokenRequired:(BOOL)isTokenRequired
+//{
+//    BNPaymentParams *params = [BNPaymentParams new];
+//
+//    params.paymentIdentifier = identifier;
+//    params.currency = currency;
+//    params.amount = amount;
+//    params.comment = comment;
+//    params.paymentValidation = @"none";
+//    [params SetCreditCardJsonData:creditCard isTokenRequired: isTokenRequired];
+//    return params;
+//}
 
 + (BNPaymentParams *)mockObject {
     BNPaymentParams *mockObject = [BNPaymentParams new];
@@ -131,7 +131,7 @@ const NSInteger BNPaymentCCParamsKeyLength = 16;
                                    @"cardNumber":creditCard.cardNumber,
                                    @"expiryMonth":creditCard.expMonth,
                                    @"expiryYear":creditCard.expYear,
-                                   @"cvv":creditCard.cvv==nil? @"": creditCard.cvv,
+                                   @"cvcCode":creditCard.cvv==nil? @"": creditCard.cvv,
                                    @"istokenrequested": isTokenRequired? @"true":@"false",
                                    @"sessionKey" : encryptedSessionKey
                                    };

@@ -37,6 +37,7 @@
     NSNumber *amount = @100;
     NSString *token = @"token";
     NSString *comment = @"comment";
+    NSString *paymentValidation = @"none";
     
     BNPaymentParams *correctObject = [BNPaymentParams new];
     correctObject.paymentIdentifier = identifier;
@@ -44,7 +45,7 @@
     correctObject.amount = amount;
     correctObject.token = token;
     correctObject.comment = comment;
-    
+    correctObject.paymentValidation=paymentValidation;
     // When:
     BNPaymentParams *paymentParameters = [BNPaymentParams paymentParamsWithId:identifier
                                                                      currency:currency
