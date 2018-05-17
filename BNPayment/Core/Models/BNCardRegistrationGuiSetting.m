@@ -27,29 +27,29 @@
 
 
 
-+ (BNCardRegistrationGuiSetting *)BNCardRegistrationGuiSetting:
-                                         (NSString *)titleText
-                      registerButtonText:(NSString *)registerButtonText
-                     cardHolderWatermark:(NSString *)cardHolderWatermark
-                     cardNumberWatermark:(NSString *)cardNumberWatermark
-                     expiryDateWatermark:(NSString *)expiryDateWatermark
-                   securityCodeWatermark:(NSString *)securityCodeWatermark
-                 registrationButtonColor:(NSString *)registrationButtonColor
-                 registrationCardIODisable:(BOOL)registrationCardIODisable
-                 registrationCardIOColor:(NSString *)registrationCardIOColor
-{
-    BNCardRegistrationGuiSetting *cardRegistrationGuiSetting = [BNCardRegistrationGuiSetting new];
-    cardRegistrationGuiSetting.titleText = titleText;
-    cardRegistrationGuiSetting.registerButtonText = registerButtonText;
-    cardRegistrationGuiSetting.cardHolderWatermark = cardHolderWatermark;
-    cardRegistrationGuiSetting.cardNumberWatermark = cardNumberWatermark;
-    cardRegistrationGuiSetting.expiryDateWatermark = expiryDateWatermark;
-    cardRegistrationGuiSetting.securityCodeWatermark = securityCodeWatermark;
-    cardRegistrationGuiSetting.registrationButtonColor = registrationButtonColor;
-    cardRegistrationGuiSetting.registrationCardIODisable = registrationCardIODisable;
-    cardRegistrationGuiSetting.registrationCardIOColor = registrationCardIOColor;
-    return cardRegistrationGuiSetting;
-}
+//+ (BNCardRegistrationGuiSetting *)BNCardRegistrationGuiSetting:
+//                                         (NSString *)titleText
+//                      registerButtonText:(NSString *)registerButtonText
+//                     cardHolderWatermark:(NSString *)cardHolderWatermark
+//                     cardNumberWatermark:(NSString *)cardNumberWatermark
+//                     expiryDateWatermark:(NSString *)expiryDateWatermark
+//                   securityCodeWatermark:(NSString *)securityCodeWatermark
+//                 registrationButtonColor:(NSString *)registrationButtonColor
+//                 registrationCardIODisable:(BOOL)registrationCardIODisable
+//                 registrationCardIOColor:(NSString *)registrationCardIOColor
+//{
+//    BNCardRegistrationGuiSetting *cardRegistrationGuiSetting = [BNCardRegistrationGuiSetting new];
+//    cardRegistrationGuiSetting.titleText = titleText;
+//    cardRegistrationGuiSetting.registerButtonText = registerButtonText;
+//    cardRegistrationGuiSetting.cardHolderWatermark = cardHolderWatermark;
+//    cardRegistrationGuiSetting.cardNumberWatermark = cardNumberWatermark;
+//    cardRegistrationGuiSetting.expiryDateWatermark = expiryDateWatermark;
+//    cardRegistrationGuiSetting.securityCodeWatermark = securityCodeWatermark;
+//    cardRegistrationGuiSetting.registrationButtonColor = registrationButtonColor;
+//    cardRegistrationGuiSetting.registrationCardIODisable = registrationCardIODisable;
+//    cardRegistrationGuiSetting.registrationCardIOColor = registrationCardIOColor;
+//    return cardRegistrationGuiSetting;
+//}
 
 //Get cardRegistrationGuiEnum string key.
 +(NSString *)GetGuiKey:(cardRegistrationGuiEnum)cardRegistrationGuiEnum{

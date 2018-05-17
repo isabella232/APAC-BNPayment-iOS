@@ -104,7 +104,7 @@ static NSDictionary* _registrationJsonData;
 
 + (void) setRegistrationJsonData:(NSDictionary*) data
 {
-    //[[oz]] TODO validate?
+ 
     @synchronized(self) { _registrationJsonData = data; }
 }
 @end

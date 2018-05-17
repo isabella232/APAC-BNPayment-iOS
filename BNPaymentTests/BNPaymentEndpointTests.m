@@ -37,10 +37,12 @@
     [OHHTTPStubs setEnabled:YES];
     
     NSError *error;
-    [BNPaymentHandler setupWithApiToken:@"T000000000"
-                                baseUrl:nil
-                                  debug:YES
-                                  error:&error];
+//    [BNPaymentHandler setupWithApiToken:@"T000000000"
+//                                baseUrl:nil
+//                                  debug:YES
+//                                  error:&error];
+    
+    [BNPaymentHandler setupWithMerchantAccount:@"ABC" baseUrl:nil debug:YES error:&error];
 }
 
 - (void)setUp {
@@ -68,6 +70,7 @@
     
     // When:
     NSURLSessionDataTask *task = [BNPaymentEndpoint authorizePaymentWithParams:params
+                                                    paymentType:SubmitPaymentToken
                                                                     completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
         // Then:
         XCTAssertNil(error, "The error variable should not be nil.");
@@ -94,6 +97,7 @@
     
     // When:
     NSURLSessionDataTask *task = [BNPaymentEndpoint authorizePaymentWithParams:params
+                                                                    paymentType:SubmitPaymentToken
                                                                     completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
         // Then:
         XCTAssertNil(error, "The error variable should not be nil.");
@@ -121,6 +125,7 @@
     
     // When:
     NSURLSessionDataTask *task = [BNPaymentEndpoint authorizePaymentWithParams:params
+                                                                    paymentType:SubmitPaymentToken
                                                                     completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
         // Then:
         XCTAssertNotNil(error, "The error variable should not be nil.");
@@ -148,6 +153,7 @@
     
     // When:
     NSURLSessionDataTask *task = [BNPaymentEndpoint authorizePaymentWithParams:params
+                                                                    paymentType:SubmitPaymentToken
                                                                     completion:^(BNPaymentResponse *paymentResponse, NSError *error) {
         // Then:
         XCTAssertNotNil(error, "The error variable should not be nil.");

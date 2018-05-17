@@ -58,11 +58,11 @@
     return request;
 }
 
-- (NSURLRequest *)requestWithApiToken:(NSString *)apiToken
-                              request:(NSURLRequest *)request {
-    NSMutableURLRequest *mutableRequest = [request mutableCopy];
-    return mutableRequest;
-}
+//- (NSURLRequest *)requestWithApiToken:(NSString *)apiToken
+//                              request:(NSURLRequest *)request {
+//    NSMutableURLRequest *mutableRequest = [request mutableCopy];
+//    return mutableRequest;
+//}
 
 - (NSURLRequest *)createRequestWithMethod:(NSString *)method
                                 URLString:(NSString *)url

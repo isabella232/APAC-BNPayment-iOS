@@ -54,7 +54,7 @@ static NSString *const existingBaseURLKey = @"BamboraBaseURL";
 @property (nonatomic, strong) NSString *apiToken;
 @property (nonatomic, strong) NSString *merchantAccount;
 @property (nonatomic, assign) BOOL debug;
-@property (nonatomic, assign) NSString *baseUrl;
+@property (nonatomic, strong) NSString *baseUrl;
 @property (nonatomic, strong) BNHTTPClient *httpClient;
 @property (nonatomic) BNExtraPaymentValidationBlock extraPaymentValidationBlock;
 

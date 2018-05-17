@@ -41,7 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! @name Building a response from HTTP Message data */
 
-// TODO: Try to implement it using NSInputStream someday?
 
 /**
  * Builds a response given a message data as returned by `curl -is [url]`, that is containing both the headers and the body.

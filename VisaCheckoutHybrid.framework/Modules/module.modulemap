@@ -1,0 +1,6 @@
+framework module VisaCheckoutHybrid {
+  umbrella header "VisaCheckoutHybrid.h"
+
+  export *
+  module * { export * }
+}

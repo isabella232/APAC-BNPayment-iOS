@@ -55,17 +55,34 @@
     XCTAssert(cardNumberValidity == false, "The validation should have failed.");
 }
 
+- (void)testValidateCardHolder {
+    
+    // Given:
+    BNCreditCardHolderTextField *cardHolderTextField = [BNCreditCardHolderTextField new];
+    NSString *testHolderName=@"Mark";
+    cardHolderTextField.text = testHolderName;
+    
+    // When:
+    BOOL cardHolderValidity = [cardHolderTextField validCardHolder];
+    
+    // Then:
+    XCTAssert(cardHolderValidity == true, "The validation should have succeeded.");
+    XCTAssert([[cardHolderTextField getCardHolderName] isEqualToString:testHolderName], "The validation should have succeeded.");
+}
+
 - (void)testValidateValidExpiryDate {
 
     // Given:
     BNCreditCardExpiryTextField *expiryTextField = [BNCreditCardExpiryTextField new];
-    expiryTextField.text = @"01/18";
+    expiryTextField.text = @"01/20";
 
     // When:
     BOOL expiryDateValidity = [expiryTextField validExpiryDate];
 
     // Then:
     XCTAssert(expiryDateValidity == true, "The validation should have succeeded.");
+    XCTAssert([[expiryTextField getExpiryYear] isEqualToString:@"20"], "Get ExpiryYear");
+    XCTAssert([[expiryTextField getExpiryMonth] isEqualToString:@"01"], "Get getExpiryMonth");
 }
 
 - (void)testValidateInvalidExpiryDate {
@@ -79,12 +96,15 @@
 
     // Then:
     XCTAssert(expiryDateValidity == false, "The validation should have failed.");
+    XCTAssert([[expiryTextField getExpiryYear] isEqualToString:@""], "Get empty string when ExpiryYear is invaid");
+    XCTAssert([[expiryTextField getExpiryMonth] isEqualToString:@""], "Get empty string when getExpiryMonth is invaid");
 }
+
 
 - (void)testValidateValidCVC {
 
     // Given:
-    BNCreditCardExpiryTextField *cvcTextField = [BNCreditCardExpiryTextField new];
+    BNBaseTextField *cvcTextField = [BNBaseTextField new];
     cvcTextField.text = @"123";
 
     // When:
@@ -92,6 +112,7 @@
 
     // Then:
     XCTAssert(cvcValidity == true, "The validation should have succeeded.");
+    
 }
 
 - (void)testValidateInvalidCVC {
@@ -105,6 +126,7 @@
 
     // Then:
     XCTAssert(cvcValidity == false, "The validation should have failed.");
+    XCTAssert(![cvcTextField hasValidInput], "The validation should have failed.");
 }
 
 - (void)testVISAValidation {
@@ -159,6 +181,62 @@
     // Then:
     XCTAssert(cardNumberValidity == false, "The validation should have failed.");
 
+}
+
+- (void)testAmexCardValidation {
+    
+    // Given:
+    BNCreditCardNumberTextField *cardNumberTextField = [BNCreditCardNumberTextField new];
+    cardNumberTextField.text = @"342345678901238";
+    
+    // When:
+    BOOL cardNumberValidity = [cardNumberTextField isAmexCardNumber:cardNumberTextField.text];
+    
+    // Then:
+    XCTAssert(cardNumberValidity == true, "The validation should have succeeded.");
+    
+}
+
+- (void)testAmexCardValidationNegativeTest {
+    
+    // Given:
+    BNCreditCardNumberTextField *cardNumberTextField = [BNCreditCardNumberTextField new];
+    cardNumberTextField.text = @"4005550000000001";
+    
+    // When:
+    BOOL cardNumberValidity = [cardNumberTextField isAmexCardNumber:cardNumberTextField.text];
+    
+    // Then:
+    XCTAssert(cardNumberValidity == false, "The validation should have failed.");
+    
+}
+
+- (void)testDinersCardValidation {
+    
+    // Given:
+    BNCreditCardNumberTextField *cardNumberTextField = [BNCreditCardNumberTextField new];
+    cardNumberTextField.text = @"36876543210125";
+    
+    // When:
+    BOOL cardNumberValidity = [cardNumberTextField isDinersClubCardNumber:cardNumberTextField.text];
+    
+    // Then:
+    XCTAssert(cardNumberValidity == true, "The validation should have succeeded.");
+    
+}
+
+- (void)testDinersCardValidationNegativeTest {
+    
+    // Given:
+    BNCreditCardNumberTextField *cardNumberTextField = [BNCreditCardNumberTextField new];
+    cardNumberTextField.text = @"4005550000000001";
+    
+    // When:
+    BOOL cardNumberValidity = [cardNumberTextField isDinersClubCardNumber:cardNumberTextField.text];
+    
+    // Then:
+    XCTAssert(cardNumberValidity == false, "The validation should have failed.");
+    
 }
 
 - (void)testTextColorInValidTextField {

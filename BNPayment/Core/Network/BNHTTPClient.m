@@ -219,11 +219,16 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     __block NSURLCredential *credential = nil;
     
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        BOOL trustServer = [self.networkSecurity evaluateServerTrust:challenge.protectionSpace.serverTrust
-                                                           forDomain:challenge.protectionSpace.host];
-        
         credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-        disposition = trustServer ? NSURLSessionAuthChallengeUseCredential : NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+        SecTrustResultType result;
+        OSStatus status=SecTrustEvaluate(challenge.protectionSpace.serverTrust,&result);
+        if(status==errSecSuccess &&
+           (result==kSecTrustResultProceed ||
+            result==kSecTrustResultUnspecified)){
+               disposition=NSURLSessionAuthChallengeUseCredential;
+           }else{
+               disposition=NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+           }
     } else {
         disposition = NSURLSessionAuthChallengePerformDefaultHandling;
     }

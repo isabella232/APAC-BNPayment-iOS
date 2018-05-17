@@ -110,18 +110,16 @@ class DeveloperViewController: UIViewController {
     
     
     func keyboardWasShown(_ aNotification: Notification) {
-        
         let info = aNotification.userInfo
-        let kbSize: CGSize? = (info?[UIKeyboardFrameBeginUserInfoKey] as AnyObject).cgRectValue?.size
-        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, (kbSize?.height)!, 0.0)
+        let keyboardFrame: NSValue = (info?[UIKeyboardFrameEndUserInfoKey] as? NSValue)!
+        let kbSize = keyboardFrame.cgRectValue
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, (kbSize.height), 0.0)
         settingView.contentInset = contentInsets
         settingView.scrollIndicatorInsets = contentInsets
-
         var aRect: CGRect = view.frame
-        aRect.size.height -= (kbSize?.height)!
-        
+        aRect.size.height -= (kbSize.height)
         if (clickedTextField != nil) && !aRect.contains(clickedTextField.frame.origin) {
-            let scrollPoint = CGPoint(x: 0.0, y: clickedTextField.frame.origin.y - (kbSize?.height)!)
+            let scrollPoint = CGPoint(x: 0.0, y: clickedTextField.frame.origin.y - (kbSize.height))
             settingView.setContentOffset(scrollPoint, animated: true)
         }
     }
@@ -265,7 +263,7 @@ class DeveloperViewController: UIViewController {
     
     
     @IBAction func sgRunModeChange(_ sender: UISegmentedControl) {
-        if (sender as? UISegmentedControl) == segRunMode {
+        if sender == segRunMode {
             let changedRunMode: Int = segRunMode.selectedSegmentIndex + 1
             let currentMode: Int = AppSettings.sharedInstance().getRunMode()
             if changedRunMode != currentMode {

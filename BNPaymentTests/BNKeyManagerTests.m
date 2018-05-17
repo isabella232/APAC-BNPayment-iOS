@@ -45,6 +45,14 @@
     XCTAssertTrue(publicKey != nil, "The publicKey variable should not be nil.");
 }
 
+- (void)testGetPublicKeyWithInvalidFile{
+    
+    // When:
+    SecKeyRef publicKey = [BNKeyUtils getPublicKeyRefForCerFile:@"iosTestCert1"
+                                                         bundle:[NSBundle bundleForClass:self.class]];
+    // Then:
+    XCTAssertTrue(publicKey == nil, "The publicKey variable should be nil.");
+}
 
 - (void)testGetPublicKeyFromPem {
 
@@ -55,6 +63,15 @@
     XCTAssertTrue(publicKey != nil, "The publicKey variable should not be nil.");
 }
 
+- (void)testGetPublicKeyFromPemWithInvalidFile {
+    
+    // When:
+    SecKeyRef publicKey = [BNKeyUtils getPublicKeyRefForPemFile:@"iosTestCert1"
+                                                         bundle:[NSBundle bundleForClass:self.class]];
+    // Then:
+    XCTAssertTrue(publicKey == nil, "The publicKey variable should be nil.");
+}
+
 - (void)testGetPrivateKey {
 
     // When:
@@ -63,6 +80,16 @@
                                                     withPassword:@"1234"];
     // Then:
     XCTAssertTrue(privateKey != nil, "The privateKey variable should not be nil.");
+}
+
+- (void)testGetPrivateKeyWithInvalidPassword {
+    
+    // When:
+    SecKeyRef privateKey = [BNKeyUtils getPrivateKeyRefForFile:@"iOSTestPrivKey"
+                                                        bundle:[NSBundle bundleForClass:self.class]
+                                                  withPassword:@"12345"];
+    // Then:
+    XCTAssertTrue(privateKey == nil, "The privateKey variable should be nil.");
 }
 
 @end

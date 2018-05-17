@@ -225,7 +225,7 @@ class CardsViewController: UIViewController {
                 message +=  " Please try again. " +  error.localizedDescription
             case LAError.Code.userFallback.rawValue:
                 message += " Authentication" + " Password option selected"
-            // TODO Need to add code to obtain password here
+
             case LAError.Code.touchIDNotEnrolled.rawValue:
                 message += "TouchID is not enrolled. " + error.localizedDescription
             case LAError.Code.passcodeNotSet.rawValue:
@@ -255,7 +255,7 @@ class CardsViewController: UIViewController {
                     message +=  " Please try again. " +  error.localizedDescription
                 case LAError.Code.userFallback.rawValue:
                     message += " Authentication" + " Password option selected"
-                    // TODO Need to add code to obtain password here
+                
                 case LAError.Code.touchIDNotEnrolled.rawValue:
                    message += "TouchID is not enrolled. " + error.localizedDescription
                 case LAError.Code.passcodeNotSet.rawValue:

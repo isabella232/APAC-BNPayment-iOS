@@ -49,12 +49,14 @@ NSInteger const TitleHeight = 30;
 @property (nonatomic, strong) UIColor *cardIOColor;
 @property (nonatomic, strong) BNLoaderButton *submitButton;
 @property (nonatomic, strong) NSBundle *bundle;
+@property (nonatomic, strong) NSString* alertContent;
 @end
 
 @implementation BNCreditCardRegistrationVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.alertContent=@"";
     self.bundle = [BNBundleUtils getBundleFromCocoaPod];
     if(!self.bundle)
     {
@@ -211,6 +213,10 @@ NSInteger const TitleHeight = 30;
     [self securityCodeCustomisation];
     [self registerButtonCustomisation];
     [self cardIOCustomisation];
+    if(self.alertContent.length>0)
+    {
+        [self sendAlertWithContent:self.alertContent];
+    }
 }
 
 - (void)titleCustomisation {
@@ -277,25 +283,57 @@ NSInteger const TitleHeight = 30;
     {
         [self.submitButton setTitle:NSLocalizedString(_guiSetting.registerButtonText, @"") forState:UIControlStateNormal];
     }
-    if(_guiSetting.registrationButtonColor!=nil &&
-       _guiSetting.registrationButtonColor.length==7)
+    if(_guiSetting.registrationButtonColor!=nil && _guiSetting.registrationButtonColor.length>0)
     {
-        [self.submitButton setBackgroundColor:[BNUtils colorFromHexString:_guiSetting.registrationButtonColor]];
+        if([self checkColorValueWithColor:_guiSetting.registrationButtonColor])
+        {
+           [self.submitButton setBackgroundColor:[BNUtils colorFromHexString:_guiSetting.registrationButtonColor]];
+        }
+        else
+        {
+            self.alertContent = [NSString stringWithFormat:@"%@\n%@",self.alertContent,@"Registration Button Color is invalid!"];
+        }
     }
 }
 
+-(void)sendAlertWithContent:(NSString *)content{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:content
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              
+                                                          }];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+-(BOOL)checkColorValueWithColor:(NSString*)color{
+    NSString *colorRegex = @"^#[A-Fa-f0-9]{6}$";
+    NSPredicate *colorTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",colorRegex];
+    return [colorTest evaluateWithObject:color];
+}
 
 - (void)cardIOCustomisation{
     if(_guiSetting!=nil && _cardIOButton!=nil)
     {
         if(!_guiSetting.registrationCardIODisable)
         {
-            if(_guiSetting.registrationCardIOColor.length==7)
+            if(_guiSetting.registrationCardIOColor!=nil && _guiSetting.registrationCardIOColor.length>0)
             {
-                self.cardIOColor=[BNUtils colorFromHexString:_guiSetting.registrationCardIOColor];
+                if([self checkColorValueWithColor:_guiSetting.registrationCardIOColor])
+                {
+                    self.cardIOColor=[BNUtils colorFromHexString:_guiSetting.registrationCardIOColor];
+                }
+                else
+                {
+                    self.alertContent = [NSString stringWithFormat:@"%@\n%@",self.alertContent,@"CardIO Frame Color is invalid!"];
+                    self.cardIOColor=[UIColor BNPurpleColor];
+                }
             }
-            else
-            {
+            else{
                 self.cardIOColor=[UIColor BNPurpleColor];
             }
         }
@@ -392,7 +430,7 @@ NSInteger const TitleHeight = 30;
         validCVC = [self.cardCVCTextField validCVC];
     }
     
-    // TODO Improve card holder validation
+    
     
     // Now CVC is optional
     if(validCardNumber && validExpiry && validCVC) {

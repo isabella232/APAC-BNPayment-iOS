@@ -70,4 +70,11 @@
 
 }
 
+- (void)testColorFromHexString {
+    
+    NSString *testValue = @"#FFFFFF";
+    UIColor *returnColor=[BNUtils colorFromHexString:testValue];
+    XCTAssert(returnColor=UIColor.whiteColor, "The variable resultFromsha256HMAC should contain an empty string.");
+}
+
 @end
