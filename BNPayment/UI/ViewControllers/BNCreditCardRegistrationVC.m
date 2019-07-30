@@ -35,7 +35,7 @@ NSInteger const ButtonHeight = 50;
 NSInteger const Padding = 15;
 NSInteger const TitleHeight = 30;
 
-@interface BNCreditCardRegistrationVC ()
+@interface BNCreditCardRegistrationVC () <CardIOPaymentViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *formScrollView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -348,11 +348,17 @@ NSInteger const TitleHeight = 30;
 - (void)showAlertViewWithTitle:(NSString*)title message:(NSString*)message {
 
     NSString *closeButtonTitle = NSLocalizedString(@"OK", nil);
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:closeButtonTitle
-                                              otherButtonTitles:nil];
-    [alertView show];
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:closeButtonTitle
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:nil];
+ 
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)submitCreditCardInformation:(UIButton *)sender {
@@ -478,7 +484,7 @@ NSInteger const TitleHeight = 30;
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {
                                                               NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                                                              [[UIApplication sharedApplication] openURL:url];
+                                                              [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
                                                           }];
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                            style:UIAlertActionStyleCancel

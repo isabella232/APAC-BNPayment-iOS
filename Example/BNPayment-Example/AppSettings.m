@@ -234,7 +234,7 @@ static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
                                                        @"UAT":@(kRunModeUAT),
                                                        @"Prod":@(kRunModeProd)};
     if ([[map allKeys] containsObject:name]){
-        return [NSNumber numberWithInt:[map objectForKey:name]];
+        return [[map objectForKey:name] integerValue];
     }
     return kRunModeUndefined;
 }
@@ -263,7 +263,7 @@ static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
 
 - (NSString *)getRunModeUrl {
     NSInteger i = [self getRunMode];
-    NSNumber* runMode= [NSNumber numberWithInt:i];
+    NSNumber* runMode= [NSNumber numberWithInteger:i];
     NSDictionary<NSNumber*,NSString*> *runModeUrls = @{
                                                        @(1):@"https://devsandbox.ippayments.com.au/rapi/",
                                                        @(2):@"https://uat.ippayments.com.au/rapi/",
@@ -304,7 +304,7 @@ static NSString *const VisaCheckoutModeKey = @"VisaCheckoutMode";
 
 - (NSString *)getRunModeMerchantGuidKey : (NSInteger) runModeParam{
     
-    NSNumber* runMode= [NSNumber numberWithInt:runModeParam];
+    NSNumber* runMode= [NSNumber numberWithInteger:runModeParam];
     NSDictionary<NSNumber*,NSString*> *runModeMerchantGuidKey = @{
                                                        @(1):@"MerchantGuid-Dev",
                                                        @(2):@"MerchantGuid-Uat",

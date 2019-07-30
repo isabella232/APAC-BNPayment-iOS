@@ -79,7 +79,7 @@ class CustomDataViewController: UIViewController {
     fileprivate func validateThenSave(tf:UITextView, key:String) {
         let jsonText = tf.text
         
-        print("\(key) data:\n \(jsonText)")
+        print("\(key) data:\n \(jsonText ?? "")")
         
         tf.resignFirstResponder()
         
@@ -98,11 +98,11 @@ class CustomDataViewController: UIViewController {
                 let alertController = UIAlertController(
                     title: title,
                     message:message,
-                    preferredStyle: UIAlertControllerStyle.alert
+                    preferredStyle: UIAlertController.Style.alert
                 )
                 
                 let cancelAction = UIAlertAction(
-                title: "OK", style: UIAlertActionStyle.default) { (action) in
+                title: "OK", style: UIAlertAction.Style.default) { (action) in
                     if let json = AppSettings.sharedInstance().retrieveJsonDataforKey(key), JSONSerialization.isValidJSONObject(json) {
                         
                         tf.text = self.stringify(json: json)

@@ -71,7 +71,7 @@ class DeveloperViewController: UIViewController {
         let version = dictionary["CFBundleShortVersionString"] as! String;
         let build = dictionary["CFBundleVersion"] as! String;
         
-        lbVersion.text = "Version \(version)(\(build)) \(AppSettings.sharedInstance().getCompileDate())";
+        lbVersion.text = "Version \(version)(\(build)) \(AppSettings.sharedInstance().getCompileDate() ?? "")";
         
         //init customisation settings.
         initCardRegistrationGuiSetting()
@@ -103,17 +103,17 @@ class DeveloperViewController: UIViewController {
         txtPaymentSwitchButtonColor.delegate=self
         txtPaymentLoadingColor.delegate=self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
     
-    func keyboardWasShown(_ aNotification: Notification) {
+    @objc func keyboardWasShown(_ aNotification: Notification) {
         let info = aNotification.userInfo
-        let keyboardFrame: NSValue = (info?[UIKeyboardFrameEndUserInfoKey] as? NSValue)!
+        let keyboardFrame: NSValue = (info?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)!
         let kbSize = keyboardFrame.cgRectValue
-        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, (kbSize.height), 0.0)
+        let contentInsets: UIEdgeInsets = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: (kbSize.height), right: 0.0)
         settingView.contentInset = contentInsets
         settingView.scrollIndicatorInsets = contentInsets
         var aRect: CGRect = view.frame
@@ -124,7 +124,7 @@ class DeveloperViewController: UIViewController {
         }
     }
     
-    func keyboardWillBeHidden(_ aNotification: Notification) {
+    @objc func keyboardWillBeHidden(_ aNotification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         settingView.contentInset = contentInsets
         settingView.scrollIndicatorInsets = contentInsets
@@ -154,11 +154,11 @@ class DeveloperViewController: UIViewController {
             let alertMessage: String = "Merchant guid updated."
             let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
             //Okay action.
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) in
                 
             })
             alertController.addAction(okAction)
-            present(alertController, animated: true, completion: { _ in })
+            present(alertController, animated: true, completion: {})
             resetAccountAndMode()
         }
         else{
@@ -167,11 +167,11 @@ class DeveloperViewController: UIViewController {
             let alertMessage: String = "Please enter valid guid format."
             let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
             //Okay action.
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) in
                 
             })
             alertController.addAction(okAction)
-            present(alertController, animated: true, completion: { _ in })
+            present(alertController, animated: true, completion: {})
         }
         
         
@@ -188,11 +188,11 @@ class DeveloperViewController: UIViewController {
         let alertMessage: String = "Gui customisation updated.\nPlease go to the form to check the change"
         let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         //Okay action.
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) in
             
         })
         alertController.addAction(okAction)
-        present(alertController, animated: true, completion: { _ in })
+        present(alertController, animated: true, completion: { })
         
     }
     
@@ -274,7 +274,7 @@ class DeveloperViewController: UIViewController {
                 let alertMessage: String = "All your saved cards will be deleted."
                 let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
                 //Okay action.
-                let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+                let okAction = UIAlertAction(title: "Ok", style: .default, handler: {(_ action: UIAlertAction) in
                     self.txtMerchantGuid.resignFirstResponder()
                     
                     let url1: String = AppSettings.sharedInstance().getRunModeUrl()
@@ -290,13 +290,13 @@ class DeveloperViewController: UIViewController {
                     self.resetAccountAndMode()
                 })
                 //Cancel action.
-                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) in
                     self.segRunMode.selectedSegmentIndex = currentMode - 1
                     
                 })
                 alertController.addAction(cancelAction)
                 alertController.addAction(okAction)
-                present(alertController, animated: true, completion: { _ in })
+                present(alertController, animated: true, completion: { })
             }
         }
     }

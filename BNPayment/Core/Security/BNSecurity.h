@@ -46,7 +46,7 @@
  *
  *  @return If the certificate is signed by the master cert.
  */
-+ (BOOL)evaluateCert:(SecCertificateRef)certRef masterCert:(SecCertificateRef)secTrust;
+//+ (BOOL)evaluateCert:(SecCertificateRef)certRef masterCert:(SecCertificateRef)secTrust;
 
 /**
  *  This method is used for overriding the pinned certs.

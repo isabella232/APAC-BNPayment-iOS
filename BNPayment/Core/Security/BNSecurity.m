@@ -190,9 +190,9 @@ static NSString *const OLD_MasterCert =
 //    return validTrustref;
 //}
 //
-//- (void)overridePinnedCerts:(NSArray<NSData *> *)certs {
-//    self.pinnedCertificates = certs;
-//}
+- (void)overridePinnedCerts:(NSArray<NSData *> *)certs {
+    self.pinnedCertificates = certs;
+}
 //
 //#pragma mark - Private methods
 //

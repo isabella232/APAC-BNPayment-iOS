@@ -24,5 +24,4 @@ open class BNColor:NSObject
     static public let muted = UIColor(red: 240, green: 240, blue: 240, alpha: 1)
     static public let mutedDark = UIColor(red: 200, green: 200, blue: 200, alpha: 1)
     
-    
 }

@@ -38,7 +38,7 @@
 
     UITabBarController* Tcontroller =(UITabBarController*)self.window.rootViewController;
         
-    Tcontroller.tabBar.barTintColor= BNColor.purple;
+    Tcontroller.tabBar.barTintColor = UIColor.purpleColor;
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor grayColor] }
                                              forState:UIControlStateNormal];
@@ -47,7 +47,7 @@
     
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     
-    [[UISegmentedControl appearance] setTintColor:[BNColor purple]];
+    [[UISegmentedControl appearance] setTintColor:UIColor.purpleColor];
     
     [self mockVisaCheckParams];
     [self mockVisaCheckoutTransaction];
