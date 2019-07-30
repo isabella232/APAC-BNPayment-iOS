@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "APAC-BNPayment"
-  spec.version          = "1.3.0"
+  spec.version          = "1.3.2"
   spec.summary          = "The Mobile Payment SDK from Bambora (APAC) makes it simple to accept credit card payments in your app."
   build_tag             = spec.version
   spec.homepage         = "http://bambora.com/en/au"
@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
                           :git => "https://github.com/bambora/APAC-BNPayment-iOS.git",
                           :tag => build_tag.to_s
                           }
-  spec.platform         = :ios, '8.0'
+  spec.platform         = :ios, '10.2'
   spec.requires_arc     = true
   spec.module_name = 'BNPayment'
   spec.header_dir = 'BNPayment'
