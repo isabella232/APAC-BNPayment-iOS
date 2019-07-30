@@ -1,6 +1,25 @@
-# Xcode
-.DS_Store
+## Build generated
 build/
+DerivedData/
+.DS_Store
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+.idea/
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -9,12 +28,18 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
+xcuserdata/
+profile
+
 *.xcworkspace
 !default.xcworkspace
-xcuserdata
-profile
-*.moved-aside
-DerivedData
-.idea/
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+
 # Pods - for those of you who use CocoaPods
 Pods

@@ -52,12 +52,12 @@
                                  comment:(NSString *)comment;
 
 
-+ (BNPaymentParams *)paymentParamsWithCreditCard:(NSString *)identifier
-                                        currency:(NSString *)currency
-                                          amount:(NSNumber *)amount
-                                         comment:(NSString *)comment
-                                      creditCard:(BNCreditCard*)creditCard
-                                 isTokenRequired: (BOOL) isTokenRequired;
+//+ (BNPaymentParams *)paymentParamsWithCreditCard:(NSString *)identifier
+//                                        currency:(NSString *)currency
+//                                          amount:(NSNumber *)amount
+//                                         comment:(NSString *)comment
+//                                      creditCard:(BNCreditCard*)creditCard
+//                                 isTokenRequired: (BOOL) isTokenRequired;
 
 
 + (BNPaymentParams *)mockObject;

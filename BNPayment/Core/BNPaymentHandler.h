@@ -44,7 +44,7 @@
  * Currently, the only valid option is TouchID
  *
  */
-typedef NSError* (^BNExtraPaymentValidationBlock) ();
+typedef NSError* (^BNExtraPaymentValidationBlock) (void);
 
 
 /**

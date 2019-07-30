@@ -1,5 +1,6 @@
 #import "VisaCheckOutButton_iOS10.h"
 #import <VisaCheckoutHybrid/VisaCheckoutHybrid.h>
+
 @interface VisaCheckOutButton_iOS10 ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
@@ -94,7 +95,7 @@
         };
         
         context[@"visaCheckoutCallBackCancel"] = ^() {
-            NSString *response=[JSContext currentArguments].firstObject;
+            //NSString *response=[JSContext currentArguments].firstObject;
         };
         
         [self.resultDelegate VisaCheckoutSetupComplete];

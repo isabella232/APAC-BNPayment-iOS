@@ -41,7 +41,7 @@ NSInteger const SinglePaymentPadding = 15;
 NSInteger const SinglePaymentTitleHeight = 30;
 NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
-@interface BNSubmitSinglePaymentCardVC () <VisaCheckOutButtonDelegate,CardIOPaymentViewControllerDelegate>
+@interface BNSubmitSinglePaymentCardVC () <VisaCheckOutButtonDelegate,VisaCheckOutButtonDelegate10,CardIOPaymentViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *formScrollView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -552,11 +552,17 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 - (void)showAlertViewWithTitle:(NSString*)title message:(NSString*)message {
     
     NSString *closeButtonTitle = NSLocalizedString(@"OK", nil);
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:closeButtonTitle
-                                              otherButtonTitles:nil];
-    [alertView show];
+
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:title
+                                 message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:closeButtonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){}];
+    
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)submitSinglePaymentCardInformation:(UIButton *)sender {
@@ -705,11 +711,14 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
                                                                    message:@"To scan your card, you need to enable the camera access."
                                                             preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK"
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                              NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                                                              [[UIApplication sharedApplication] openURL:url];
-                                                          }];
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                        UIApplication *application = [UIApplication sharedApplication];
+                                        
+                                        [application openURL:url options:@{} completionHandler:nil];
+                                    }];
+    
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * action) {}];

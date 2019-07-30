@@ -2,7 +2,7 @@
 #import "VisaCheckoutLaunchParams.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "BNBundleUtils.h"
-@protocol VisaCheckOutButtonDelegate <NSObject>
+@protocol VisaCheckOutButtonDelegate10 <NSObject>
 
 -(void)VisaCheckoutSuccess:(NSDictionary *)VisaCheckoutPayment;
 
@@ -18,7 +18,7 @@
 
 -(void)loadUIWithViewController:(UIViewController *)viewController andData:(VisaCheckoutLaunchParams *)visaCheckoutLaunchParams andLoadingColor:(UIColor *)color;
 
-@property (nonatomic,weak) id <VisaCheckOutButtonDelegate> resultDelegate;
+@property (nonatomic,weak) id <VisaCheckOutButtonDelegate10> resultDelegate;
 
 
 @end

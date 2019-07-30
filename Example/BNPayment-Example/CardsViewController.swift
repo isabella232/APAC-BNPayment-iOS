@@ -105,14 +105,14 @@ class CardsViewController: UIViewController {
     
     // MARK: - selectors
     
-    public func refreshCards(notification:Notification) {
+    @objc public func refreshCards(notification:Notification) {
         tableView.reloadData()
         updateMessage()
     }
     
     
     
-       public func addCard() {
+    @objc public func addCard() {
         
         let vc = BNCreditCardRegistrationVC()
         let guiSetting = AppSettings.sharedInstance().getCardRegistrationGuiSetting();
@@ -141,11 +141,11 @@ class CardsViewController: UIViewController {
             let alertController = UIAlertController(
                 title: title,
                 message:message,
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: UIAlertController.Style.alert
             )
             
             let cancelAction = UIAlertAction(
-            title: "OK", style: UIAlertActionStyle.default) { (action) in
+            title: "OK", style: UIAlertAction.Style.default) { (action) in
                 // ...
             }
             
@@ -370,9 +370,9 @@ extension CardsViewController: UITableViewDataSource
 
 public extension BNHTTPResponseSerializer
 {
-    public class func extractBackendErrorMessage(error:Error?) -> (NSNumber, String, String, String)
+    class func extractBackendErrorMessage(error:Error?) -> (NSNumber, String, String, String)
     {
-        if let nserror = error as? NSError {
+        if let nserror = error as NSError? {
             
             let userInfo = nserror.userInfo
             
@@ -398,7 +398,7 @@ public extension BNHTTPResponseSerializer
         return (0, "", "", "")
     }
     
-    public class func buildBackendErrorMessage(error:Error?) -> String
+    class func buildBackendErrorMessage(error:Error?) -> String
     {
         let (status, title, type, detail) = self.extractBackendErrorMessage(error:error)
         if (status != 0)
@@ -408,9 +408,9 @@ public extension BNHTTPResponseSerializer
         return "?"
     }
     
-    public class func extractBackendErrorDetails(error:Error?) -> String
+    class func extractBackendErrorDetails(error:Error?) -> String
     {
-        if let nserror = error as? NSError {
+        if let nserror = error as NSError? {
             
             let userInfo = nserror.userInfo
             

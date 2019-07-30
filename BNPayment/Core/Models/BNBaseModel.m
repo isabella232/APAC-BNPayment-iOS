@@ -30,7 +30,7 @@
 }
 
 - (instancetype)initWithJSONDictionary:(NSDictionary *)JSONDictionary
-                                 error:(NSError **)error {
+                                 error:(NSError *__autoreleasing *)error {
     self = [super init];
     
     if (![JSONDictionary isKindOfClass:[NSDictionary class]]) {
