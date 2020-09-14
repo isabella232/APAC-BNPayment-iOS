@@ -77,6 +77,7 @@ steps:
     branches: 'master'
     commands: 'fastlane sync_to_github'
     env:
+      MODULE: 'sdk'
       PODSPEC_PATH: 'APAC-BNPayment.podspec'
       REPO_NAME: 'APAC-BNPayment-iOS'
       REPO: 'git@github.com:bambora/APAC-BNPayment-iOS.git'
