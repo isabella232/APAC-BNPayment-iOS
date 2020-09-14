@@ -54,9 +54,6 @@ platform :ios do
               clean: true,
               output_directory: $build_path,
               output_name: $ipa_name)
-              
-    copy_artifacts(target_path: $build_path,
-                   artifacts: ["#{$podspec_path}"])
   end
   
   desc "Upload App"
@@ -167,7 +164,7 @@ platform :ios do
     sh("cd #{destination} && git checkout #{branch}")
     
     # Sync current state to Githib Repo
-    sh("cd #{source} && rsync -rv ./ #{destination} --exclude /.git/ --exclude .gitignore --exclude /build --exclude /build/ --exclude .DS_Store")
+    sh("cd #{source} && rsync -rv ./ #{destination} --exclude /.git/ --exclude .gitignore --exclude /build --exclude /build/ --exclude .DS_Store --exclude APAC-BNPayment.podspec")
     
     # Ignore Secrets
     sh("cd #{destination} && git update-index --assume-unchanged Example/BNPayment-Example/MerchantID.txt")
@@ -189,7 +186,7 @@ platform :ios do
     sh("cd #{destination} && git push")
 
     # Push tags
-    version = version_get_podspec(path: "#{$build_path}/#{$podspec_path}")
+    version = version_get_podspec(path: "#{$podspec_path}")
     tag_name = "#{project_module}/#{version}"
     sh("cd #{destination} && git tag #{tag_name} && git push origin #{tag_name}")
     
