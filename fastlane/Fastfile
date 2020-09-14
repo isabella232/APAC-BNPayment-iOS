@@ -189,7 +189,7 @@ platform :ios do
     sh("cd #{destination} && git push")
 
     # Push tags
-    version = version_get_podspec(path: "#{$build_path}")
+    version = version_get_podspec(path: "#{$build_path}/")
     tag_name = "#{project_module}/#{version}"
     sh("cd #{destination} && git tag #{tag_name} && git push origin #{tag_name}")
     
