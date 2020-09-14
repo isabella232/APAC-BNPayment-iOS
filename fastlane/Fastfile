@@ -124,6 +124,8 @@ platform :ios do
                               ignore: /fastlane/
                               )
       elsif project_module == "sdk"
+          sh("git checkout -b #{branch} origin/#{branch}")
+          git_pull
           version_number = version_bump_podspec(path: podspec_path,
                                                 bump_type: bump_type)
           
@@ -187,15 +189,15 @@ platform :ios do
 
     # Push tags
     version = version_get_podspec(path: "#{$podspec_path}")
-    tag_name = "#{project_module}/#{version}"
+    tag_name = "#{version}"
     sh("cd #{destination} && git tag #{tag_name} && git push origin #{tag_name}")
     
     # Check latest release tag and upload new version if needed
-    uploadNewVersion = sh("cd .. && scripts/TagCheck").strip
-    
-    if uploadNewVersion == 'true'
+#    uploadNewVersion = sh("cd .. && scripts/TagCheck").strip
+#
+#    if uploadNewVersion == 'true'
         release_version
-    end
+#    end
     
     # Delete Repo
     sh("rm -rf #{destination}")
@@ -204,7 +206,7 @@ platform :ios do
   desc "Upload new version to Cocoapods"
   lane :release_version do
       destination = ENV['DESTINATION_PATH']
-      sh("cd #{destination} && pod trunk push --use-libraries --allow-warnings ")
+      sh("pod trunk push --use-libraries --allow-warnings ")
   end
 
   desc "Install Cocoapods for Example Project"
