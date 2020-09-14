@@ -74,14 +74,14 @@
 
     // Given:
     BNCreditCardExpiryTextField *expiryTextField = [BNCreditCardExpiryTextField new];
-    expiryTextField.text = @"01/20";
+    expiryTextField.text = @"01/21";
 
     // When:
     BOOL expiryDateValidity = [expiryTextField validExpiryDate];
 
     // Then:
     XCTAssert(expiryDateValidity == true, "The validation should have succeeded.");
-    XCTAssert([[expiryTextField getExpiryYear] isEqualToString:@"20"], "Get ExpiryYear");
+    XCTAssert([[expiryTextField getExpiryYear] isEqualToString:@"21"], "Get ExpiryYear");
     XCTAssert([[expiryTextField getExpiryMonth] isEqualToString:@"01"], "Get getExpiryMonth");
 }
 

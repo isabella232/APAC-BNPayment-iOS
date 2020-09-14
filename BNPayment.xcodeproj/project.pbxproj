@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B7015DF24E2191600D05847 /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = 1B7015DD24E2191500D05847 /* Appfile */; };
+		1B7015E024E2191600D05847 /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 1B7015DE24E2191500D05847 /* Fastfile */; };
+		1B7015E324E234FF00D05847 /* pipeline.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1B7015E224E234FF00D05847 /* pipeline.yml */; };
+		1B7EA5AA24DCEE0900008A8F /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7EA5A824DCEE0900008A8F /* CoreServices.framework */; };
 		5D258C7E1D3522B200498DEC /* NSError+BNError.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D258C7C1D3522B200498DEC /* NSError+BNError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D258C7F1D3522B200498DEC /* NSError+BNError.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D258C7D1D3522B200498DEC /* NSError+BNError.m */; };
 		5D258C821D35349A00498DEC /* BNErrorResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D258C801D35349A00498DEC /* BNErrorResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -155,27 +159,8 @@
 		8FBFD2E31D58A0490063E790 /* BNCreditCardNumberTextFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBFD2E21D58A0490063E790 /* BNCreditCardNumberTextFieldTests.m */; };
 		8FC3884E1D5C636800170637 /* DinersClubLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FC3884C1D5C636800170637 /* DinersClubLogo@2x.png */; };
 		8FC3884F1D5C636800170637 /* AmexLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FC3884D1D5C636800170637 /* AmexLogo@2x.png */; };
-		95BACCE12002075E007F02B9 /* VisaCheckoutEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 95BACCDF2002075E007F02B9 /* VisaCheckoutEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		95BACCE22002075E007F02B9 /* VisaCheckoutEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BACCE02002075E007F02B9 /* VisaCheckoutEndpoint.m */; };
-		95BACCE32002075E007F02B9 /* VisaCheckoutEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BACCE02002075E007F02B9 /* VisaCheckoutEndpoint.m */; };
-		95BACCE72002BFFD007F02B9 /* VisaCheckoutTransactionParams.h in Headers */ = {isa = PBXBuildFile; fileRef = 95BACCE52002BFFD007F02B9 /* VisaCheckoutTransactionParams.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		95BACCE82002BFFD007F02B9 /* VisaCheckoutTransactionParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BACCE62002BFFD007F02B9 /* VisaCheckoutTransactionParams.m */; };
-		95BACCE92002BFFD007F02B9 /* VisaCheckoutTransactionParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BACCE62002BFFD007F02B9 /* VisaCheckoutTransactionParams.m */; };
-		9705A8DB200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h in Headers */ = {isa = PBXBuildFile; fileRef = 9705A8D9200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h */; };
-		9705A8DC200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m in Sources */ = {isa = PBXBuildFile; fileRef = 9705A8DA200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m */; };
-		9705A8DD200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m in Sources */ = {isa = PBXBuildFile; fileRef = 9705A8DA200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m */; };
 		971955D620216A16005033F3 /* VisaCheckOutConnector_iOS10.html in Resources */ = {isa = PBXBuildFile; fileRef = 971955D420216A15005033F3 /* VisaCheckOutConnector_iOS10.html */; };
 		971955D720216A16005033F3 /* VisaCheckOutConnector.html in Resources */ = {isa = PBXBuildFile; fileRef = 971955D520216A16005033F3 /* VisaCheckOutConnector.html */; };
-		9721608D2002D35C00644B6F /* VisaCheckoutResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9721608B2002D35C00644B6F /* VisaCheckoutResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9721608E2002D35C00644B6F /* VisaCheckoutResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9721608C2002D35C00644B6F /* VisaCheckoutResponse.m */; };
-		9721608F2002D35C00644B6F /* VisaCheckoutResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9721608C2002D35C00644B6F /* VisaCheckoutResponse.m */; };
-		976E84E81FF46F86001CE383 /* VisaCheckoutLaunchParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 976E84E61FF46F85001CE383 /* VisaCheckoutLaunchParams.m */; };
-		976E84E91FF46F86001CE383 /* VisaCheckoutLaunchParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 976E84E61FF46F85001CE383 /* VisaCheckoutLaunchParams.m */; };
-		976E84EA1FF46F86001CE383 /* VisaCheckoutLaunchParams.h in Headers */ = {isa = PBXBuildFile; fileRef = 976E84E71FF46F86001CE383 /* VisaCheckoutLaunchParams.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		976E84EE1FF46FA5001CE383 /* VisaCheckOutButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 976E84EB1FF46FA5001CE383 /* VisaCheckOutButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		976E84EF1FF46FA5001CE383 /* VisaCheckOutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 976E84EC1FF46FA5001CE383 /* VisaCheckOutButton.m */; };
-		976E84F01FF46FA5001CE383 /* VisaCheckOutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 976E84EC1FF46FA5001CE383 /* VisaCheckOutButton.m */; };
-		9797B226205F19DF00C90BD4 /* VisaCheckoutHybrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9797B225205F19DF00C90BD4 /* VisaCheckoutHybrid.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		97C1C567204391DB000D4C87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C566204391DB000D4C87 /* Accelerate.framework */; };
 		97C1C569204391EB000D4C87 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C568204391EA000D4C87 /* AudioToolbox.framework */; };
 		97C1C56B204391F2000D4C87 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C56A204391F2000D4C87 /* AVFoundation.framework */; };
@@ -183,8 +168,6 @@
 		97C1C56F2043920B000D4C87 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C56E2043920A000D4C87 /* CoreMedia.framework */; };
 		97C1C5712043921A000D4C87 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C5702043921A000D4C87 /* CoreVideo.framework */; };
 		97C1C57320439229000D4C87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C57220439229000D4C87 /* Foundation.framework */; };
-		97C1C57520439234000D4C87 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C57420439234000D4C87 /* MobileCoreServices.framework */; };
-		97C1C57720439241000D4C87 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C57620439241000D4C87 /* OpenGLES.framework */; };
 		97C1C5792043924F000D4C87 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C5782043924F000D4C87 /* QuartzCore.framework */; };
 		97C1C57B2043925D000D4C87 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C57A2043925C000D4C87 /* Security.framework */; };
 		97C1C57D20439262000D4C87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C1C57C20439262000D4C87 /* UIKit.framework */; };
@@ -252,13 +235,6 @@
 			remoteGlobalIDString = 5DAABEF81CB69B0200CEDB91;
 			remoteInfo = BNPayment;
 		};
-		8F8797561D4B8FF600308CA5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8F8797521D4B8FF600308CA5 /* BNPayment-Example.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5DAABF3F1CB69B8100CEDB91;
-			remoteInfo = "BNPayment-Example";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -274,6 +250,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B7015DD24E2191500D05847 /* Appfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1B7015DE24E2191500D05847 /* Fastfile */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1B7015E224E234FF00D05847 /* pipeline.yml */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.yaml; path = pipeline.yml; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.yaml; };
+		1B7EA5A824DCEE0900008A8F /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		5D258C7C1D3522B200498DEC /* NSError+BNError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BNError.h"; sourceTree = "<group>"; };
 		5D258C7D1D3522B200498DEC /* NSError+BNError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BNError.m"; sourceTree = "<group>"; };
 		5D258C801D35349A00498DEC /* BNErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNErrorResponse.h; sourceTree = "<group>"; };
@@ -431,25 +411,11 @@
 		747B4A421E9DDB0D00B0FB24 /* BNApplePayPaymentEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNApplePayPaymentEndpoint.h; sourceTree = "<group>"; };
 		747B4A431E9DDB0D00B0FB24 /* BNApplePayPaymentEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNApplePayPaymentEndpoint.m; sourceTree = "<group>"; };
 		74C27B7A1E9DDD25006DFC37 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		8F8797521D4B8FF600308CA5 /* BNPayment-Example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "BNPayment-Example.xcodeproj"; path = "Example/BNPayment-Example.xcodeproj"; sourceTree = "<group>"; };
 		8FBFD2E21D58A0490063E790 /* BNCreditCardNumberTextFieldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCreditCardNumberTextFieldTests.m; sourceTree = "<group>"; };
 		8FC3884C1D5C636800170637 /* DinersClubLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DinersClubLogo@2x.png"; sourceTree = "<group>"; };
 		8FC3884D1D5C636800170637 /* AmexLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AmexLogo@2x.png"; sourceTree = "<group>"; };
-		95BACCDF2002075E007F02B9 /* VisaCheckoutEndpoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisaCheckoutEndpoint.h; sourceTree = "<group>"; };
-		95BACCE02002075E007F02B9 /* VisaCheckoutEndpoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisaCheckoutEndpoint.m; sourceTree = "<group>"; };
-		95BACCE52002BFFD007F02B9 /* VisaCheckoutTransactionParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisaCheckoutTransactionParams.h; sourceTree = "<group>"; };
-		95BACCE62002BFFD007F02B9 /* VisaCheckoutTransactionParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisaCheckoutTransactionParams.m; sourceTree = "<group>"; };
-		9705A8D9200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisaCheckOutButton_iOS10.h; sourceTree = "<group>"; };
-		9705A8DA200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisaCheckOutButton_iOS10.m; sourceTree = "<group>"; };
 		971955D420216A15005033F3 /* VisaCheckOutConnector_iOS10.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = VisaCheckOutConnector_iOS10.html; sourceTree = "<group>"; };
 		971955D520216A16005033F3 /* VisaCheckOutConnector.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = VisaCheckOutConnector.html; sourceTree = "<group>"; };
-		9721608B2002D35C00644B6F /* VisaCheckoutResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisaCheckoutResponse.h; sourceTree = "<group>"; };
-		9721608C2002D35C00644B6F /* VisaCheckoutResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisaCheckoutResponse.m; sourceTree = "<group>"; };
-		976E84E61FF46F85001CE383 /* VisaCheckoutLaunchParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisaCheckoutLaunchParams.m; sourceTree = "<group>"; };
-		976E84E71FF46F86001CE383 /* VisaCheckoutLaunchParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisaCheckoutLaunchParams.h; sourceTree = "<group>"; };
-		976E84EB1FF46FA5001CE383 /* VisaCheckOutButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisaCheckOutButton.h; sourceTree = "<group>"; };
-		976E84EC1FF46FA5001CE383 /* VisaCheckOutButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisaCheckOutButton.m; sourceTree = "<group>"; };
-		9797B225205F19DF00C90BD4 /* VisaCheckoutHybrid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VisaCheckoutHybrid.framework; sourceTree = "<group>"; };
 		97B7217D202C075500835784 /* VisaCheckoutHybrid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisaCheckoutHybrid.framework; path = Example/VisaCheckoutHybrid.framework; sourceTree = "<group>"; };
 		97C1C566204391DB000D4C87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		97C1C568204391EA000D4C87 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -521,16 +487,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9797B226205F19DF00C90BD4 /* VisaCheckoutHybrid.framework in Frameworks */,
 				97C1C57D20439262000D4C87 /* UIKit.framework in Frameworks */,
 				97C1C57B2043925D000D4C87 /* Security.framework in Frameworks */,
 				97C1C5792043924F000D4C87 /* QuartzCore.framework in Frameworks */,
 				97C1C59D20476A62000D4C87 /* libCardIO.a in Frameworks */,
 				97C1C5A320476A62000D4C87 /* libopencv_imgproc.a in Frameworks */,
-				97C1C57720439241000D4C87 /* OpenGLES.framework in Frameworks */,
-				97C1C57520439234000D4C87 /* MobileCoreServices.framework in Frameworks */,
 				97C1C57320439229000D4C87 /* Foundation.framework in Frameworks */,
 				97C1C5712043921A000D4C87 /* CoreVideo.framework in Frameworks */,
+				1B7EA5AA24DCEE0900008A8F /* CoreServices.framework in Frameworks */,
 				97C1C56F2043920B000D4C87 /* CoreMedia.framework in Frameworks */,
 				97C1C59920476A62000D4C87 /* libopencv_core.a in Frameworks */,
 				97C1C56D204391FD000D4C87 /* CoreGraphics.framework in Frameworks */,
@@ -555,6 +519,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B7015DC24E2191500D05847 /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				1B7015DD24E2191500D05847 /* Appfile */,
+				1B7015DE24E2191500D05847 /* Fastfile */,
+			);
+			path = fastlane;
+			sourceTree = "<group>";
+		};
+		1B7015E124E234FF00D05847 /* .buildkite */ = {
+			isa = PBXGroup;
+			children = (
+				1B7015E224E234FF00D05847 /* pipeline.yml */,
+			);
+			path = .buildkite;
+			sourceTree = "<group>";
+		};
 		5D69A5431CE0D00200A573EE /* BNPayment */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,12 +592,6 @@
 		5D69A5561CE0D00200A573EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				976E84E71FF46F86001CE383 /* VisaCheckoutLaunchParams.h */,
-				976E84E61FF46F85001CE383 /* VisaCheckoutLaunchParams.m */,
-				95BACCE52002BFFD007F02B9 /* VisaCheckoutTransactionParams.h */,
-				95BACCE62002BFFD007F02B9 /* VisaCheckoutTransactionParams.m */,
-				9721608B2002D35C00644B6F /* VisaCheckoutResponse.h */,
-				9721608C2002D35C00644B6F /* VisaCheckoutResponse.m */,
 				5D69A6A21CE0DB9D00A573EE /* BNEncryptionCertificate.h */,
 				5D69A6A31CE0DB9D00A573EE /* BNEncryptionCertificate.m */,
 				5D69A6A41CE0DB9D00A573EE /* BNRegisterCCParams.h */,
@@ -687,8 +662,6 @@
 				5D69A5791CE0D00200A573EE /* BNCreditCardEndpoint.m */,
 				5D69A57A1CE0D00200A573EE /* BNPaymentEndpoint.h */,
 				5D69A57B1CE0D00200A573EE /* BNPaymentEndpoint.m */,
-				95BACCDF2002075E007F02B9 /* VisaCheckoutEndpoint.h */,
-				95BACCE02002075E007F02B9 /* VisaCheckoutEndpoint.m */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -955,10 +928,6 @@
 		5D9021351D2149AE00B4BEAC /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				976E84EB1FF46FA5001CE383 /* VisaCheckOutButton.h */,
-				976E84EC1FF46FA5001CE383 /* VisaCheckOutButton.m */,
-				9705A8D9200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h */,
-				9705A8DA200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m */,
 				5D9021361D2149DA00B4BEAC /* BNLoaderButton.h */,
 				5D9021371D2149DA00B4BEAC /* BNLoaderButton.m */,
 				EA58E6561ED3C7E6003BA174 /* BNSwitchButton.h */,
@@ -987,12 +956,13 @@
 			children = (
 				F8FD69171E92F86700121C68 /* TODO */,
 				97C1C58A20476A61000D4C87 /* CardIO */,
+				1B7015E124E234FF00D05847 /* .buildkite */,
+				1B7015DC24E2191500D05847 /* fastlane */,
 				5D69A5431CE0D00200A573EE /* BNPayment */,
 				5D69A6541CE0D43B00A573EE /* BNPaymentTests */,
 				5D8007211CB7D99C00E29149 /* Assets */,
 				5DAABF591CB69C6400CEDB91 /* Supporting files */,
 				5DAABEFA1CB69B0200CEDB91 /* Products */,
-				8F8797521D4B8FF600308CA5 /* BNPayment-Example.xcodeproj */,
 				74C27B791E9DDD24006DFC37 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1018,7 +988,7 @@
 		74C27B791E9DDD24006DFC37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9797B225205F19DF00C90BD4 /* VisaCheckoutHybrid.framework */,
+				1B7EA5A824DCEE0900008A8F /* CoreServices.framework */,
 				97C1C57C20439262000D4C87 /* UIKit.framework */,
 				97C1C57A2043925C000D4C87 /* Security.framework */,
 				97C1C5782043924F000D4C87 /* QuartzCore.framework */,
@@ -1035,14 +1005,6 @@
 				74C27B7A1E9DDD25006DFC37 /* PassKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8F8797531D4B8FF600308CA5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8F8797571D4B8FF600308CA5 /* BNPayment-Example.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		97C1C58A20476A61000D4C87 /* CardIO */ = {
@@ -1116,7 +1078,6 @@
 				5D69A5CC1CE0D00200A573EE /* BNCCFormInputGroup.h in Headers */,
 				5D69A60E1CE0D00200A573EE /* BNHostedRegistrationFormFooter.h in Headers */,
 				5D69A5DE1CE0D00200A573EE /* EPAYMetaResponse.h in Headers */,
-				9705A8DB200EFC13004CBA5F /* VisaCheckOutButton_iOS10.h in Headers */,
 				97C1C5A520476A62000D4C87 /* CardIOPaymentViewControllerDelegate.h in Headers */,
 				5D69A6B61CE0DBC600A573EE /* BNKeyUtils.h in Headers */,
 				5D69A6B41CE0DBC600A573EE /* BNCrypto.h in Headers */,
@@ -1144,12 +1105,7 @@
 				5D9021381D2149DA00B4BEAC /* BNLoaderButton.h in Headers */,
 				5D3165251D099DB000B6F915 /* BNPayment.h in Headers */,
 				EA40312E1F42D74C0070910B /* BNPaymentType.h in Headers */,
-				976E84EA1FF46F86001CE383 /* VisaCheckoutLaunchParams.h in Headers */,
-				976E84EE1FF46FA5001CE383 /* VisaCheckOutButton.h in Headers */,
-				95BACCE12002075E007F02B9 /* VisaCheckoutEndpoint.h in Headers */,
 				5D69A5F41CE0D00200A573EE /* UIView+BNUtils.h in Headers */,
-				9721608D2002D35C00644B6F /* VisaCheckoutResponse.h in Headers */,
-				95BACCE72002BFFD007F02B9 /* VisaCheckoutTransactionParams.h in Headers */,
 				EA5A1A6C1F565E920014012E /* BNCardRegistrationGuiSetting.h in Headers */,
 				EA5A1A701F579FCF0014012E /* BNSubmitSinglePaymentCardGuiSetting.h in Headers */,
 			);
@@ -1202,7 +1158,7 @@
 		5DAABEF01CB69B0200CEDB91 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Bambora;
 				TargetAttributes = {
 					5DAABEF81CB69B0200CEDB91 = {
@@ -1226,12 +1182,6 @@
 			mainGroup = 5DAABEEF1CB69B0200CEDB91;
 			productRefGroup = 5DAABEFA1CB69B0200CEDB91 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 8F8797531D4B8FF600308CA5 /* Products */;
-					ProjectRef = 8F8797521D4B8FF600308CA5 /* BNPayment-Example.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				5DAABEF81CB69B0200CEDB91 /* BNPayment */,
@@ -1240,16 +1190,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		8F8797571D4B8FF600308CA5 /* BNPayment-Example.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "BNPayment-Example.app";
-			remoteRef = 8F8797561D4B8FF600308CA5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		5DAABEF71CB69B0200CEDB91 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -1257,9 +1197,12 @@
 			files = (
 				8FC3884F1D5C636800170637 /* AmexLogo@2x.png in Resources */,
 				5D69A6131CE0D28D00A573EE /* GlobalSign.old.cer in Resources */,
+				1B7015DF24E2191600D05847 /* Appfile in Resources */,
+				1B7015E324E234FF00D05847 /* pipeline.yml in Resources */,
 				5DA20C4C1CF49AD4007B2361 /* MasterCardLogo@2x.png in Resources */,
 				5D8007301CB7D99C00E29149 /* BNCCHostedRegistrationFormVC.xib in Resources */,
 				97C1C58520462538000D4C87 /* camera.png in Resources */,
+				1B7015E024E2191600D05847 /* Fastfile in Resources */,
 				971955D620216A16005033F3 /* VisaCheckOutConnector_iOS10.html in Resources */,
 				F8B6ECE61E89FC84000D4297 /* GlobalSign.cer in Resources */,
 				971955D720216A16005033F3 /* VisaCheckOutConnector.html in Resources */,
@@ -1309,7 +1252,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"${SRCROOT}/build/\"\ncp -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_NAME}.framework\" \"${SRCROOT}/build/\"";
+			shellScript = "# mkdir -p \"${SRCROOT}/build/\"\n# cp -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_NAME}.framework\" \"${SRCROOT}/build/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1329,23 +1272,19 @@
 				5D258C7F1D3522B200498DEC /* NSError+BNError.m in Sources */,
 				5D69A5C91CE0D00200A573EE /* BNAuthorizedCreditCard.m in Sources */,
 				5DA20C3A1CF32CCF007B2361 /* BNCreditCardNumberTextField.m in Sources */,
-				9721608E2002D35C00644B6F /* VisaCheckoutResponse.m in Sources */,
 				5D69A5DD1CE0D00200A573EE /* EPAYMessage.m in Sources */,
 				5DA20C321CF3231A007B2361 /* BNBaseTextField.m in Sources */,
 				EA5A1A6E1F5792C30014012E /* BNSubmitSinglePaymentCardGuiSetting.m in Sources */,
 				5D69A5D31CE0D00200A573EE /* BNPaymentParams.m in Sources */,
-				95BACCE22002075E007F02B9 /* VisaCheckoutEndpoint.m in Sources */,
 				747B4A451E9DDB0D00B0FB24 /* BNApplePayPaymentEndpoint.m in Sources */,
 				5D69A6B71CE0DBC600A573EE /* BNKeyUtils.m in Sources */,
 				5D69A5C11CE0D00200A573EE /* NSURLSessionDataTask+BNUtils.m in Sources */,
 				F8FC22AA1EB6BC8D00BE02C3 /* BNTouchIDValidation.m in Sources */,
 				5D69A6111CE0D00200A573EE /* BNPaymentWebview.m in Sources */,
 				5D69A5D71CE0D00200A573EE /* BNUser.m in Sources */,
-				9705A8DC200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m in Sources */,
 				5D69A5CB1CE0D00200A573EE /* BNBaseModel.m in Sources */,
 				5D69A5EB1CE0D00200A573EE /* BNHTTPResponseSerializer.m in Sources */,
 				5D69A5DF1CE0D00200A573EE /* EPAYMetaResponse.m in Sources */,
-				976E84EF1FF46FA5001CE383 /* VisaCheckOutButton.m in Sources */,
 				5D69A5D91CE0D00200A573EE /* EPAYAction.m in Sources */,
 				5D69A5DB1CE0D00200A573EE /* EPAYHostedFormStateChange.m in Sources */,
 				5D69A6B91CE0DBC600A573EE /* NSString+BNCrypto.m in Sources */,
@@ -1370,12 +1309,10 @@
 				5D69A5BF1CE0D00200A573EE /* NSString+BNStringUtils.m in Sources */,
 				5D258C831D35349A00498DEC /* BNErrorResponse.m in Sources */,
 				5D69A5BD1CE0D00200A573EE /* NSString+BNLogUtils.m in Sources */,
-				976E84E81FF46F86001CE383 /* VisaCheckoutLaunchParams.m in Sources */,
 				97C1C59B20476A62000D4C87 /* CardIO.m in Sources */,
 				5D69A6B51CE0DBC600A573EE /* BNCrypto.m in Sources */,
 				5D69A5D51CE0D00200A573EE /* BNPaymentResponse.m in Sources */,
 				5D69A5D11CE0D00200A573EE /* BNCreditCard.m in Sources */,
-				95BACCE82002BFFD007F02B9 /* VisaCheckoutTransactionParams.m in Sources */,
 				5D69A6A71CE0DB9D00A573EE /* BNEncryptionCertificate.m in Sources */,
 				5D69A5ED1CE0D00200A573EE /* BNSecurity.m in Sources */,
 				5D69A5B91CE0D00200A573EE /* BNPaymentHandler.m in Sources */,
@@ -1389,7 +1326,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				976E84E91FF46F86001CE383 /* VisaCheckoutLaunchParams.m in Sources */,
 				B2E709C61D5CA6D20010AC28 /* BNPaymentParamsTests.m in Sources */,
 				B272E8611D59CF530054B5DA /* BNUserTests.m in Sources */,
 				5DA20C921CFC4A6B007B2361 /* BNCryptoTests.m in Sources */,
@@ -1402,11 +1338,8 @@
 				5D69A6841CE0D43B00A573EE /* BNHandlerTests.m in Sources */,
 				5D69A6901CE0D43B00A573EE /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */,
 				97DEE0D42084CF3000281FFC /* BNCardRegistrationGuiSettingTest.m in Sources */,
-				95BACCE92002BFFD007F02B9 /* VisaCheckoutTransactionParams.m in Sources */,
 				5D428B0F1CFC6D4600CCD86D /* BNCreditCardTests.m in Sources */,
-				976E84F01FF46FA5001CE383 /* VisaCheckOutButton.m in Sources */,
 				B272E8651D59CFBD0054B5DA /* EPAYMetaResponseTests.m in Sources */,
-				95BACCE32002075E007F02B9 /* VisaCheckoutEndpoint.m in Sources */,
 				5D69A68E1CE0D43B00A573EE /* OHHTTPStubsResponse+JSON.m in Sources */,
 				B272E85B1D59CDFE0054B5DA /* BNEncryptedSessionKeyTests.m in Sources */,
 				B2135C081D59E40400D79E8D /* UITextField+BNCreditCardTests.m in Sources */,
@@ -1417,7 +1350,6 @@
 				5DA20C941CFC4A79007B2361 /* NSStringBNCryptoTests.m in Sources */,
 				5D69A6921CE0D43B00A573EE /* OHHTTPStubsResponse.m in Sources */,
 				97F11A812087104A001B757A /* BNPaymentTypeTest.m in Sources */,
-				9721608F2002D35C00644B6F /* VisaCheckoutResponse.m in Sources */,
 				B272E85F1D59CF0E0054B5DA /* EPAYActionTests.m in Sources */,
 				5D69A68D1CE0D43B00A573EE /* OHHTTPStubsResponse+HTTPMessage.m in Sources */,
 				5D69A68B1CE0D43B00A573EE /* BNUtilsTests.m in Sources */,
@@ -1434,7 +1366,6 @@
 				B2135C0E1D5A730B00D79E8D /* BNCCHostedFormParamsTests.m in Sources */,
 				B272E86D1D59D37C0054B5DA /* BNErrorResponseTests.m in Sources */,
 				B2135C0A1D5A086800D79E8D /* BNLoaderButtonTests.m in Sources */,
-				9705A8DD200EFC13004CBA5F /* VisaCheckOutButton_iOS10.m in Sources */,
 				B272E8591D59CDCD0054B5DA /* BNCertUtilsTests.m in Sources */,
 				5D69A6911CE0D43B00A573EE /* OHHTTPStubs.m in Sources */,
 				5D69A68F1CE0D43B00A573EE /* OHHTTPStubs+Mocktail.m in Sources */,
@@ -1482,7 +1413,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1540,7 +1471,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1573,7 +1504,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1585,7 +1516,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BNPayment/CardIO",
 					"$(PROJECT_DIR)/CardIO",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -1615,7 +1545,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1627,7 +1557,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BNPayment/CardIO",
 					"$(PROJECT_DIR)/CardIO",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -1658,7 +1587,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BNPayment/CardIO",
 					"$(PROJECT_DIR)/CardIO",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -1681,7 +1609,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BNPayment/CardIO",
 					"$(PROJECT_DIR)/CardIO",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bambora.BNPaymentTests;

@@ -3,301 +3,342 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D7723A91CB79E6D00D680FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D7723A81CB79E6D00D680FE /* UIKit.framework */; };
-		5D8007111CB7CED100E29149 /* BNPayment.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5D80070F1CB7CE6200E29149 /* BNPayment.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5D8007151CB7D1E200E29149 /* BNPayment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D80070F1CB7CE6200E29149 /* BNPayment.framework */; };
-		5DAABF441CB69B8100CEDB91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAABF431CB69B8100CEDB91 /* main.m */; };
-		5DAABF471CB69B8100CEDB91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAABF461CB69B8100CEDB91 /* AppDelegate.m */; };
-		5DAABF4D1CB69B8100CEDB91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF4B1CB69B8100CEDB91 /* Main.storyboard */; };
-		5DAABF4F1CB69B8100CEDB91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF4E1CB69B8100CEDB91 /* Assets.xcassets */; };
-		5DAABF521CB69B8100CEDB91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAABF501CB69B8100CEDB91 /* LaunchScreen.storyboard */; };
-		95C314D720037BBC007CFE72 /* OHHTTPStubsResponse+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314BF20037BBB007CFE72 /* OHHTTPStubsResponse+JSON.m */; };
-		95C314D820037BBC007CFE72 /* OHHTTPStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314C120037BBB007CFE72 /* OHHTTPStubs.m */; };
-		95C314D920037BBC007CFE72 /* OHPathHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314C420037BBB007CFE72 /* OHPathHelpers.m */; };
-		95C314DB20037BBC007CFE72 /* OHHTTPStubsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314C820037BBB007CFE72 /* OHHTTPStubsResponse.m */; };
-		95C314DC20037BBC007CFE72 /* OHHTTPStubs+Mocktail.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314CB20037BBB007CFE72 /* OHHTTPStubs+Mocktail.m */; };
-		95C314DD20037BBC007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314CE20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m */; };
-		95C314DE20037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314D220037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m */; };
-		95C314DF20037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314D320037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m */; };
-		95C314E020037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C314D520037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m */; };
-		95C314E320040A14007CFE72 /* VisaCheckoutParams.json in Resources */ = {isa = PBXBuildFile; fileRef = 95C314E220040A14007CFE72 /* VisaCheckoutParams.json */; };
-		972160A12004475E00644B6F /* VisaCheckoutTransaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 972160A02004475E00644B6F /* VisaCheckoutTransaction.json */; };
-		972D988E1FFF4B8D00AB8635 /* MerchantID.txt in Resources */ = {isa = PBXBuildFile; fileRef = 972D988D1FFF4B8D00AB8635 /* MerchantID.txt */; };
-		976E84E41FF46E9E001CE383 /* VisaCheckoutHybrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976E84E31FF46E9E001CE383 /* VisaCheckoutHybrid.framework */; };
-		976E84E51FF46E9E001CE383 /* VisaCheckoutHybrid.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 976E84E31FF46E9E001CE383 /* VisaCheckoutHybrid.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EA6365D31EDFE8AD00553EC7 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6365D21EDFE8AD00553EC7 /* DeveloperViewController.swift */; };
-		F861587F1EB16107007EFE17 /* registrationData.json in Resources */ = {isa = PBXBuildFile; fileRef = F861587E1EB16107007EFE17 /* registrationData.json */; };
-		F86158811EB16305007EFE17 /* paymentData.json in Resources */ = {isa = PBXBuildFile; fileRef = F86158801EB16305007EFE17 /* paymentData.json */; };
-		F87893F91EB02A480049E354 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F87893F81EB02A480049E354 /* AppSettings.m */; };
-		F8A9E3CE1E8B2DA000081251 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A9E3CD1E8B2DA000081251 /* PassKit.framework */; };
-		F8C7D7761E88B34900FC7362 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7D7751E88B34900FC7362 /* ProductsViewController.swift */; };
-		F8C7D7781E88C3E100FC7362 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7D7771E88C3E100FC7362 /* CardsViewController.swift */; };
-		F8C7D78F1E89B10800FC7362 /* CardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7D78E1E89B10800FC7362 /* CardsTableViewCell.swift */; };
-		F8D0A2711E8C6B4300FD49B1 /* BNColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0A2701E8C6B4300FD49B1 /* BNColor.swift */; };
-		F8D0A2741E8C745800FD49B1 /* MyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0A2731E8C745800FD49B1 /* MyDetailsViewController.swift */; };
-		F8D0A2761E8C746C00FD49B1 /* CustomDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0A2751E8C746C00FD49B1 /* CustomDataViewController.swift */; };
+		0E9F9D7F9CBD4A290F5F2237 /* Pods_BNPayment_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C87DEFFB8DEB7A937B0AD9 /* Pods_BNPayment_Example.framework */; };
+		1B7ADAB424EDEE8500F3CAC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADAB324EDEE8500F3CAC8 /* Assets.xcassets */; };
+		1B7ADAC024EDEEC500F3CAC8 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7ADABF24EDEEC500F3CAC8 /* PassKit.framework */; };
+		1B7ADADB24EDF14700F3CAC8 /* OHHTTPStubs+Mocktail.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAC924EDF14600F3CAC8 /* OHHTTPStubs+Mocktail.m */; };
+		1B7ADADC24EDF14700F3CAC8 /* OHHTTPStubsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADACA24EDF14700F3CAC8 /* OHHTTPStubsResponse.m */; };
+		1B7ADADD24EDF14700F3CAC8 /* OHHTTPStubsResponse+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADACC24EDF14700F3CAC8 /* OHHTTPStubsResponse+JSON.m */; };
+		1B7ADADE24EDF14700F3CAC8 /* NSURLRequest+HTTPBodyTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADACF24EDF14700F3CAC8 /* NSURLRequest+HTTPBodyTesting.m */; };
+		1B7ADADF24EDF14700F3CAC8 /* OHHTTPStubsMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAD024EDF14700F3CAC8 /* OHHTTPStubsMethodSwizzling.m */; };
+		1B7ADAE024EDF14700F3CAC8 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAD224EDF14700F3CAC8 /* OHHTTPStubs+NSURLSessionConfiguration.m */; };
+		1B7ADAE124EDF14700F3CAC8 /* OHPathHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAD524EDF14700F3CAC8 /* OHPathHelpers.m */; };
+		1B7ADAE224EDF14700F3CAC8 /* OHHTTPStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAD724EDF14700F3CAC8 /* OHHTTPStubs.m */; };
+		1B7ADAE324EDF14700F3CAC8 /* OHHTTPStubsResponse+HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADADA24EDF14700F3CAC8 /* OHHTTPStubsResponse+HTTPMessage.m */; };
+		1B7ADAE624EDF17A00F3CAC8 /* BNColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAE524EDF17A00F3CAC8 /* BNColor.swift */; };
+		1B7ADAE924EDF19400F3CAC8 /* CardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAE824EDF19400F3CAC8 /* CardsTableViewCell.swift */; };
+		1B7ADAF024EDF21C00F3CAC8 /* CustomDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAEB24EDF21B00F3CAC8 /* CustomDataViewController.swift */; };
+		1B7ADAF124EDF21C00F3CAC8 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAEC24EDF21B00F3CAC8 /* CardsViewController.swift */; };
+		1B7ADAF224EDF21C00F3CAC8 /* MyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAED24EDF21B00F3CAC8 /* MyDetailsViewController.swift */; };
+		1B7ADAF324EDF21C00F3CAC8 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAEE24EDF21C00F3CAC8 /* DeveloperViewController.swift */; };
+		1B7ADAF424EDF21C00F3CAC8 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAEF24EDF21C00F3CAC8 /* ProductsViewController.swift */; };
+		1B7ADAF824EDF24200F3CAC8 /* registrationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADAF524EDF24200F3CAC8 /* registrationData.json */; };
+		1B7ADAF924EDF24200F3CAC8 /* MerchantID.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADAF624EDF24200F3CAC8 /* MerchantID.txt */; };
+		1B7ADAFA24EDF24200F3CAC8 /* paymentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADAF724EDF24200F3CAC8 /* paymentData.json */; };
+		1B7ADAFD24EDF33B00F3CAC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAFC24EDF33B00F3CAC8 /* AppDelegate.swift */; };
+		1B7ADAFF24EDF35200F3CAC8 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADAFE24EDF35200F3CAC8 /* AppSettings.swift */; };
+		1B7ADB0424EDF40800F3CAC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADB0024EDF40800F3CAC8 /* Main.storyboard */; };
+		1B7ADB0524EDF40800F3CAC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADB0224EDF40800F3CAC8 /* LaunchScreen.storyboard */; };
+		1B7ADB0A24EDF41900F3CAC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADB0624EDF41900F3CAC8 /* LaunchScreen.storyboard */; };
+		1B7ADB0B24EDF41900F3CAC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADB0824EDF41900F3CAC8 /* Main.storyboard */; };
+		1B7ADB1724EE3C8900F3CAC8 /* pipeline.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADB1624EE3C8900F3CAC8 /* pipeline.yml */; };
+		1B7ADB1D24EE3CC400F3CAC8 /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADB1A24EE3CC400F3CAC8 /* Appfile */; };
+		1B7ADB1E24EE3CC400F3CAC8 /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADB1B24EE3CC400F3CAC8 /* Fastfile */; };
+		1B7ADB1F24EE3CC400F3CAC8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1B7ADB1C24EE3CC400F3CAC8 /* README.md */; };
+		1B7ADB2724EE3E0A00F3CAC8 /* BNPayment_Example_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ADB2624EE3E0A00F3CAC8 /* BNPayment_Example_Tests.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		5D7723B31CB7A21200D680FE /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				5D8007111CB7CED100E29149 /* BNPayment.framework in CopyFiles */,
-				976E84E51FF46E9E001CE383 /* VisaCheckoutHybrid.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
+/* Begin PBXContainerItemProxy section */
+		1B7ADB2924EE3E0A00F3CAC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B7ADA9F24EDEE8100F3CAC8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B7ADAA624EDEE8100F3CAC8;
+			remoteInfo = "BNPayment-Example";
 		};
-/* End PBXCopyFilesBuildPhase section */
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5D7723A81CB79E6D00D680FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		5D80070F1CB7CE6200E29149 /* BNPayment.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BNPayment.framework; path = ../build/BNPayment.framework; sourceTree = "<group>"; };
-		5DAABF3F1CB69B8100CEDB91 /* BNPayment-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BNPayment-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DAABF431CB69B8100CEDB91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5DAABF451CB69B8100CEDB91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		5DAABF461CB69B8100CEDB91 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5DAABF4C1CB69B8100CEDB91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5DAABF4E1CB69B8100CEDB91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5DAABF511CB69B8100CEDB91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5DAABF531CB69B8100CEDB91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95C314BF20037BBB007CFE72 /* OHHTTPStubsResponse+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubsResponse+JSON.m"; sourceTree = "<group>"; };
-		95C314C020037BBB007CFE72 /* OHHTTPStubsResponse+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubsResponse+JSON.h"; sourceTree = "<group>"; };
-		95C314C120037BBB007CFE72 /* OHHTTPStubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubs.m; sourceTree = "<group>"; };
-		95C314C220037BBB007CFE72 /* OHHTTPStubsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubsResponse.h; sourceTree = "<group>"; };
-		95C314C420037BBB007CFE72 /* OHPathHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHPathHelpers.m; sourceTree = "<group>"; };
-		95C314C520037BBB007CFE72 /* OHPathHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHPathHelpers.h; sourceTree = "<group>"; };
-		95C314C820037BBB007CFE72 /* OHHTTPStubsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubsResponse.m; sourceTree = "<group>"; };
-		95C314CA20037BBB007CFE72 /* OHHTTPStubs+Mocktail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+Mocktail.h"; sourceTree = "<group>"; };
-		95C314CB20037BBB007CFE72 /* OHHTTPStubs+Mocktail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+Mocktail.m"; sourceTree = "<group>"; };
-		95C314CD20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubsResponse+HTTPMessage.h"; sourceTree = "<group>"; };
-		95C314CE20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubsResponse+HTTPMessage.m"; sourceTree = "<group>"; };
-		95C314CF20037BBB007CFE72 /* OHHTTPStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubs.h; sourceTree = "<group>"; };
-		95C314D020037BBB007CFE72 /* Compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compatibility.h; sourceTree = "<group>"; };
-		95C314D220037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+HTTPBodyTesting.m"; sourceTree = "<group>"; };
-		95C314D320037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubsMethodSwizzling.m; sourceTree = "<group>"; };
-		95C314D420037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+HTTPBodyTesting.h"; sourceTree = "<group>"; };
-		95C314D520037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
-		95C314D620037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubsMethodSwizzling.h; sourceTree = "<group>"; };
-		95C314E220040A14007CFE72 /* VisaCheckoutParams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VisaCheckoutParams.json; sourceTree = "<group>"; };
-		972160A02004475E00644B6F /* VisaCheckoutTransaction.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VisaCheckoutTransaction.json; sourceTree = "<group>"; };
-		972D988D1FFF4B8D00AB8635 /* MerchantID.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MerchantID.txt; sourceTree = "<group>"; };
-		976E84E31FF46E9E001CE383 /* VisaCheckoutHybrid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VisaCheckoutHybrid.framework; sourceTree = "<group>"; };
-		EA6365D21EDFE8AD00553EC7 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
-		F861587E1EB16107007EFE17 /* registrationData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = registrationData.json; sourceTree = "<group>"; };
-		F86158801EB16305007EFE17 /* paymentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = paymentData.json; sourceTree = "<group>"; };
-		F87893F71EB02A480049E354 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
-		F87893F81EB02A480049E354 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
-		F8A9E3CC1E8B266800081251 /* BNPayment-Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BNPayment-Example.entitlements"; sourceTree = "<group>"; };
-		F8A9E3CD1E8B2DA000081251 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		F8C7D7721E88B24200FC7362 /* BNPayment-Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BNPayment-Example-Bridging-Header.h"; sourceTree = "<group>"; };
-		F8C7D7751E88B34900FC7362 /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
-		F8C7D7771E88C3E100FC7362 /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
-		F8C7D78E1E89B10800FC7362 /* CardsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsTableViewCell.swift; sourceTree = "<group>"; };
-		F8D0A2701E8C6B4300FD49B1 /* BNColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNColor.swift; sourceTree = "<group>"; };
-		F8D0A2731E8C745800FD49B1 /* MyDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDetailsViewController.swift; sourceTree = "<group>"; };
-		F8D0A2751E8C746C00FD49B1 /* CustomDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataViewController.swift; sourceTree = "<group>"; };
-		F8FD69161E92F84F00121C68 /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		050C739412252FCA674BB0A8 /* Pods-BNPayment-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BNPayment-Example.debug.xcconfig"; path = "Target Support Files/Pods-BNPayment-Example/Pods-BNPayment-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		1B7ADAA724EDEE8100F3CAC8 /* Bambora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bambora.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7ADAB324EDEE8500F3CAC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1B7ADAB824EDEE8500F3CAC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B7ADABF24EDEEC500F3CAC8 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		1B7ADAC124EDEF2100F3CAC8 /* BNPayment-Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BNPayment-Example.entitlements"; sourceTree = "<group>"; };
+		1B7ADAC324EDF14600F3CAC8 /* BNPayment-Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BNPayment-Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		1B7ADAC424EDF14600F3CAC8 /* Compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compatibility.h; sourceTree = "<group>"; };
+		1B7ADAC524EDF14600F3CAC8 /* OHHTTPStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubs.h; sourceTree = "<group>"; };
+		1B7ADAC624EDF14600F3CAC8 /* OHHTTPStubsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubsResponse.h; sourceTree = "<group>"; };
+		1B7ADAC824EDF14600F3CAC8 /* OHHTTPStubs+Mocktail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+Mocktail.h"; sourceTree = "<group>"; };
+		1B7ADAC924EDF14600F3CAC8 /* OHHTTPStubs+Mocktail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+Mocktail.m"; sourceTree = "<group>"; };
+		1B7ADACA24EDF14700F3CAC8 /* OHHTTPStubsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubsResponse.m; sourceTree = "<group>"; };
+		1B7ADACC24EDF14700F3CAC8 /* OHHTTPStubsResponse+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubsResponse+JSON.m"; sourceTree = "<group>"; };
+		1B7ADACD24EDF14700F3CAC8 /* OHHTTPStubsResponse+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubsResponse+JSON.h"; sourceTree = "<group>"; };
+		1B7ADACF24EDF14700F3CAC8 /* NSURLRequest+HTTPBodyTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+HTTPBodyTesting.m"; sourceTree = "<group>"; };
+		1B7ADAD024EDF14700F3CAC8 /* OHHTTPStubsMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubsMethodSwizzling.m; sourceTree = "<group>"; };
+		1B7ADAD124EDF14700F3CAC8 /* NSURLRequest+HTTPBodyTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+HTTPBodyTesting.h"; sourceTree = "<group>"; };
+		1B7ADAD224EDF14700F3CAC8 /* OHHTTPStubs+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
+		1B7ADAD324EDF14700F3CAC8 /* OHHTTPStubsMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubsMethodSwizzling.h; sourceTree = "<group>"; };
+		1B7ADAD524EDF14700F3CAC8 /* OHPathHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHPathHelpers.m; sourceTree = "<group>"; };
+		1B7ADAD624EDF14700F3CAC8 /* OHPathHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHPathHelpers.h; sourceTree = "<group>"; };
+		1B7ADAD724EDF14700F3CAC8 /* OHHTTPStubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubs.m; sourceTree = "<group>"; };
+		1B7ADAD924EDF14700F3CAC8 /* OHHTTPStubsResponse+HTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubsResponse+HTTPMessage.h"; sourceTree = "<group>"; };
+		1B7ADADA24EDF14700F3CAC8 /* OHHTTPStubsResponse+HTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubsResponse+HTTPMessage.m"; sourceTree = "<group>"; };
+		1B7ADAE524EDF17A00F3CAC8 /* BNColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNColor.swift; sourceTree = "<group>"; };
+		1B7ADAE824EDF19400F3CAC8 /* CardsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsTableViewCell.swift; sourceTree = "<group>"; };
+		1B7ADAEB24EDF21B00F3CAC8 /* CustomDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataViewController.swift; sourceTree = "<group>"; };
+		1B7ADAEC24EDF21B00F3CAC8 /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		1B7ADAED24EDF21B00F3CAC8 /* MyDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDetailsViewController.swift; sourceTree = "<group>"; };
+		1B7ADAEE24EDF21C00F3CAC8 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
+		1B7ADAEF24EDF21C00F3CAC8 /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		1B7ADAF524EDF24200F3CAC8 /* registrationData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = registrationData.json; sourceTree = "<group>"; };
+		1B7ADAF624EDF24200F3CAC8 /* MerchantID.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MerchantID.txt; sourceTree = "<group>"; };
+		1B7ADAF724EDF24200F3CAC8 /* paymentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = paymentData.json; sourceTree = "<group>"; };
+		1B7ADAFC24EDF33B00F3CAC8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1B7ADAFE24EDF35200F3CAC8 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		1B7ADB0124EDF40800F3CAC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "BNPayment-Example/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
+		1B7ADB0324EDF40800F3CAC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "BNPayment-Example/Base.lproj/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
+		1B7ADB0724EDF41900F3CAC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1B7ADB0924EDF41900F3CAC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1B7ADB1624EE3C8900F3CAC8 /* pipeline.yml */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.yaml; path = pipeline.yml; sourceTree = "<group>"; tabWidth = 2; };
+		1B7ADB1A24EE3CC400F3CAC8 /* Appfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
+		1B7ADB1B24EE3CC400F3CAC8 /* Fastfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1B7ADB1C24EE3CC400F3CAC8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1B7ADB2424EE3E0A00F3CAC8 /* BNPayment-Example-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BNPayment-Example-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7ADB2624EE3E0A00F3CAC8 /* BNPayment_Example_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNPayment_Example_Tests.swift; sourceTree = "<group>"; };
+		1B7ADB2824EE3E0A00F3CAC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94C87DEFFB8DEB7A937B0AD9 /* Pods_BNPayment_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BNPayment_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9719773C8B337FF12F905E4 /* Pods-BNPayment-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BNPayment-Example.release.xcconfig"; path = "Target Support Files/Pods-BNPayment-Example/Pods-BNPayment-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5DAABF3C1CB69B8100CEDB91 /* Frameworks */ = {
+		1B7ADAA424EDEE8100F3CAC8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8A9E3CE1E8B2DA000081251 /* PassKit.framework in Frameworks */,
-				5D7723A91CB79E6D00D680FE /* UIKit.framework in Frameworks */,
-				5D8007151CB7D1E200E29149 /* BNPayment.framework in Frameworks */,
-				976E84E41FF46E9E001CE383 /* VisaCheckoutHybrid.framework in Frameworks */,
+				1B7ADAC024EDEEC500F3CAC8 /* PassKit.framework in Frameworks */,
+				0E9F9D7F9CBD4A290F5F2237 /* Pods_BNPayment_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7ADB2124EE3E0A00F3CAC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5DAABF361CB69B8100CEDB91 = {
+		1B7ADA9E24EDEE8100F3CAC8 = {
 			isa = PBXGroup;
 			children = (
-				F8FD69161E92F84F00121C68 /* TODO */,
-				5DAABFEC1CB6A4F300CEDB91 /* Frameworks */,
-				5DAABF411CB69B8100CEDB91 /* BNPayment-Example */,
-				5DAABF401CB69B8100CEDB91 /* Products */,
+				1B7ADB1824EE3CC400F3CAC8 /* fastlane */,
+				1B7ADB1524EE3C8900F3CAC8 /* .buildkite */,
+				1B7ADAA924EDEE8100F3CAC8 /* BNPayment-Example */,
+				1B7ADB2524EE3E0A00F3CAC8 /* BNPayment-Example-Tests */,
+				1B7ADAA824EDEE8100F3CAC8 /* Products */,
+				1B7ADABE24EDEEC500F3CAC8 /* Frameworks */,
+				C91649B1F7F36E2A278DC6AA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
-		5DAABF401CB69B8100CEDB91 /* Products */ = {
+		1B7ADAA824EDEE8100F3CAC8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5DAABF3F1CB69B8100CEDB91 /* BNPayment-Example.app */,
+				1B7ADAA724EDEE8100F3CAC8 /* Bambora.app */,
+				1B7ADB2424EE3E0A00F3CAC8 /* BNPayment-Example-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5DAABF411CB69B8100CEDB91 /* BNPayment-Example */ = {
+		1B7ADAA924EDEE8100F3CAC8 /* BNPayment-Example */ = {
 			isa = PBXGroup;
 			children = (
-				95C314BD20037BA3007CFE72 /* OHHTTPStubs */,
-				972D988D1FFF4B8D00AB8635 /* MerchantID.txt */,
-				F86158801EB16305007EFE17 /* paymentData.json */,
-				F861587E1EB16107007EFE17 /* registrationData.json */,
-				F8D0A2781E8C78D400FD49B1 /* Common */,
-				F8D0A2771E8C78C700FD49B1 /* Cells */,
-				F8D0A2721E8C743600FD49B1 /* View Controllers */,
-				F8A9E3CC1E8B266800081251 /* BNPayment-Example.entitlements */,
-				F87893F71EB02A480049E354 /* AppSettings.h */,
-				F87893F81EB02A480049E354 /* AppSettings.m */,
-				5DAABF451CB69B8100CEDB91 /* AppDelegate.h */,
-				5DAABF461CB69B8100CEDB91 /* AppDelegate.m */,
-				5DAABF4B1CB69B8100CEDB91 /* Main.storyboard */,
-				5DAABF4E1CB69B8100CEDB91 /* Assets.xcassets */,
-				5DAABF501CB69B8100CEDB91 /* LaunchScreen.storyboard */,
-				5DAABF531CB69B8100CEDB91 /* Info.plist */,
-				5DAABF421CB69B8100CEDB91 /* Supporting Files */,
-				F8C7D7721E88B24200FC7362 /* BNPayment-Example-Bridging-Header.h */,
+				1B7ADAFC24EDF33B00F3CAC8 /* AppDelegate.swift */,
+				1B7ADAFE24EDF35200F3CAC8 /* AppSettings.swift */,
+				1B7ADAFB24EDF24C00F3CAC8 /* Credentials */,
+				1B7ADAC224EDF0FE00F3CAC8 /* OHHTTPStubs */,
+				1B7ADAE424EDF16300F3CAC8 /* Common */,
+				1B7ADAE724EDF18300F3CAC8 /* Cells */,
+				1B7ADAEA24EDF1F600F3CAC8 /* ViewControllers */,
+				1B7ADAC124EDEF2100F3CAC8 /* BNPayment-Example.entitlements */,
+				1B7ADAB324EDEE8500F3CAC8 /* Assets.xcassets */,
+				1B7ADAB824EDEE8500F3CAC8 /* Info.plist */,
+				1B7ADB0624EDF41900F3CAC8 /* LaunchScreen.storyboard */,
+				1B7ADB0824EDF41900F3CAC8 /* Main.storyboard */,
 			);
 			path = "BNPayment-Example";
 			sourceTree = "<group>";
 		};
-		5DAABF421CB69B8100CEDB91 /* Supporting Files */ = {
+		1B7ADABE24EDEEC500F3CAC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5DAABF431CB69B8100CEDB91 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		5DAABFEC1CB6A4F300CEDB91 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				976E84E31FF46E9E001CE383 /* VisaCheckoutHybrid.framework */,
-				F8A9E3CD1E8B2DA000081251 /* PassKit.framework */,
-				5D80070F1CB7CE6200E29149 /* BNPayment.framework */,
-				5D7723A81CB79E6D00D680FE /* UIKit.framework */,
+				1B7ADABF24EDEEC500F3CAC8 /* PassKit.framework */,
+				94C87DEFFB8DEB7A937B0AD9 /* Pods_BNPayment_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		95C314BD20037BA3007CFE72 /* OHHTTPStubs */ = {
+		1B7ADAC224EDF0FE00F3CAC8 /* OHHTTPStubs */ = {
 			isa = PBXGroup;
 			children = (
-				95C314E1200409E5007CFE72 /* TestData */,
-				95C314D020037BBB007CFE72 /* Compatibility.h */,
-				95C314CC20037BBB007CFE72 /* HTTPMessage */,
-				95C314BE20037BBB007CFE72 /* JSON */,
-				95C314C920037BBB007CFE72 /* Mocktail */,
-				95C314D120037BBC007CFE72 /* NSURLSession */,
-				95C314CF20037BBB007CFE72 /* OHHTTPStubs.h */,
-				95C314C120037BBB007CFE72 /* OHHTTPStubs.m */,
-				95C314C220037BBB007CFE72 /* OHHTTPStubsResponse.h */,
-				95C314C820037BBB007CFE72 /* OHHTTPStubsResponse.m */,
-				95C314C320037BBB007CFE72 /* OHPathHelpers */,
+				1B7ADAC424EDF14600F3CAC8 /* Compatibility.h */,
+				1B7ADAD824EDF14700F3CAC8 /* HTTPMessage */,
+				1B7ADACB24EDF14700F3CAC8 /* JSON */,
+				1B7ADAC724EDF14600F3CAC8 /* Mocktail */,
+				1B7ADACE24EDF14700F3CAC8 /* NSURLSession */,
+				1B7ADAC524EDF14600F3CAC8 /* OHHTTPStubs.h */,
+				1B7ADAD724EDF14700F3CAC8 /* OHHTTPStubs.m */,
+				1B7ADAC624EDF14600F3CAC8 /* OHHTTPStubsResponse.h */,
+				1B7ADACA24EDF14700F3CAC8 /* OHHTTPStubsResponse.m */,
+				1B7ADAD424EDF14700F3CAC8 /* OHPathHelpers */,
+				1B7ADAC324EDF14600F3CAC8 /* BNPayment-Example-Bridging-Header.h */,
 			);
-			name = OHHTTPStubs;
+			path = OHHTTPStubs;
 			sourceTree = "<group>";
 		};
-		95C314BE20037BBB007CFE72 /* JSON */ = {
+		1B7ADAC724EDF14600F3CAC8 /* Mocktail */ = {
 			isa = PBXGroup;
 			children = (
-				95C314BF20037BBB007CFE72 /* OHHTTPStubsResponse+JSON.m */,
-				95C314C020037BBB007CFE72 /* OHHTTPStubsResponse+JSON.h */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
-		95C314C320037BBB007CFE72 /* OHPathHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				95C314C420037BBB007CFE72 /* OHPathHelpers.m */,
-				95C314C520037BBB007CFE72 /* OHPathHelpers.h */,
-			);
-			path = OHPathHelpers;
-			sourceTree = "<group>";
-		};
-		95C314C920037BBB007CFE72 /* Mocktail */ = {
-			isa = PBXGroup;
-			children = (
-				95C314CA20037BBB007CFE72 /* OHHTTPStubs+Mocktail.h */,
-				95C314CB20037BBB007CFE72 /* OHHTTPStubs+Mocktail.m */,
+				1B7ADAC824EDF14600F3CAC8 /* OHHTTPStubs+Mocktail.h */,
+				1B7ADAC924EDF14600F3CAC8 /* OHHTTPStubs+Mocktail.m */,
 			);
 			path = Mocktail;
 			sourceTree = "<group>";
 		};
-		95C314CC20037BBB007CFE72 /* HTTPMessage */ = {
+		1B7ADACB24EDF14700F3CAC8 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				95C314CD20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.h */,
-				95C314CE20037BBB007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m */,
+				1B7ADACC24EDF14700F3CAC8 /* OHHTTPStubsResponse+JSON.m */,
+				1B7ADACD24EDF14700F3CAC8 /* OHHTTPStubsResponse+JSON.h */,
 			);
-			path = HTTPMessage;
+			path = JSON;
 			sourceTree = "<group>";
 		};
-		95C314D120037BBC007CFE72 /* NSURLSession */ = {
+		1B7ADACE24EDF14700F3CAC8 /* NSURLSession */ = {
 			isa = PBXGroup;
 			children = (
-				95C314D220037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m */,
-				95C314D320037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m */,
-				95C314D420037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.h */,
-				95C314D520037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m */,
-				95C314D620037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.h */,
+				1B7ADACF24EDF14700F3CAC8 /* NSURLRequest+HTTPBodyTesting.m */,
+				1B7ADAD024EDF14700F3CAC8 /* OHHTTPStubsMethodSwizzling.m */,
+				1B7ADAD124EDF14700F3CAC8 /* NSURLRequest+HTTPBodyTesting.h */,
+				1B7ADAD224EDF14700F3CAC8 /* OHHTTPStubs+NSURLSessionConfiguration.m */,
+				1B7ADAD324EDF14700F3CAC8 /* OHHTTPStubsMethodSwizzling.h */,
 			);
 			path = NSURLSession;
 			sourceTree = "<group>";
 		};
-		95C314E1200409E5007CFE72 /* TestData */ = {
+		1B7ADAD424EDF14700F3CAC8 /* OHPathHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				95C314E220040A14007CFE72 /* VisaCheckoutParams.json */,
-				972160A02004475E00644B6F /* VisaCheckoutTransaction.json */,
+				1B7ADAD524EDF14700F3CAC8 /* OHPathHelpers.m */,
+				1B7ADAD624EDF14700F3CAC8 /* OHPathHelpers.h */,
 			);
-			path = TestData;
+			path = OHPathHelpers;
 			sourceTree = "<group>";
 		};
-		F8D0A2721E8C743600FD49B1 /* View Controllers */ = {
+		1B7ADAD824EDF14700F3CAC8 /* HTTPMessage */ = {
 			isa = PBXGroup;
 			children = (
-				F8D0A2731E8C745800FD49B1 /* MyDetailsViewController.swift */,
-				F8C7D7751E88B34900FC7362 /* ProductsViewController.swift */,
-				F8C7D7771E88C3E100FC7362 /* CardsViewController.swift */,
-				F8D0A2751E8C746C00FD49B1 /* CustomDataViewController.swift */,
-				EA6365D21EDFE8AD00553EC7 /* DeveloperViewController.swift */,
+				1B7ADAD924EDF14700F3CAC8 /* OHHTTPStubsResponse+HTTPMessage.h */,
+				1B7ADADA24EDF14700F3CAC8 /* OHHTTPStubsResponse+HTTPMessage.m */,
 			);
-			name = "View Controllers";
+			path = HTTPMessage;
 			sourceTree = "<group>";
 		};
-		F8D0A2771E8C78C700FD49B1 /* Cells */ = {
+		1B7ADAE424EDF16300F3CAC8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				F8C7D78E1E89B10800FC7362 /* CardsTableViewCell.swift */,
+				1B7ADAE524EDF17A00F3CAC8 /* BNColor.swift */,
 			);
-			name = Cells;
+			path = Common;
 			sourceTree = "<group>";
 		};
-		F8D0A2781E8C78D400FD49B1 /* Common */ = {
+		1B7ADAE724EDF18300F3CAC8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F8D0A2701E8C6B4300FD49B1 /* BNColor.swift */,
+				1B7ADAE824EDF19400F3CAC8 /* CardsTableViewCell.swift */,
 			);
-			name = Common;
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1B7ADAEA24EDF1F600F3CAC8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B7ADB0224EDF40800F3CAC8 /* LaunchScreen.storyboard */,
+				1B7ADB0024EDF40800F3CAC8 /* Main.storyboard */,
+				1B7ADAEC24EDF21B00F3CAC8 /* CardsViewController.swift */,
+				1B7ADAEB24EDF21B00F3CAC8 /* CustomDataViewController.swift */,
+				1B7ADAEE24EDF21C00F3CAC8 /* DeveloperViewController.swift */,
+				1B7ADAED24EDF21B00F3CAC8 /* MyDetailsViewController.swift */,
+				1B7ADAEF24EDF21C00F3CAC8 /* ProductsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1B7ADAFB24EDF24C00F3CAC8 /* Credentials */ = {
+			isa = PBXGroup;
+			children = (
+				1B7ADAF624EDF24200F3CAC8 /* MerchantID.txt */,
+				1B7ADAF724EDF24200F3CAC8 /* paymentData.json */,
+				1B7ADAF524EDF24200F3CAC8 /* registrationData.json */,
+			);
+			name = Credentials;
+			sourceTree = "<group>";
+		};
+		1B7ADB1524EE3C8900F3CAC8 /* .buildkite */ = {
+			isa = PBXGroup;
+			children = (
+				1B7ADB1624EE3C8900F3CAC8 /* pipeline.yml */,
+			);
+			name = .buildkite;
+			path = ../.buildkite;
+			sourceTree = "<group>";
+		};
+		1B7ADB1824EE3CC400F3CAC8 /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				1B7ADB1924EE3CC400F3CAC8 /* test_output */,
+				1B7ADB1A24EE3CC400F3CAC8 /* Appfile */,
+				1B7ADB1B24EE3CC400F3CAC8 /* Fastfile */,
+				1B7ADB1C24EE3CC400F3CAC8 /* README.md */,
+			);
+			name = fastlane;
+			path = ../fastlane;
+			sourceTree = "<group>";
+		};
+		1B7ADB1924EE3CC400F3CAC8 /* test_output */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = test_output;
+			sourceTree = "<group>";
+		};
+		1B7ADB2524EE3E0A00F3CAC8 /* BNPayment-Example-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B7ADB2624EE3E0A00F3CAC8 /* BNPayment_Example_Tests.swift */,
+				1B7ADB2824EE3E0A00F3CAC8 /* Info.plist */,
+			);
+			path = "BNPayment-Example-Tests";
+			sourceTree = "<group>";
+		};
+		C91649B1F7F36E2A278DC6AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				050C739412252FCA674BB0A8 /* Pods-BNPayment-Example.debug.xcconfig */,
+				B9719773C8B337FF12F905E4 /* Pods-BNPayment-Example.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5DAABF3E1CB69B8100CEDB91 /* BNPayment-Example */ = {
+		1B7ADAA624EDEE8100F3CAC8 /* BNPayment-Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5DAABF561CB69B8100CEDB91 /* Build configuration list for PBXNativeTarget "BNPayment-Example" */;
+			buildConfigurationList = 1B7ADABB24EDEE8500F3CAC8 /* Build configuration list for PBXNativeTarget "BNPayment-Example" */;
 			buildPhases = (
-				5DAABF3B1CB69B8100CEDB91 /* Sources */,
-				5DAABF3C1CB69B8100CEDB91 /* Frameworks */,
-				5DAABF3D1CB69B8100CEDB91 /* Resources */,
-				5D7723B31CB7A21200D680FE /* CopyFiles */,
-				97494E9A20328C31000D3DB5 /* ShellScript */,
+				504B0A651C71E21612E72F44 /* [CP] Check Pods Manifest.lock */,
+				1B7ADAA324EDEE8100F3CAC8 /* Sources */,
+				1B7ADAA424EDEE8100F3CAC8 /* Frameworks */,
+				1B7ADAA524EDEE8100F3CAC8 /* Resources */,
+				F68661F0979124CF7349D250 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -305,147 +346,235 @@
 			);
 			name = "BNPayment-Example";
 			productName = "BNPayment-Example";
-			productReference = 5DAABF3F1CB69B8100CEDB91 /* BNPayment-Example.app */;
+			productReference = 1B7ADAA724EDEE8100F3CAC8 /* Bambora.app */;
 			productType = "com.apple.product-type.application";
+		};
+		1B7ADB2324EE3E0A00F3CAC8 /* BNPayment-Example-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B7ADB2B24EE3E0A00F3CAC8 /* Build configuration list for PBXNativeTarget "BNPayment-Example-Tests" */;
+			buildPhases = (
+				1B7ADB2024EE3E0A00F3CAC8 /* Sources */,
+				1B7ADB2124EE3E0A00F3CAC8 /* Frameworks */,
+				1B7ADB2224EE3E0A00F3CAC8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B7ADB2A24EE3E0A00F3CAC8 /* PBXTargetDependency */,
+			);
+			name = "BNPayment-Example-Tests";
+			productName = "BNPayment-Example-Tests";
+			productReference = 1B7ADB2424EE3E0A00F3CAC8 /* BNPayment-Example-Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5DAABF371CB69B8100CEDB91 /* Project object */ = {
+		1B7ADA9F24EDEE8100F3CAC8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = Bambora;
 				TargetAttributes = {
-					5DAABF3E1CB69B8100CEDB91 = {
-						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 5MD8YB29K7;
-						LastSwiftMigration = 1010;
-						SystemCapabilities = {
-							com.apple.ApplePay = {
-								enabled = 1;
-							};
-						};
+					1B7ADAA624EDEE8100F3CAC8 = {
+						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1160;
+					};
+					1B7ADB2324EE3E0A00F3CAC8 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 1B7ADAA624EDEE8100F3CAC8;
 					};
 				};
 			};
-			buildConfigurationList = 5DAABF3A1CB69B8100CEDB91 /* Build configuration list for PBXProject "BNPayment-Example" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = 1B7ADAA224EDEE8100F3CAC8 /* Build configuration list for PBXProject "BNPayment-Example" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
-			mainGroup = 5DAABF361CB69B8100CEDB91;
-			productRefGroup = 5DAABF401CB69B8100CEDB91 /* Products */;
+			mainGroup = 1B7ADA9E24EDEE8100F3CAC8;
+			productRefGroup = 1B7ADAA824EDEE8100F3CAC8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5DAABF3E1CB69B8100CEDB91 /* BNPayment-Example */,
+				1B7ADAA624EDEE8100F3CAC8 /* BNPayment-Example */,
+				1B7ADB2324EE3E0A00F3CAC8 /* BNPayment-Example-Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5DAABF3D1CB69B8100CEDB91 /* Resources */ = {
+		1B7ADAA524EDEE8100F3CAC8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DAABF521CB69B8100CEDB91 /* LaunchScreen.storyboard in Resources */,
-				972D988E1FFF4B8D00AB8635 /* MerchantID.txt in Resources */,
-				95C314E320040A14007CFE72 /* VisaCheckoutParams.json in Resources */,
-				972160A12004475E00644B6F /* VisaCheckoutTransaction.json in Resources */,
-				F86158811EB16305007EFE17 /* paymentData.json in Resources */,
-				5DAABF4F1CB69B8100CEDB91 /* Assets.xcassets in Resources */,
-				F861587F1EB16107007EFE17 /* registrationData.json in Resources */,
-				5DAABF4D1CB69B8100CEDB91 /* Main.storyboard in Resources */,
+				1B7ADB1724EE3C8900F3CAC8 /* pipeline.yml in Resources */,
+				1B7ADB1E24EE3CC400F3CAC8 /* Fastfile in Resources */,
+				1B7ADAB424EDEE8500F3CAC8 /* Assets.xcassets in Resources */,
+				1B7ADB0424EDF40800F3CAC8 /* Main.storyboard in Resources */,
+				1B7ADAFA24EDF24200F3CAC8 /* paymentData.json in Resources */,
+				1B7ADB0B24EDF41900F3CAC8 /* Main.storyboard in Resources */,
+				1B7ADB1F24EE3CC400F3CAC8 /* README.md in Resources */,
+				1B7ADB0524EDF40800F3CAC8 /* LaunchScreen.storyboard in Resources */,
+				1B7ADB1D24EE3CC400F3CAC8 /* Appfile in Resources */,
+				1B7ADB0A24EDF41900F3CAC8 /* LaunchScreen.storyboard in Resources */,
+				1B7ADAF824EDF24200F3CAC8 /* registrationData.json in Resources */,
+				1B7ADAF924EDF24200F3CAC8 /* MerchantID.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7ADB2224EE3E0A00F3CAC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		97494E9A20328C31000D3DB5 /* ShellScript */ = {
+		504B0A651C71E21612E72F44 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BNPayment-Example-checkManifestLockResult.txt",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = $PROJECT_DIR/removeSimulatorArchitecturesBuildPhase.sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F68661F0979124CF7349D250 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BNPayment-Example/Pods-BNPayment-Example-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BNPayment-Example/Pods-BNPayment-Example-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BNPayment-Example/Pods-BNPayment-Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5DAABF3B1CB69B8100CEDB91 /* Sources */ = {
+		1B7ADAA324EDEE8100F3CAC8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95C314DF20037BBC007CFE72 /* OHHTTPStubsMethodSwizzling.m in Sources */,
-				95C314DB20037BBC007CFE72 /* OHHTTPStubsResponse.m in Sources */,
-				F8D0A2761E8C746C00FD49B1 /* CustomDataViewController.swift in Sources */,
-				5DAABF471CB69B8100CEDB91 /* AppDelegate.m in Sources */,
-				F87893F91EB02A480049E354 /* AppSettings.m in Sources */,
-				F8D0A2741E8C745800FD49B1 /* MyDetailsViewController.swift in Sources */,
-				95C314DD20037BBC007CFE72 /* OHHTTPStubsResponse+HTTPMessage.m in Sources */,
-				95C314D820037BBC007CFE72 /* OHHTTPStubs.m in Sources */,
-				F8D0A2711E8C6B4300FD49B1 /* BNColor.swift in Sources */,
-				95C314DC20037BBC007CFE72 /* OHHTTPStubs+Mocktail.m in Sources */,
-				EA6365D31EDFE8AD00553EC7 /* DeveloperViewController.swift in Sources */,
-				95C314D720037BBC007CFE72 /* OHHTTPStubsResponse+JSON.m in Sources */,
-				F8C7D7781E88C3E100FC7362 /* CardsViewController.swift in Sources */,
-				F8C7D7761E88B34900FC7362 /* ProductsViewController.swift in Sources */,
-				95C314D920037BBC007CFE72 /* OHPathHelpers.m in Sources */,
-				95C314DE20037BBC007CFE72 /* NSURLRequest+HTTPBodyTesting.m in Sources */,
-				95C314E020037BBC007CFE72 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */,
-				5DAABF441CB69B8100CEDB91 /* main.m in Sources */,
-				F8C7D78F1E89B10800FC7362 /* CardsTableViewCell.swift in Sources */,
+				1B7ADAF124EDF21C00F3CAC8 /* CardsViewController.swift in Sources */,
+				1B7ADAFF24EDF35200F3CAC8 /* AppSettings.swift in Sources */,
+				1B7ADADC24EDF14700F3CAC8 /* OHHTTPStubsResponse.m in Sources */,
+				1B7ADAFD24EDF33B00F3CAC8 /* AppDelegate.swift in Sources */,
+				1B7ADADF24EDF14700F3CAC8 /* OHHTTPStubsMethodSwizzling.m in Sources */,
+				1B7ADAF424EDF21C00F3CAC8 /* ProductsViewController.swift in Sources */,
+				1B7ADADD24EDF14700F3CAC8 /* OHHTTPStubsResponse+JSON.m in Sources */,
+				1B7ADAE224EDF14700F3CAC8 /* OHHTTPStubs.m in Sources */,
+				1B7ADAE124EDF14700F3CAC8 /* OHPathHelpers.m in Sources */,
+				1B7ADAF024EDF21C00F3CAC8 /* CustomDataViewController.swift in Sources */,
+				1B7ADADB24EDF14700F3CAC8 /* OHHTTPStubs+Mocktail.m in Sources */,
+				1B7ADAE624EDF17A00F3CAC8 /* BNColor.swift in Sources */,
+				1B7ADAE024EDF14700F3CAC8 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */,
+				1B7ADAE324EDF14700F3CAC8 /* OHHTTPStubsResponse+HTTPMessage.m in Sources */,
+				1B7ADAE924EDF19400F3CAC8 /* CardsTableViewCell.swift in Sources */,
+				1B7ADADE24EDF14700F3CAC8 /* NSURLRequest+HTTPBodyTesting.m in Sources */,
+				1B7ADAF224EDF21C00F3CAC8 /* MyDetailsViewController.swift in Sources */,
+				1B7ADAF324EDF21C00F3CAC8 /* DeveloperViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7ADB2024EE3E0A00F3CAC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7ADB2724EE3E0A00F3CAC8 /* BNPayment_Example_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1B7ADB2A24EE3E0A00F3CAC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B7ADAA624EDEE8100F3CAC8 /* BNPayment-Example */;
+			targetProxy = 1B7ADB2924EE3E0A00F3CAC8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		5DAABF4B1CB69B8100CEDB91 /* Main.storyboard */ = {
+		1B7ADB0024EDF40800F3CAC8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5DAABF4C1CB69B8100CEDB91 /* Base */,
+				1B7ADB0124EDF40800F3CAC8 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		5DAABF501CB69B8100CEDB91 /* LaunchScreen.storyboard */ = {
+		1B7ADB0224EDF40800F3CAC8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5DAABF511CB69B8100CEDB91 /* Base */,
+				1B7ADB0324EDF40800F3CAC8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1B7ADB0624EDF41900F3CAC8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B7ADB0724EDF41900F3CAC8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1B7ADB0824EDF41900F3CAC8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B7ADB0924EDF41900F3CAC8 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5DAABF541CB69B8100CEDB91 /* Debug */ = {
+		1B7ADAB924EDEE8500F3CAC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -457,14 +586,14 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -479,29 +608,33 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		5DAABF551CB69B8100CEDB91 /* Release */ = {
+		1B7ADABA24EDEE8500F3CAC8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -513,14 +646,14 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -530,81 +663,146 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_VERSION = 4.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		5DAABF571CB69B8100CEDB91 /* Debug */ = {
+		1B7ADABC24EDEE8500F3CAC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 050C739412252FCA674BB0A8 /* Pods-BNPayment-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CODE_SIGN_ENTITLEMENTS = "BNPayment-Example/BNPayment-Example.entitlements";
-				DEVELOPMENT_TEAM = 5MD8YB29K7;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = UQV9F8CUQE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "BNPayment-Example/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ippayments.sdkdemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BNPayment-Example/BNPayment-Example-Bridging-Header.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ippayments.sdkdemo.sentia;
+				PRODUCT_NAME = Bambora;
+				SWIFT_OBJC_BRIDGING_HEADER = "BNPayment-Example/OHHTTPStubs/BNPayment-Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		5DAABF581CB69B8100CEDB91 /* Release */ = {
+		1B7ADABD24EDEE8500F3CAC8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9719773C8B337FF12F905E4 /* Pods-BNPayment-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CODE_SIGN_ENTITLEMENTS = "BNPayment-Example/BNPayment-Example.entitlements";
-				DEVELOPMENT_TEAM = 5MD8YB29K7;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = UQV9F8CUQE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "BNPayment-Example/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ippayments.sdkdemo;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ippayments.sdkdemo.sentia;
+				PRODUCT_NAME = Bambora;
+				SWIFT_OBJC_BRIDGING_HEADER = "BNPayment-Example/OHHTTPStubs/BNPayment-Example-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		1B7ADB2C24EE3E0A00F3CAC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UQV9F8CUQE;
+				INFOPLIST_FILE = "BNPayment-Example-Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ippayments.sdkdemo.BNPayment-Example-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BNPayment-Example/BNPayment-Example-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bambora.app/Bambora";
+			};
+			name = Debug;
+		};
+		1B7ADB2D24EE3E0A00F3CAC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UQV9F8CUQE;
+				INFOPLIST_FILE = "BNPayment-Example-Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ippayments.sdkdemo.BNPayment-Example-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bambora.app/Bambora";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5DAABF3A1CB69B8100CEDB91 /* Build configuration list for PBXProject "BNPayment-Example" */ = {
+		1B7ADAA224EDEE8100F3CAC8 /* Build configuration list for PBXProject "BNPayment-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5DAABF541CB69B8100CEDB91 /* Debug */,
-				5DAABF551CB69B8100CEDB91 /* Release */,
+				1B7ADAB924EDEE8500F3CAC8 /* Debug */,
+				1B7ADABA24EDEE8500F3CAC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5DAABF561CB69B8100CEDB91 /* Build configuration list for PBXNativeTarget "BNPayment-Example" */ = {
+		1B7ADABB24EDEE8500F3CAC8 /* Build configuration list for PBXNativeTarget "BNPayment-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5DAABF571CB69B8100CEDB91 /* Debug */,
-				5DAABF581CB69B8100CEDB91 /* Release */,
+				1B7ADABC24EDEE8500F3CAC8 /* Debug */,
+				1B7ADABD24EDEE8500F3CAC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B7ADB2B24EE3E0A00F3CAC8 /* Build configuration list for PBXNativeTarget "BNPayment-Example-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B7ADB2C24EE3E0A00F3CAC8 /* Debug */,
+				1B7ADB2D24EE3E0A00F3CAC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 5DAABF371CB69B8100CEDB91 /* Project object */;
+	rootObject = 1B7ADA9F24EDEE8100F3CAC8 /* Project object */;
 }

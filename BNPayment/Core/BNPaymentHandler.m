@@ -193,29 +193,6 @@ static NSString *const existingBaseURLKey = @"BamboraBaseURL";
     return dataTask;
 }
 
-
--(NSURLSessionDataTask *)getVisaCheckoutWithCompletionHandler:(void(^)(VisaCheckoutLaunchParams* visaCheckoutLaunchParams,NSError* error))completionHandler{
-    
-    NSURLSessionDataTask *dataTask = [VisaCheckoutEndpoint getVisaCheckoutWithCompletionHandler:^(VisaCheckoutLaunchParams *visaCheckoutLaunchParams, NSError *error) {
-        completionHandler(visaCheckoutLaunchParams,error);
-    }];
-    return dataTask;
-}
-
-
--(NSURLSessionDataTask *)processTransactionFromVisaCheckout:(VisaCheckoutTransactionParams*)visaCheckoutTransactionParams WithCompletionHandler:(void(^)(VisaCheckoutResponse* visaCheckoutResponse,NSError* error))completionHandler{
-    
-    
-    NSURLSessionDataTask *dataTask = [VisaCheckoutEndpoint processTransactionFromVisaCheckout:visaCheckoutTransactionParams WithCompletionHandler:^(VisaCheckoutResponse *visaCheckoutResponse, NSError *error) {
-        completionHandler(visaCheckoutResponse,error);
-    }];
-    return dataTask;
-}
-
-
-
-
-
 - (NSURLSessionDataTask *)registerCreditCard:(BNRegisterCCParams *)params
                                   completion:(BNCreditCardRegistrationBlock)completion {
     NSURLSessionDataTask *dataTask = [BNCreditCardEndpoint registerCreditCard:params completion:^(BNAuthorizedCreditCard *card, NSError *error) {

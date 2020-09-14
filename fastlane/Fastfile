@@ -1,0 +1,213 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+skip_docs
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    $folder = ENV['FOLDER']
+    $project = ENV['PROJECT']
+    $scheme = ENV['SCHEME']
+    $build_root_path = ENV['BUILD_PATH']
+    $build_path = "~/.buildkite/shared_builds/#{$project}/#{$scheme}"
+    $ipa_name = "#{$project}.ipa"
+    $destination
+  end
+  
+  desc "Run Tests on SDK"
+  lane :test_sdk do
+    scan(project: "#{$folder}#{$project}.xcodeproj",
+         scheme: $scheme,
+         clean: true)
+  end
+  
+  desc "Run Tests on App"
+  lane :test_app do
+      my_pods
+      scan(workspace: "#{$folder}#{$project}.xcworkspace",
+      scheme: $scheme,
+      clean: true)
+  end
+  
+  desc "Build App"
+  lane :build_and_archive do
+    keychain_password = ENV['KEYCHAIN_PASSWORD']
+    path = $build_path
+
+    my_pods
+    unlock_keychain(password: keychain_password)
+    build_app(workspace: "#{$folder}#{$project}.xcworkspace",
+              scheme: $scheme,
+              clean: true,
+              output_directory: $build_path,
+              output_name: $ipa_name)
+  end
+  
+  desc "Upload App"
+  lane :upload_and_distribute do
+    bundleID = ENV['BUNDLE_ID']
+    contact_email = ENV['CONTACT_EMAIL']
+    contact_first_name = ENV['CONTACT_FIRST_NAME']
+    contact_last_name = ENV['CONTACT_LAST_NAME']
+    contact_phone = ENV['CONTACT_PHONE']
+    xcodeproj = "#{$project}.xcodeproj"
+
+    # Generate changelog
+    command = "cd ../#{$folder} && ../scripts/ChangelogWizard"
+    changelog = sh(command, log: true)
+    
+    upload_to_testflight(
+      app_identifier: bundleID,
+      ipa: "#{$build_path}/#{$ipa_name}",
+      beta_app_review_info: {
+        contact_email: contact_email,
+        contact_first_name: contact_first_name,
+        contact_last_name: contact_last_name,
+        contact_phone: contact_phone
+      },
+      changelog: changelog,
+      demo_account_required: false,
+      distribute_external: true,
+      groups: 'App Store Connect Users',
+    )
+
+    bump
+
+    # delete ipa
+    sh('rm', '-rf', $build_path)
+  end
+
+  desc "Bump Version"
+  lane :bump do
+    xcodeproj = "#{$folder}#{$project}.xcodeproj"
+    project_module = ENV['MODULE']
+    commit_tag = ENV['COMMIT_TAG']
+    branch = ENV['BRANCH']
+    bump_type = ENV['BUMP_TYPE']
+    podspec_path = ENV['PODSPEC_PATH']
+    
+    version_number = get_version_number(xcodeproj: xcodeproj)
+    build_number = get_build_number(xcodeproj: xcodeproj)
+    
+    if project_module == "app"
+
+#          push_tag(
+#            version: version_number,
+#            build: build_number
+#          )
+          
+          build_number = increment_build_number(xcodeproj: xcodeproj)
+
+          reset_git_repo(
+             force: true,
+             files: [
+                "Gemfile.lock",
+                "fastlane/Fastfile"
+             ])
+             
+          commit_version_bump(
+                              message: "[#{commit_tag}] Example App version increased to #{version_number}(#{build_number})",
+                              xcodeproj: xcodeproj,
+                              ignore: /fastlane/
+                              )
+      elsif project_module == "sdk"
+          version_number = version_bump_podspec(path: podspec_path,
+                                                bump_type: bump_type)
+          
+          reset_git_repo(
+             force: true,
+             files: [
+                "Gemfile.lock",
+                "fastlane/Fastfile"
+             ])
+             
+          git_commit(path: podspec_path,
+                     message: "[#{commit_tag}] SDK version increased to #{version_number}")
+      end
+    
+      push_to_git_remote(remote_branch: branch)
+  end
+  
+  desc "Push Tag"
+  lane :push_tag do |input|
+    full_number = "#{input[:version]}.#{input[:build]}"
+    add_git_tag(grouping: "", tag: full_number)
+    push_git_tags(tag: full_number)
+  end
+  
+  desc "Sync to Github"
+  lane :sync_to_github do
+    repo = ENV['REPO']
+    destination = ENV['DESTINATION_PATH']
+    repo_name = ENV['REPO_NAME']
+    branch = ENV['BRANCH']
+    source = ENV['SOURCE_PATH']
+    project_module = ENV['MODULE']
+    
+    # Clone Repo
+    sh("git clone #{repo} #{destination}")
+    
+    # Checkout master
+    sh("cd #{destination} && git checkout #{branch}")
+    
+    # Sync current state to Githib Repo
+    sh("cd #{source} && rsync -rv ./ #{destination} --exclude /.git/ --exclude .gitignore --exclude /build --exclude /build/ --exclude .DS_Store")
+    
+    # Ignore Secrets
+    sh("cd #{destination} && git update-index --assume-unchanged Example/BNPayment-Example/MerchantID.txt")
+    
+    sh("cd #{destination} && git update-index --assume-unchanged Example/BNPayment-Example/paymentData.json")
+    
+    sh("cd #{destination} && git update-index --assume-unchanged Example/BNPayment-Example/registrationData.json")
+    
+    # Stage all changes
+    sh("cd #{destination} && git add --all")
+    
+    # Get Changelog
+    changelog = sh("cd ../Example && ../scripts/ChangelogWizard")
+    
+    # Commit Changes
+    sh("cd #{destination} && git commit -m '#{changelog}'")
+    
+    # Push Changes
+    sh("cd #{destination} && git push")
+
+    # Push tags
+    version = version_get_podspec(path: "#{destination}")
+    tag_name = "#{project_module}/#{version}"
+    sh("cd #{destination} && git tag #{tag_name} && git push origin #{tag_name}")
+    
+    # Check latest release tag and upload new version if needed
+    uploadNewVersion = sh("cd .. && scripts/TagCheck").strip
+    
+    if uploadNewVersion == 'true'
+        release_version
+    end
+    
+    # Delete Repo
+    sh("rm -rf #{destination}")
+  end
+  
+  desc "Upload new version to Cocoapods"
+  lane :release_version do
+      destination = ENV['DESTINATION_PATH']
+      sh("cd #{destination} && pod trunk push --use-libraries --allow-warnings ")
+  end
+
+  desc "Install Cocoapods for Example Project"
+  lane :my_pods do
+      sh("cd .. && bundle exec pod install --project-directory=#{$folder}")
+  end
+end

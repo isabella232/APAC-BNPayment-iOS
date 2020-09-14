@@ -1,0 +1,98 @@
+
+sdk: &sdk
+  MODULE: 'sdk'
+  FOLDER: ''
+  PROJECT: 'BNPayment'
+  SCHEME: 'BNPayment'
+  COMMIT_TAG: 'AUTO'
+  BRANCH: 'develop'
+  BUMP_TYPE: 'patch'
+  PODSPEC_PATH: 'APAC-BNPayment.podspec'
+  
+test_app: &test_app
+  <<: *sdk
+  MODULE: 'app'
+  FOLDER: 'Example/'
+  PROJECT: 'BNPayment-Example'
+  SCHEME: 'BNPayment-Example'
+  BUNDLE_ID: 'com.ippayments.sdkdemo.sentia'
+  
+steps:
+  - label: 'Bundle Install'
+    key: 'bundle_install'
+    command: 'source ~/.bashrc && bundle install'
+    agents:
+      ios: 'build'
+
+  - label: 'Run SDK Tests'
+    key: 'run_sdk_test'
+    branches: 'develop'
+    command: 'source ~/.bashrc && bundle exec fastlane test_sdk'
+    env:
+      <<: *sdk
+    agents:
+      ios: 'build'
+      
+  - label: 'Run App Tests'
+    key: 'run_app_test'
+    branches: 'develop'
+    commands:
+      - 'source ~/.bashrc && bundle exec fastlane test_app'
+    env:
+      <<: *test_app
+    agents:
+      ios: 'build'
+      
+  - label: 'Build App'
+    key: 'build_app'
+    branches: 'master'
+    command: 'source ~/.bashrc && bundle exec fastlane build_and_archive'
+    env:
+      <<: *test_app
+    agents:
+      ios: 'build'
+  
+  - label: 'Upload App to TestFlight'
+    key: 'upload_to_testflight'
+    depends_on: 'build_app'
+    branches: 'master'
+    command: 'source ~/.bashrc && bundle exec fastlane upload_and_distribute'
+    env:
+      <<: *test_app
+      CONTACT_EMAIL: 'dev@sentia.com.au'
+      CONTACT_FIRST_NAME: 'Feleti'
+      CONTACT_LAST_NAME: 'Alipate'
+      CONTACT_PHONE: '+61280035216'
+    agents:
+      ios: 'testflight'
+      
+  - block: 'Release'
+    key: 'release'
+    
+  - label: 'Sync to Github'
+    key: 'github_sync'
+    depends_on:
+      - 'upload_to_testflight'
+      - 'release'
+    branches: 'master'
+    commands: 'fastlane sync_to_github'
+    env:
+      REPO_NAME: 'APAC-BNPayment-iOS'
+      REPO: 'git@github.com:bambora/APAC-BNPayment-iOS.git'
+      DESTINATION_PATH: '~/.buildkite/APAC-BNPayment-iOS/'
+      SOURCE_PATH: '../'
+      BRANCH: 'master'
+    agents:
+      ios: 'testflight'
+    
+  - label: 'Bump SDK Version'
+    depends_on:
+      - 'github_sync'
+      - 'release'
+    branches: 'master'
+    commands: 'fastlane bump'
+    env:
+      <<: *sdk
+    agents:
+      ios: 'testflight'
+      

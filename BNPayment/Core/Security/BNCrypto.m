@@ -60,7 +60,7 @@
     
     NSMutableData *dataOut = [NSMutableData dataWithLength:data.length + kCCBlockSizeAES128];
     
-    ccStatus = CCCrypt(operation,
+    ccStatus = CCCrypt((CCOperation)operation,
                        kCCAlgorithmAES,
                        kCCOptionPKCS7Padding,
                        symmetricKey.bytes,

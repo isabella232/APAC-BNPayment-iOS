@@ -29,9 +29,6 @@
 #import "UITextField+BNCreditCard.h"
 #import "BNLoaderButton.h"
 #import "BNSwitchButton.h"
-#import "VisaCheckOutButton.h"
-#import "VisaCheckOutButton_iOS10.h"
-#import "VisaCheckoutLaunchParams.h"
 #import "CardIO.h"
 #import <AVFoundation/AVCaptureDevice.h>
 
@@ -41,7 +38,7 @@ NSInteger const SinglePaymentPadding = 15;
 NSInteger const SinglePaymentTitleHeight = 30;
 NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
-@interface BNSubmitSinglePaymentCardVC () <VisaCheckOutButtonDelegate,VisaCheckOutButtonDelegate10,CardIOPaymentViewControllerDelegate>
+@interface BNSubmitSinglePaymentCardVC () <CardIOPaymentViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *formScrollView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -56,8 +53,8 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
 
 @property (nonatomic, strong) BNSwitchButton *switchSaveCardButton;
 @property (nonatomic, strong) BNLoaderButton *submitButton;
-@property (nonatomic, strong) VisaCheckOutButton *visaCheckOutButton;
-@property (nonatomic, strong) VisaCheckOutButton_iOS10 *visaCheckOutButton_iOS10;
+//@property (nonatomic, strong) VisaCheckOutButton *visaCheckOutButton;
+//@property (nonatomic, strong) VisaCheckOutButton_iOS10 *visaCheckOutButton_iOS10;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NSBundle *bundle;
 @property (nonatomic, strong) NSString* alertContent;
@@ -84,10 +81,6 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
         [self layoutCreditCardForm];
         [self setupLoading];
         [self guiCustomisation];
-        if(self.enableVisaCheckout && NSClassFromString(@"VisaCheckoutPlugin") != nil)
-        {
-            [self launchVisaCheckOut];
-        }
     }
 }
 
@@ -99,27 +92,6 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     self.activityIndicator.center = CGPointMake(CGRectGetMidX(self.view.bounds),CGRectGetMaxY(self.submitButton.frame)+25);
     [self.view addSubview:self.activityIndicator];
 }
-
-
-- (void)launchVisaCheckOut{
-
-    [self.activityIndicator startAnimating];
-    [[BNPaymentHandler sharedInstance] getVisaCheckoutWithCompletionHandler:^(VisaCheckoutLaunchParams *visaCheckoutLaunchParams, NSError *error) {
-        [self.activityIndicator stopAnimating];
-        
-        if(visaCheckoutLaunchParams)
-        {
-            [visaCheckoutLaunchParams setAmount:self.paymentParams.amount];
-            [self setupVisaCheckOutButtonWithData:visaCheckoutLaunchParams];
-        }
-        else
-        {
-          //handle later
-        }
-    }];
-    
-}
-
 
 - (BOOL) IsViewValid {
  
@@ -467,86 +439,6 @@ NSInteger const SinglePaymentSaveCardLabelWidth = 75;
     NSString *colorRegex = @"^#[A-Fa-f0-9]{6}$";
     NSPredicate *colorTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",colorRegex];
     return [colorTest evaluateWithObject:color];
-}
-
-- (void)setupVisaCheckOutButtonWithData:(VisaCheckoutLaunchParams *)visaCheckoutLaunchParams {
-    
-    CGFloat screenWidth=self.view.bounds.size.width;
-    
-    CGFloat orLabelWidth=60;
-    
-    UIView *leftLine= [[UIView alloc] initWithFrame:CGRectMake(SinglePaymentPadding,CGRectGetMaxY(self.submitButton.frame)+35,screenWidth/2-orLabelWidth/2-SinglePaymentPadding,1)];
-    leftLine.backgroundColor=[UIColor BNPurpleColor];
-    [self.formScrollView addSubview:leftLine];
-
-    UIView *rightLine= [[UIView alloc] initWithFrame:CGRectMake(screenWidth/2+orLabelWidth/2,CGRectGetMaxY(self.submitButton.frame)+35,screenWidth/2-orLabelWidth/2-SinglePaymentPadding,1)];
-    rightLine.backgroundColor=[UIColor BNPurpleColor];
-    [self.formScrollView addSubview:rightLine];
-    
-    UILabel *orLabel= [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2-orLabelWidth/2,CGRectGetMaxY(self.submitButton.frame)+20,orLabelWidth,30)];
-    [orLabel setTextColor:[UIColor BNPurpleColor]];
-    [orLabel setText:NSLocalizedString(@"OR", @"OR")];
-    orLabel.textAlignment = NSTextAlignmentCenter;
-    orLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
-    [self.formScrollView addSubview:orLabel];
-    
-    
-    CGFloat visaCheckOutButtonWidth=self.cardHolderTextField.frame.size.width*0.85;
-    CGRect visaCheckOutButtonFrame=CGRectMake((screenWidth-visaCheckOutButtonWidth)/2,
-                                              CGRectGetMaxY(self.submitButton.frame)+70,visaCheckOutButtonWidth,visaCheckOutButtonWidth/4);
-    
-    
-    NSString *version = [UIDevice currentDevice].systemVersion;
-    if (version.doubleValue >= 11.0) {
-        self.visaCheckOutButton=[[VisaCheckOutButton alloc]init];
-        self.visaCheckOutButton.frame = visaCheckOutButtonFrame;
-        [self.formScrollView addSubview:self.visaCheckOutButton];
-        [self.visaCheckOutButton loadUIWithViewController:self andData:visaCheckoutLaunchParams andLoadingColor:self.activityIndicator.color];
-        self.visaCheckOutButton.resultDelegate=self;
-        
-    } else {
-        self.visaCheckOutButton_iOS10=[[VisaCheckOutButton_iOS10 alloc]init];
-        self.visaCheckOutButton_iOS10.frame = visaCheckOutButtonFrame;
-        [self.formScrollView addSubview:self.visaCheckOutButton_iOS10];
-        [self.visaCheckOutButton_iOS10 loadUIWithViewController:self andData:visaCheckoutLaunchParams andLoadingColor:self.activityIndicator.color];
-        self.visaCheckOutButton_iOS10.resultDelegate=self;
-    }
-  
-}
-
--(void)VisaCheckoutSetupComplete{
-    // not need to handle at the moment
-}
-
-
--(void)VisaCheckoutSuccess:(NSDictionary *)VisaCheckoutPayment{
-    
-    VisaCheckoutTransactionParams *visaCheckoutTransactionParams=[[VisaCheckoutTransactionParams alloc]init];
-    visaCheckoutTransactionParams.encPaymentData=[VisaCheckoutPayment objectForKey:@"encPaymentData"];
-    visaCheckoutTransactionParams.callid=[VisaCheckoutPayment objectForKey:@"callid"];
-    visaCheckoutTransactionParams.encKey=[VisaCheckoutPayment objectForKey:@"encKey"];
-    visaCheckoutTransactionParams.paymentJsonData=self.paymentParams.paymentJsonData;
-    
-     [self.activityIndicator startAnimating];
-    
-    [[BNPaymentHandler sharedInstance] processTransactionFromVisaCheckout:visaCheckoutTransactionParams WithCompletionHandler:^(VisaCheckoutResponse *visaCheckoutResponse, NSError *error) {
-        
-        [self.activityIndicator stopAnimating];
-        
-        if(visaCheckoutResponse && self.completionBlock)
-        {
-           self.completionBlock(@{@"receipt":visaCheckoutResponse.receipt}, nil, BNPaymentSuccess, error);
-        }
-        else
-        {
-            //handle later
-        }
-    }];
-}
-
-
--(void)VisaCheckoutFail:(NSString *)info{
-   // handle later
 }
 
 - (void)showAlertViewWithTitle:(NSString*)title message:(NSString*)message {

@@ -63,7 +63,7 @@ NSInteger const TitleHeight = 30;
     self.bundle=[BNBundleUtils paymentLibBundle];
     }
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor systemGroupedBackgroundColor];
     
     [self setupCreditCardForm];
    
