@@ -79,6 +79,7 @@ steps:
     env:
       PROJECT: 'BNPayment-Example'
       SCHEME: 'BNPayment-Example'
+      PODSPEC_PATH: 'APAC-BNPayment.podspec'
       REPO_NAME: 'APAC-BNPayment-iOS'
       REPO: 'git@github.com:bambora/APAC-BNPayment-iOS.git'
       DESTINATION_PATH: '~/.buildkite/APAC-BNPayment-iOS/'
