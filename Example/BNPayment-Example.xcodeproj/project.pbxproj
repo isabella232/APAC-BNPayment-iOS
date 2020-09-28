@@ -679,7 +679,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "BNPayment-Example/BNPayment-Example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_TEAM = UQV9F8CUQE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -709,7 +709,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "BNPayment-Example/BNPayment-Example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_TEAM = UQV9F8CUQE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

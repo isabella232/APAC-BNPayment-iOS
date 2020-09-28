@@ -63,7 +63,13 @@ NSInteger const TitleHeight = 30;
     self.bundle=[BNBundleUtils paymentLibBundle];
     }
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.view.backgroundColor = [UIColor systemGroupedBackgroundColor];
+    
+    if (@available(iOS 13, *)) {
+        self.view.backgroundColor = [UIColor systemGroupedBackgroundColor];
+    } else {
+        self.view.backgroundColor = [UIColor groupTableViewBackgroundColor]; 
+    }
+    
     
     [self setupCreditCardForm];
    

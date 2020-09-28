@@ -166,7 +166,7 @@ platform :ios do
     sh("cd #{destination} && git checkout #{branch}")
     
     # Sync current state to Githib Repo
-    sh("cd #{source} && rsync -rv ./ #{destination} --exclude /.git/ --exclude .gitignore --exclude /build --exclude /build/ --exclude .DS_Store --exclude APAC-BNPayment.podspec")
+    sh("cd #{source} && rsync -rv --delete ./ #{destination} --exclude /.git/ --exclude .gitignore --exclude /build --exclude /build/ --exclude .DS_Store")
     
     # Ignore Secrets
     sh("cd #{destination} && git update-index --assume-unchanged Example/BNPayment-Example/MerchantID.txt")
